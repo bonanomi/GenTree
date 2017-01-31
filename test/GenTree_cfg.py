@@ -4,7 +4,11 @@ process = cms.Process("Demo")
 
 process.load("FWCore.MessageService.MessageLogger_cfi")
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
+process.MessageLogger.cerr.FwkReport.reportEvery = 1000
+
+process.maxEvents = cms.untracked.PSet( 
+      input = cms.untracked.int32(-1) 
+      )
 
 process.source = cms.Source("PoolSource",
     # replace 'myfile.root' with the source file you want to use
@@ -47,10 +51,10 @@ process.p = cms.Path(process.mergedGenParticles * process.myGenerator * process.
 #)
 #process.p = cms.Path(process.myGenerator*process.rivetProducerHTXS)
 
-process.out = cms.OutputModule("PoolOutputModule",
-    outputCommands = cms.untracked.vstring('drop *','keep *_*_*_runRivetAnalysis','keep *_generator_*_*','keep *_externalLHEProducer_*_*'),
-    fileName = cms.untracked.string('testHTXSRivet_ggH4l_MINIAOD_100k.root')
-)
+#process.out = cms.OutputModule("PoolOutputModule",
+    #outputCommands = cms.untracked.vstring('drop *','keep *_*_*_runRivetAnalysis','keep *_generator_*_*','keep *_externalLHEProducer_*_*'),
+    #fileName = cms.untracked.string('testHTXSRivet_ggH4l_MINIAOD_100k.root')
+#)
 
 process.TFileService = cms.Service("TFileService", 
                                    fileName = cms.string("gentree.root"), 
@@ -58,6 +62,6 @@ process.TFileService = cms.Service("TFileService",
                                    )
 
 
-process.o = cms.EndPath( process.out )
+#process.o = cms.EndPath( process.out )
 
 
