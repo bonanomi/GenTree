@@ -28,6 +28,21 @@
 #include "FWCore/Framework/interface/MakerMacros.h"
 
 #include "FWCore/ParameterSet/interface/ParameterSet.h"
+
+
+
+#include "CommonTools/UtilAlgos/interface/TFileService.h"
+#include "FWCore/ServiceRegistry/interface/Service.h"
+
+
+#include "TTree.h"
+
+
+
+#include "SimDataFormats/HTXS/interface/HiggsTemplateCrossSections.h"
+
+
+
 //
 // class declaration
 //
@@ -52,6 +67,16 @@ class GenTree : public edm::one::EDAnalyzer<edm::one::SharedResources>  {
       virtual void endJob() override;
 
       // ----------member data ---------------------------
+      
+      
+      TTree *outTree;
+      int _njet30;
+      int _stage0_cat;
+      int _stage1_cat;
+      
+      
+      edm::EDGetTokenT<HTXS::HiggsClassification> htxsSrc_;
+      
 };
 
 //
@@ -66,11 +91,20 @@ class GenTree : public edm::one::EDAnalyzer<edm::one::SharedResources>  {
 // constructors and destructor
 //
 GenTree::GenTree(const edm::ParameterSet& iConfig)
-
 {
-   //now do what ever initialization is needed
-   usesResource("TFileService");
-
+  
+  htxsSrc_ = consumes<HTXS::HiggsClassification>(edm::InputTag("rivetProducerHTXS","HiggsClassification"));
+  
+  //now do what ever initialization is needed
+  usesResource("TFileService");
+  
+  edm::Service<TFileService> fs;
+  
+  outTree = fs->make<TTree>("gentree","gentree");
+  outTree->Branch("njet30",         &_njet30,      "njet30/i");
+  outTree->Branch("stage0_cat",     &_stage0_cat,  "stage0_cat/i");
+  outTree->Branch("stage1_cat",     &_stage1_cat,  "stage1_cat/i");
+  
 }
 
 
@@ -93,17 +127,15 @@ GenTree::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
    using namespace edm;
 
-
-
-#ifdef THIS_IS_AN_EVENT_EXAMPLE
-   Handle<ExampleData> pIn;
-   iEvent.getByLabel("example",pIn);
-#endif
+   _njet30 = 0;
    
-#ifdef THIS_IS_AN_EVENTSETUP_EXAMPLE
-   ESHandle<SetupData> pSetup;
-   iSetup.get<SetupRecord>().get(pSetup);
-#endif
+   edm::Handle<HTXS::HiggsClassification> htxs;
+   iEvent.getByToken(htxsSrc_,htxs);
+   _stage0_cat = htxs->stage0_cat;
+   _stage1_cat = htxs->stage1_cat_pTjet30GeV;
+   
+   outTree->Fill();
+   
 }
 
 
