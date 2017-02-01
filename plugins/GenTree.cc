@@ -70,9 +70,9 @@ class GenTree : public edm::one::EDAnalyzer<edm::one::SharedResources>  {
       
       
       TTree *outTree;
-      int _njet30;
+      int _jets30;
       int _stage0_cat;
-      int _stage1_cat;
+      int _stage1_cat_pTjet30GeV;
       
       
       edm::EDGetTokenT<HTXS::HiggsClassification> htxsSrc_;
@@ -101,9 +101,9 @@ GenTree::GenTree(const edm::ParameterSet& iConfig)
   edm::Service<TFileService> fs;
   
   outTree = fs->make<TTree>("gentree","gentree");
-  outTree->Branch("njet30",         &_njet30,      "njet30/i");
-  outTree->Branch("stage0_cat",     &_stage0_cat,  "stage0_cat/i");
-  outTree->Branch("stage1_cat",     &_stage1_cat,  "stage1_cat/i");
+  outTree->Branch("jets30",         &_jets30,      "jets30/i");
+  outTree->Branch("stage0_cat",                &_stage0_cat,             "stage0_cat/i");
+  outTree->Branch("stage1_cat_pTjet30GeV",     &_stage1_cat_pTjet30GeV,  "stage1_cat_pTjet30GeV/i");
   
 }
 
@@ -125,14 +125,14 @@ GenTree::~GenTree()
 void
 GenTree::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
-   using namespace edm;
 
-   _njet30 = 0;
+   _jets30 = 0;
    
    edm::Handle<HTXS::HiggsClassification> htxs;
    iEvent.getByToken(htxsSrc_,htxs);
    _stage0_cat = htxs->stage0_cat;
-   _stage1_cat = htxs->stage1_cat_pTjet30GeV;
+   _stage1_cat_pTjet30GeV = htxs->stage1_cat_pTjet30GeV;
+   _jets30     = (htxs->jets30).size();
    
    outTree->Fill();
    

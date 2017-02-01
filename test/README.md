@@ -9,3 +9,8 @@ Run
 
     cmsRun GenTree_cfg.py
     
+    
+    r99t  gentree.root
+    tree = (TTree*) _file0->Get("GenTree/gentree")
+    tree->Draw("jets30")
+    
