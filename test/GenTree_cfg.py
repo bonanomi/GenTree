@@ -15,8 +15,8 @@ process.source = cms.Source("PoolSource",
     fileNames = cms.untracked.vstring(
         #'/store/mc/RunIISpring16MiniAODv2/GluGluHToZZTo4L_M125_13TeV_powheg2_JHUgenV6_pythia8/MINIAODSIM/PUSpring16RAWAODSIM_reHLT_80X_mcRun2_asymptotic_v14-v1/10000/2C7F3153-393B-E611-9323-0CC47AA98A3A.root',
         #'/store/mc/RunIISummer16MiniAODv2/HJ_MiNLO_NNLOPS_HToWWTo2L2Nu_M125_NNPDF30_13TeV_JHUGen702_pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/70000/148787A1-36DB-E611-88CC-0CC47A4D7630.root',  ===> HWW
-        #'/store/mc/RunIISummer16MiniAODv2/GluGluHToZZTo4L_M125_13TeV_powheg2_minloHJ_NNLOPS_JHUgenV702_pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/100000/181CC30D-16DE-E611-93D8-FA163E5DBAC6.root',
-        '/store/mc/RunIISummer16MiniAODv2/GluGluHToGG_M125_13TeV_amcatnloFXFX_pythia8_DownPS/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/100000/2817C1CE-CCE9-E611-BC09-0025904B2294.root',
+        '/store/mc/RunIISummer16MiniAODv2/GluGluHToZZTo4L_M125_13TeV_powheg2_minloHJ_NNLOPS_JHUgenV702_pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/100000/181CC30D-16DE-E611-93D8-FA163E5DBAC6.root',
+        #'/store/mc/RunIISummer16MiniAODv2/GluGluHToGG_M125_13TeV_amcatnloFXFX_pythia8_DownPS/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/100000/2817C1CE-CCE9-E611-BC09-0025904B2294.root',
     )
 )
 
@@ -63,8 +63,8 @@ process.p = cms.Path(process.mergedGenParticles * process.myGenerator * process.
 
 process.TFileService = cms.Service("TFileService", 
                                    #fileName = cms.string("gentree_powheg.root"), 
-                                   #fileName = cms.string("gentree_powheg_nnlops.root"), 
-                                   fileName = cms.string("gentree_amcatnlo.root"), 
+                                   fileName = cms.string("gentree_powheg_nnlops.root"), 
+                                   #fileName = cms.string("gentree_amcatnlo.root"), 
                                    closeFileFast = cms.untracked.bool(True),
                                    )
 

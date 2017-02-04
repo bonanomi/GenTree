@@ -12,7 +12,7 @@ void Draw( std::string var = "jets30", int nbin = 5, float min = 0, float max = 
   TTree* tree2 = (TTree*) _file1->Get("GenTree/gentree");  
   TH1F* h2 = new TH1F ("h2", "powheg nnlops", nbin, min, max);  
   toDraw = Form ("%s >> h2", var.c_str());
-  tree2->Draw(toDraw.Data());
+  tree2->Draw(toDraw.Data(), "weight" );
   
   TTree* tree3 = (TTree*) _file2->Get("GenTree/gentree");  
   TH1F* h3 = new TH1F ("h3", "aMC@nlo", nbin, min, max);  
@@ -37,6 +37,8 @@ void Draw( std::string var = "jets30", int nbin = 5, float min = 0, float max = 
   h3->Scale (1. / h3->Integral());
   
   h1->Draw();
+  h1->GetXaxis()->SetTitle("n jet 30 GeV");
+  h1->GetYaxis()->SetTitle("normalized");
   h2->Draw("SAME");
   h3->Draw("SAME");
   
