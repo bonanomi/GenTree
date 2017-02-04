@@ -42,6 +42,10 @@
 #include "SimDataFormats/HTXS/interface/HiggsTemplateCrossSections.h"
 
 
+//---- to get weights
+#include "SimDataFormats/GeneratorProducts/interface/GenEventInfoProduct.h"
+
+
 
 //
 // class declaration
@@ -73,9 +77,10 @@ class GenTree : public edm::one::EDAnalyzer<edm::one::SharedResources>  {
       int _jets30;
       int _stage0_cat;
       int _stage1_cat_pTjet30GeV;
-      
+      float _weight;
       
       edm::EDGetTokenT<HTXS::HiggsClassification> htxsSrc_;
+      edm::EDGetTokenT<GenEventInfoProduct> GenInfoT_ ;
       
 };
 
@@ -95,6 +100,9 @@ GenTree::GenTree(const edm::ParameterSet& iConfig)
   
   htxsSrc_ = consumes<HTXS::HiggsClassification>(edm::InputTag("rivetProducerHTXS","HiggsClassification"));
   
+  GenInfoT_ = consumes<GenEventInfoProduct>(edm::InputTag("generator"));
+  
+  
   //now do what ever initialization is needed
   usesResource("TFileService");
   
@@ -104,6 +112,7 @@ GenTree::GenTree(const edm::ParameterSet& iConfig)
   outTree->Branch("jets30",         &_jets30,      "jets30/i");
   outTree->Branch("stage0_cat",                &_stage0_cat,             "stage0_cat/i");
   outTree->Branch("stage1_cat_pTjet30GeV",     &_stage1_cat_pTjet30GeV,  "stage1_cat_pTjet30GeV/i");
+  outTree->Branch("weight",         &_weight,      "weight/F");
   
 }
 
@@ -133,6 +142,14 @@ GenTree::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
    _stage0_cat = htxs->stage0_cat;
    _stage1_cat_pTjet30GeV = htxs->stage1_cat_pTjet30GeV;
    _jets30     = (htxs->jets30).size();
+   
+   edm::Handle<GenEventInfoProduct> genEvtInfo;
+   iEvent.getByToken(GenInfoT_, genEvtInfo);
+   _weight = genEvtInfo->weight();
+   
+//    _weight = LHEInfoHandle_->originalXWGTUP();
+   
+   
    
    outTree->Fill();
    

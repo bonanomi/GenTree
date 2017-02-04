@@ -14,3 +14,9 @@ Run
     tree = (TTree*) _file0->Get("GenTree/gentree")
     tree->Draw("jets30")
     
+    
+Draw
+
+    r99t   gentree_powheg.root  gentree_powheg_nnlops.root   gentree_amcatnlo.root    Draw.cxx
+    
+    
