@@ -1,4 +1,4 @@
-void Draw( std::string var = "jets30", int nbin = 5, float min = 0, float max = 5, std::string nameHR = "n jet 30 GeV") {
+void DrawNjetCorrected( std::string var = "jets30", int nbin = 5, float min = 0, float max = 5, std::string nameHR = "n jet 30 GeV") {
   
   
   std::cout << " var =    " << var    << std::endl;
@@ -11,11 +11,18 @@ void Draw( std::string var = "jets30", int nbin = 5, float min = 0, float max = 
   TCanvas* cc = new TCanvas("cc","", 800, 600);
   int n = 0;
   
+//           powheg              amc@nlo
+//   [0] => 0.863426     ----    0.943684
+//   [1] => 1.19043     ----    1.07006
+//   [2] => 1.33254     ----    1.12422
+//   [3] => 1.3725     ----    1.04683
+//   [4] => 1.44193     ----    0.954694
+//   
   
   TTree* tree1 = (TTree*) _file0->Get("GenTree/gentree");  
   TH1F* h1 = new TH1F ("h1", "powheg", nbin, min, max);  
   TString toDraw = Form ("%s >> h1", var.c_str());
-  tree1->Draw(toDraw.Data());
+  tree1->Draw(toDraw.Data(), "(0.863426*(jets30==0) + 1.19043*(jets30==1) + 1.33254*(jets30==2) + 1.3725*(jets30==3) + 1.44193*(jets30>=4))");
   
   TTree* tree2 = (TTree*) _file1->Get("GenTree/gentree");  
   TH1F* h2 = new TH1F ("h2", "powheg nnlops", nbin, min, max);  
@@ -25,7 +32,7 @@ void Draw( std::string var = "jets30", int nbin = 5, float min = 0, float max = 
   TTree* tree3 = (TTree*) _file2->Get("GenTree/gentree");  
   TH1F* h3 = new TH1F ("h3", "aMC@nlo", nbin, min, max);  
   toDraw = Form ("%s >> h3", var.c_str());
-  tree3->Draw(toDraw.Data(), "weight");
+  tree3->Draw(toDraw.Data(), "weight * (0.943684*(jets30==0) + 1.07006*(jets30==1) + 1.12422*(jets30==2) + 1.04683*(jets30==3) + 0.954694*(jets30>=4))");
   
   
   h1->SetLineColor(kBlue);
@@ -60,10 +67,5 @@ void Draw( std::string var = "jets30", int nbin = 5, float min = 0, float max = 
   
   cc->SetGrid();
   
-  std::cout << std::endl;
-  for (int ibin = 0; ibin < nbin; ibin++) {
-    std::cout << " [" << ibin << "] => " << h2->GetBinContent (ibin+1) / h1->GetBinContent (ibin+1) << "     ----    "  <<  h2->GetBinContent (ibin+1) / h3->GetBinContent (ibin+1) << std::endl;
-  }
-  std::cout << std::endl;
   
 }

@@ -16,7 +16,9 @@ process.source = cms.Source("PoolSource",
         
         #https://cmsweb.cern.ch/das/request?view=list&limit=50&instance=prod%2Fglobal&input=file+dataset%3D%2FGluGluHToGG_M125_13TeV_amcatnloFXFX_pythia*%2FRunIISummer16MiniAODv2-PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1%2FMINIAODSIM
         '/store/mc/RunIISummer16MiniAODv2/GluGluHToGG_M125_13TeV_amcatnloFXFX_pythia8_CUETP8M1Up/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/110000/4E294805-A8E6-E611-8081-001E67792736.root',
-        '/store/mc/RunIISummer16MiniAODv2/GluGluHToGG_M125_13TeV_amcatnloFXFX_pythia8_CUETP8M1Up/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/110000/5CEA9B05-A8E6-E611-9B3B-001E677926F8.root'
+        '/store/mc/RunIISummer16MiniAODv2/GluGluHToGG_M125_13TeV_amcatnloFXFX_pythia8_CUETP8M1Up/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/110000/5CEA9B05-A8E6-E611-9B3B-001E677926F8.root',
+        '/store/mc/RunIISummer16MiniAODv2/GluGluHToGG_M125_13TeV_amcatnloFXFX_pythia8_CUETP8M1Up/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/110000/CC1F7D4B-C7E6-E611-B1BC-001E67792658.root',
+        '/store/mc/RunIISummer16MiniAODv2/GluGluHToGG_M125_13TeV_amcatnloFXFX_pythia8_CUETP8M1Up/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/110000/ECBCF232-B2E6-E611-B6AB-002590A371AC.root',
     )
 )
 
