@@ -12,17 +12,20 @@ void DrawNjetCorrected( std::string var = "jets30", int nbin = 5, float min = 0,
   int n = 0;
   
 //           powheg              amc@nlo
-//   [0] => 0.863426     ----    0.943684
-//   [1] => 1.19043     ----    1.07006
-//   [2] => 1.33254     ----    1.12422
-//   [3] => 1.3725     ----    1.04683
-//   [4] => 1.44193     ----    0.954694
+//   
+//   [0] => 0.861954     ----    0.92636
+//   [1] => 1.19465     ----    1.09542
+//   [2] => 1.33651     ----    1.12998
+//   [3] => 1.37506     ----    1.10286
+//   [4] => 1.41484     ----    1.16395
+//   
+//   
 //   
   
   TTree* tree1 = (TTree*) _file0->Get("GenTree/gentree");  
   TH1F* h1 = new TH1F ("h1", "powheg", nbin, min, max);  
   TString toDraw = Form ("%s >> h1", var.c_str());
-  tree1->Draw(toDraw.Data(), "(0.863426*(jets30==0) + 1.19043*(jets30==1) + 1.33254*(jets30==2) + 1.3725*(jets30==3) + 1.44193*(jets30>=4))");
+  tree1->Draw(toDraw.Data(), "(0.861954*(jets30==0) + 1.19465*(jets30==1) + 1.33651*(jets30==2) + 1.37506*(jets30==3) + 1.41484*(jets30>=4))");
   
   TTree* tree2 = (TTree*) _file1->Get("GenTree/gentree");  
   TH1F* h2 = new TH1F ("h2", "powheg nnlops", nbin, min, max);  
@@ -32,7 +35,7 @@ void DrawNjetCorrected( std::string var = "jets30", int nbin = 5, float min = 0,
   TTree* tree3 = (TTree*) _file2->Get("GenTree/gentree");  
   TH1F* h3 = new TH1F ("h3", "aMC@nlo", nbin, min, max);  
   toDraw = Form ("%s >> h3", var.c_str());
-  tree3->Draw(toDraw.Data(), "weight * (0.943684*(jets30==0) + 1.07006*(jets30==1) + 1.12422*(jets30==2) + 1.04683*(jets30==3) + 0.954694*(jets30>=4))");
+  tree3->Draw(toDraw.Data(), "weight * (0.92636*(jets30==0) + 1.09542*(jets30==1) + 1.12998*(jets30==2) + 1.10286*(jets30==3) + 1.16395*(jets30>=4))");
   
   
   h1->SetLineColor(kBlue);
