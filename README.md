@@ -24,4 +24,8 @@ Install:
     scramv1 b -j 10
     
     
+Where
+====
+
+    /afs/cern.ch/user/a/amassiro/work/LHCXSWG/CMSSW_8_0_19/src/GeneratorInterface/GenTree
 

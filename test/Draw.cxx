@@ -1,4 +1,12 @@
-void Draw( std::string var = "jets30", int nbin = 5, float min = 0, float max = 5) {
+void Draw( std::string var = "jets30", int nbin = 5, float min = 0, float max = 5, std::string nameHR = "n jet 30 GeV") {
+  
+  
+  std::cout << " var =    " << var    << std::endl;
+  std::cout << " nbin =   " << nbin   << std::endl;
+  std::cout << " min =    " << min    << std::endl;
+  std::cout << " max =    " << max    << std::endl;
+  std::cout << " nameHR = " << nameHR << std::endl;
+  
   
   TCanvas* cc = new TCanvas("cc","", 800, 600);
   int n = 0;
@@ -32,12 +40,12 @@ void Draw( std::string var = "jets30", int nbin = 5, float min = 0, float max = 
   h3->SetLineStyle(3);
   h3->SetLineWidth(4);
   
-  h1->Scale (1. / h1->Integral());
-  h2->Scale (1. / h2->Integral());
-  h3->Scale (1. / h3->Integral());
+  h1->Scale (1. / h1->Integral(0,h1->GetNbinsX()+1));
+  h2->Scale (1. / h2->Integral(0,h1->GetNbinsX()+1));
+  h3->Scale (1. / h3->Integral(0,h1->GetNbinsX()+1));
   
   h1->Draw();
-  h1->GetXaxis()->SetTitle("n jet 30 GeV");
+  h1->GetXaxis()->SetTitle(nameHR.c_str());
   h1->GetYaxis()->SetTitle("normalized");
   h2->Draw("SAME");
   h3->Draw("SAME");

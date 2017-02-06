@@ -79,6 +79,13 @@ class GenTree : public edm::one::EDAnalyzer<edm::one::SharedResources>  {
       int _stage1_cat_pTjet30GeV;
       float _weight;
       
+      float _higgs_pt;
+      float _higgs_eta;
+      
+      float _jet1_pt;
+      float _jet1_eta;
+      
+      
       edm::EDGetTokenT<HTXS::HiggsClassification> htxsSrc_;
       edm::EDGetTokenT<GenEventInfoProduct> GenInfoT_ ;
       
@@ -113,6 +120,14 @@ GenTree::GenTree(const edm::ParameterSet& iConfig)
   outTree->Branch("stage0_cat",                &_stage0_cat,             "stage0_cat/i");
   outTree->Branch("stage1_cat_pTjet30GeV",     &_stage1_cat_pTjet30GeV,  "stage1_cat_pTjet30GeV/i");
   outTree->Branch("weight",         &_weight,      "weight/F");
+  
+  outTree->Branch("higgs_pt",          &_higgs_pt,      "higgs_pt/F");
+  outTree->Branch("higgs_eta",         &_higgs_eta,     "higgs_eta/F");
+  
+  outTree->Branch("jet1_pt",          &_jet1_pt,      "jet1_pt/F");
+  outTree->Branch("jet1_eta",         &_jet1_eta,     "jet1_eta/F");
+  
+  
   
 }
 
@@ -150,6 +165,17 @@ GenTree::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 //    _weight = LHEInfoHandle_->originalXWGTUP();
    
    
+   _higgs_pt  = htxs->higgs.pt();
+   _higgs_eta = htxs->higgs.eta();
+
+   if ((htxs->jets25).size() >= 1) {
+     _jet1_pt  = (htxs->jets25).at(0).pt();
+     _jet1_eta = (htxs->jets25).at(0).eta();
+   }
+   else {     
+     _jet1_pt  = -99;
+     _jet1_eta = -99;
+   }
    
    outTree->Fill();
    
