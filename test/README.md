@@ -35,3 +35,11 @@ Draw
     r99t   gentree_powheg.root  gentree_powheg_nnlops.root   gentree_amcatnlo.root    DrawNjetCorrected.cxx\(\"jets30\",5,0,5,\"n\ jet\ 30\ GeV\"\)
     r99t   gentree_powheg.root  gentree_powheg_nnlops.root   gentree_amcatnlo.root    DrawNjetCorrected.cxx\(\"higgs_eta\",20,-6,6,\"Higgs\ #eta\"\)
     r99t   gentree_powheg.root  gentree_powheg_nnlops.root   gentree_amcatnlo.root    DrawNjetCorrected.cxx\(\"jet1_pt\",20,0,200,\"jet1\ p_\{T\}\ \[GeV\]\"\)
+
+
+    r99t   gentree_powheg.root  gentree_powheg_nnlops.root   gentree_amcatnlo.root    DrawHpTCorrected.cxx\(\"higgs_pt\",20,0,200,\"Higgs\ p_\{T\}\ \[GeV\]\"\)
+    r99t   gentree_powheg.root  gentree_powheg_nnlops.root   gentree_amcatnlo.root    DrawHpTCorrected.cxx\(\"jets30\",5,0,5,\"n\ jet\ 30\ GeV\"\)
+    r99t   gentree_powheg.root  gentree_powheg_nnlops.root   gentree_amcatnlo.root    DrawHpTCorrected.cxx\(\"higgs_eta\",20,-6,6,\"Higgs\ #eta\"\)
+    r99t   gentree_powheg.root  gentree_powheg_nnlops.root   gentree_amcatnlo.root    DrawHpTCorrected.cxx\(\"jet1_pt\",20,0,200,\"jet1\ p_\{T\}\ \[GeV\]\"\)
+    
+    
