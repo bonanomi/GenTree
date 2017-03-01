@@ -20,7 +20,10 @@ void Draw( std::string var = "jets30", int nbin = 5, float min = 0, float max = 
   TTree* tree2 = (TTree*) _file1->Get("GenTree/gentree");  
   TH1F* h2 = new TH1F ("h2", "powheg nnlops", nbin, min, max);  
   toDraw = Form ("%s >> h2", var.c_str());
-  tree2->Draw(toDraw.Data(), "weight" );
+//   tree2->Draw(toDraw.Data(), "( weights_LHE[9] * (abs(weights_LHE[9])<400) + 1* (abs(weights_LHE[9])>=400) )" );
+  tree2->Draw(toDraw.Data(), "( ( weights_LHE[9] * (abs(weights_LHE[9]/weights_LHE[0])<100)) + 0 * (abs(weights_LHE[9]/weights_LHE[0])>100)  )" );
+  
+  
   
   TTree* tree3 = (TTree*) _file2->Get("GenTree/gentree");  
   TH1F* h3 = new TH1F ("h3", "aMC@nlo", nbin, min, max);  

@@ -44,6 +44,7 @@
 
 //---- to get weights
 #include "SimDataFormats/GeneratorProducts/interface/GenEventInfoProduct.h"
+#include "SimDataFormats/GeneratorProducts/interface/LHEEventProduct.h"
 
 
 
@@ -85,9 +86,13 @@ class GenTree : public edm::one::EDAnalyzer<edm::one::SharedResources>  {
       float _jet1_pt;
       float _jet1_eta;
       
+      std::vector<float> _weights_LHE;
       
       edm::EDGetTokenT<HTXS::HiggsClassification> htxsSrc_;
       edm::EDGetTokenT<GenEventInfoProduct> GenInfoT_ ;
+      edm::EDGetTokenT<LHEEventProduct> LHEInfoT_ ;
+      
+      const LHEEventProduct* LHEInfoHandle_;    
       
 };
 
@@ -108,6 +113,8 @@ GenTree::GenTree(const edm::ParameterSet& iConfig)
   htxsSrc_ = consumes<HTXS::HiggsClassification>(edm::InputTag("rivetProducerHTXS","HiggsClassification"));
   
   GenInfoT_ = consumes<GenEventInfoProduct>(edm::InputTag("generator"));
+
+  LHEInfoT_ = consumes<LHEEventProduct>(edm::InputTag("externalLHEProducer"));
   
   
   //now do what ever initialization is needed
@@ -126,6 +133,9 @@ GenTree::GenTree(const edm::ParameterSet& iConfig)
   
   outTree->Branch("jet1_pt",          &_jet1_pt,      "jet1_pt/F");
   outTree->Branch("jet1_eta",         &_jet1_eta,     "jet1_eta/F");
+  
+  outTree->Branch("weights_LHE",         &_weights_LHE  );
+  
   
   
   
@@ -161,8 +171,19 @@ GenTree::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
    edm::Handle<GenEventInfoProduct> genEvtInfo;
    iEvent.getByToken(GenInfoT_, genEvtInfo);
    _weight = genEvtInfo->weight();
+  
    
-//    _weight = LHEInfoHandle_->originalXWGTUP();
+   edm::Handle<LHEEventProduct>   productLHEHandle;
+   iEvent.getByToken(LHEInfoT_, productLHEHandle);
+   
+   LHEInfoHandle_ = (productLHEHandle.product());
+   
+   _weights_LHE.clear();
+   int num_whichWeight = LHEInfoHandle_->weights().size();
+   for (int i=0; i<num_whichWeight; i++) {
+     _weights_LHE.push_back(LHEInfoHandle_->weights()[i].wgt);
+   }
+   
    
    
    _higgs_pt  = htxs->higgs.pt();
