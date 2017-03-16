@@ -54,6 +54,12 @@ void DrawNjetCorrected( std::string var = "jets30", int nbin = 5, float min = 0,
   h2->Scale (1. / h2->Integral(0,h1->GetNbinsX()+1));
   h3->Scale (1. / h3->Integral(0,h1->GetNbinsX()+1));
   
+  //---- add back overflow bin
+  h1->SetBinContent(h1->GetNbinsX(), h1->GetBinContent(h1->GetNbinsX()) + h1->GetBinContent(h1->GetNbinsX()+1) );
+  h2->SetBinContent(h2->GetNbinsX(), h2->GetBinContent(h2->GetNbinsX()) + h2->GetBinContent(h2->GetNbinsX()+1) );
+  h3->SetBinContent(h3->GetNbinsX(), h3->GetBinContent(h3->GetNbinsX()) + h3->GetBinContent(h3->GetNbinsX()+1) );
+  
+  
   h1->Draw();
   h1->GetXaxis()->SetTitle(nameHR.c_str());
   h1->GetYaxis()->SetTitle("normalized");
