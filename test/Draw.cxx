@@ -30,7 +30,6 @@ void Draw( std::string var = "jets30", int nbin = 5, float min = 0, float max = 
   toDraw = Form ("%s >> h3", var.c_str());
   tree3->Draw(toDraw.Data(), "weight");
   
-  
   h1->SetLineColor(kBlue);
   h1->SetLineStyle(1);
   h1->SetLineWidth(2);
@@ -46,6 +45,10 @@ void Draw( std::string var = "jets30", int nbin = 5, float min = 0, float max = 
   h1->Scale (1. / h1->Integral(0,h1->GetNbinsX()+1));
   h2->Scale (1. / h2->Integral(0,h1->GetNbinsX()+1));
   h3->Scale (1. / h3->Integral(0,h1->GetNbinsX()+1));
+
+  h1->SetBinContent(h1->GetNbinsX()+1, h1->GetBinContent(h1->GetNbinsX()+1) + h1->GetBinContent(h1->GetNbinsX()+2) );
+  h2->SetBinContent(h2->GetNbinsX()+1, h2->GetBinContent(h2->GetNbinsX()+1) + h2->GetBinContent(h2->GetNbinsX()+2) );
+  h3->SetBinContent(h3->GetNbinsX()+1, h3->GetBinContent(h3->GetNbinsX()+1) + h3->GetBinContent(h3->GetNbinsX()+2) );
   
   h1->Draw();
   h1->GetXaxis()->SetTitle(nameHR.c_str());
