@@ -51,4 +51,12 @@ void DrawSingle( std::string var = "jets30", int nbin = 5, float min = 0, float 
   
   std::cout << " integral = " << new_integral << std::endl;
   
+  
+  
+  std::cout << std::endl;
+  for (int ibin = 0; ibin < nbin; ibin++) {
+    std::cout << "  " << h1->GetBinError (ibin+1) / h1->GetBinContent (ibin+1) << std::endl;
+  }
+  std::cout << std::endl;
+  
 }
