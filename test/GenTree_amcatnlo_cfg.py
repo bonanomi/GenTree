@@ -36,6 +36,7 @@ process.source = cms.Source("PoolSource",
 
 
 process.GenTree = cms.EDAnalyzer('GenTree'
+    LHERunInfo = cms.InputTag('externalLHEProducer'),                                 
 )
 
 
