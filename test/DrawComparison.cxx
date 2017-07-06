@@ -50,6 +50,9 @@ void DrawComparison( std::string var = "jets30", int nbin = 5, float min = 0, fl
   TLegend* leg = new TLegend(0.7,0.7,0.9,0.9);
   leg->AddEntry(h1,"CMS tune","l");
   leg->AddEntry(h2,"ATLAS tune","l");
+
+//   leg->AddEntry(h1,"CMS central","l");
+//   leg->AddEntry(h2,"CMS private","l");
   
   leg->Draw();
   
@@ -77,6 +80,7 @@ void DrawComparison( std::string var = "jets30", int nbin = 5, float min = 0, fl
   
   gr->Draw("APL");
   gr->GetYaxis()->SetTitle("CMS / ATLAS");
+//   gr->GetYaxis()->SetTitle("central / private");
   gr->GetXaxis()->SetTitle(nameHR.c_str());
   
   ccRatio->SetGrid();

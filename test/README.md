@@ -26,6 +26,10 @@ Run
     
 Draw
 
+    r99t  gentree_powheg_nnlops_cms_tune.root  gentree_powheg_nnlops_cms_tune_private.root DrawComparison.cxx\(\"higgs_pt\",81,0,405,\"Higgs\ p_\{T\}\ \[GeV\]\"\)
+
+
+
     r99t  gentree_powheg_nnlops_cms_tune.root   DrawSingle.cxx\(\"higgs_pt\",40,0,200,\"Higgs\ p_\{T\}\ \[GeV\]\"\)
     
     r99t  gentree_powheg_nnlops_cms_tune.root   DrawSingle.cxx\(\"higgs_pt\",81,0,405,\"Higgs\ p_\{T\}\ \[GeV\]\"\)
@@ -54,5 +58,6 @@ Draw
     r99t   gentree_powheg.root  gentree_powheg_nnlops.root   gentree_amcatnlo.root    DrawHpTCorrected.cxx\(\"jets30\",5,0,5,\"n\ jet\ 30\ GeV\"\)
     r99t   gentree_powheg.root  gentree_powheg_nnlops.root   gentree_amcatnlo.root    DrawHpTCorrected.cxx\(\"higgs_eta\",20,-6,6,\"Higgs\ #eta\"\)
     r99t   gentree_powheg.root  gentree_powheg_nnlops.root   gentree_amcatnlo.root    DrawHpTCorrected.cxx\(\"jet1_pt\",20,0,200,\"jet1\ p_\{T\}\ \[GeV\]\"\)
+    
     
     
