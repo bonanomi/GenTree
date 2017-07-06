@@ -26,7 +26,8 @@ process.source = cms.Source("PoolSource",
 # /GluGluHToGG_M125_13TeV_amcatnloFXFX_pythia8_DownPS/RunIISummer16MiniAODv2-PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/MINIAODSIM
 
 
-process.GenTree = cms.EDAnalyzer('GenTree'
+process.GenTree = cms.EDAnalyzer('GenTree',
+    LHERunInfo = cms.InputTag('externalLHEProducer'),                                 
 )
 
 

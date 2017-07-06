@@ -16,6 +16,7 @@ Run
 
     cmsRun GenTree_powheg_nnlops_ATLAS_cfg.py
     cmsRun GenTree_powheg_nnlops_CMS_cfg.py
+    cmsRun GenTree_powheg_nnlops_CMS_private_cfg.py
 
     
     r99t  gentree.root

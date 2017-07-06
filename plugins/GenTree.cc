@@ -114,7 +114,10 @@ GenTree::GenTree(const edm::ParameterSet& iConfig)
   
   GenInfoT_ = consumes<GenEventInfoProduct>(edm::InputTag("generator"));
 
-  LHEInfoT_ = consumes<LHEEventProduct>(edm::InputTag("externalLHEProducer"));
+//   LHEInfoT_ = consumes<LHEEventProduct>(edm::InputTag("externalLHEProducer"));
+  LHEInfoT_ = consumes<LHEEventProduct>(iConfig.getParameter<edm::InputTag>("LHERunInfo"));
+  
+   
   
   
   //now do what ever initialization is needed
