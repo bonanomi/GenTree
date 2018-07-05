@@ -24,6 +24,11 @@ Run
     tree->Draw("jets30")
     
     
+Add uncertainties to the tree:
+
+    
+    
+    
 Draw
 
     r99t  gentree_powheg_nnlops_cms_tune.root  gentree_powheg_nnlops_cms_tune_private.root DrawComparison.cxx\(\"higgs_pt\",81,0,405,\"Higgs\ p_\{T\}\ \[GeV\]\"\)

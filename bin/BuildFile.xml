@@ -1,0 +1,13 @@
+<use name="root"/>
+<use name="boost"/>
+<use name="clhep"/>
+
+<bin name="addUncertainty" file="addUncertainty.cpp">
+  <use name="FWCore/Framework"/>
+  <use name="FWCore/PluginManager"/>
+  <use name="FWCore/ParameterSet"/>
+  <use name="FWCore/ServiceRegistry"/>
+  <use name="CommonTools/UtilAlgos"/>
+  <use name="GeneratorInterface/GenTree"/>
+  <flags LCGDICT_ARGS="--deep"/>
+</bin>
