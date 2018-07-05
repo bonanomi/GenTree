@@ -26,8 +26,12 @@ Run
     
 Add uncertainties to the tree:
 
+    cmsRun GenTree_powheg_nnlops_CMS_cfg.py
+
+    addUncertainty  gentree_powheg_nnlops_cms_tune.root   gentree_powheg_nnlops_cms_tune_uncertainty.root     
     
-    
+    r99t gentree_powheg_nnlops_cms_tune_uncertainty.root Table.cxx
+
     
 Draw
 

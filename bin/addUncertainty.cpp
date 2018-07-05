@@ -31,79 +31,54 @@ int main(int argc, char** argv) {
   ggHUncertainty uncertaintyHandler;
   
   TFile* fileIn = new TFile (name_root_file_input.c_str(), "READ");
-  TTree* treeIn = (TTree*) fileIn -> Get ("Tree");
+  TTree* treeIn = (TTree*) fileIn -> Get ("GenTree/gentree");
   
   TFile* fileOut = new TFile (name_root_file_output.c_str(), "RECREATE");
+  fileOut->mkdir("GenTree/");
+  fileOut->cd("GenTree/");
   TTree *treeOut = treeIn->CloneTree(0);
   
-  std::vector<float> allUnc;
-  
+  std::vector<float> allUnc;  
   treeOut->Branch("allUnc", &allUnc);
+
+  UInt_t jets30;
+  UInt_t stage0_cat;
+  UInt_t stage1_cat_pTjet30GeV;
+  float weight;
   
+  float higgs_pt;
+  float higgs_eta;
+  
+  float jet1_pt;
+  float jet1_eta;
+  
+  
+  treeIn->SetBranchAddress("jets30",     &jets30);
+  treeIn->SetBranchAddress("stage0_cat", &stage0_cat);
+  treeIn->SetBranchAddress("stage1_cat_pTjet30GeV", &stage1_cat_pTjet30GeV);
+  treeIn->SetBranchAddress("weight",     &weight);
+  treeIn->SetBranchAddress("higgs_pt",   &higgs_pt);
+  treeIn->SetBranchAddress("higgs_eta",  &higgs_eta);
+  treeIn->SetBranchAddress("jet1_pt",    &jet1_pt);
+  treeIn->SetBranchAddress("jet1_eta",   &jet1_eta);
+  
+  std::cout << " treeIn->GetEntries() = " << treeIn->GetEntries() << std::endl;
   
   for (Long64_t iEntry = 0; iEntry<treeIn->GetEntries(); iEntry++) {
     
-    treeIn->GetEntry(iEntry);
+    if (!(iEntry%20000)) std::cout << " [" << iEntry << "]" << std::endl;
     
-    int Njets30 = 2;
-    float HTXS_ptHiggs = 30.;
-    float HTXS_stage1_pTjet30GeV = 3;
+    treeIn->GetEntry(iEntry);
     
     allUnc.clear();    
-    allUnc = uncertaintyHandler.qcd_ggF_uncertSF_2017 (int(Njets30), HTXS_ptHiggs, int(HTXS_stage1_pTjet30GeV));
-    treeIn->GetEntry(iEntry);
+    allUnc = uncertaintyHandler.qcd_ggF_uncertSF_2017 (jets30, higgs_pt, stage1_cat_pTjet30GeV);
     
     treeOut->Fill();
 
-    //   for (unsigned int i=0; i<allUnc.size(); i++) {
-    //     
-    //     std::cout << " [" << i << "] = " << allUnc.at(i) << std::endl;
-    //     
-    //   }
-    //   
-    
   }
   
-  
-  
-  /*
-  //  cond::CondDBDumper<EcalPulseShapes> PulseShapeGeneration("EcalPulseShapes_hlt");
-  //  PulseShapeGeneration.run(argc, argv);
-  
-  
-  //  cond::CondDBDumper<EcalPulseShapes> PulseShapeFit("EcalPulseShapes_hlt");
-  //  PulseShapeFit.run(argc, argv);
-  
-  
-  std::string name_tag = (argv[1]) ; //---- EcalPulseShapes_Legacy2016_v2
-  
-  int simulate     (atoi(argv[2])) ;
-  int fit          (atoi(argv[3])) ;
-  
-  
-  
-  //                                                                                                          simulate    fit
-  //  cond::CondDBDumper<EcalPulseShapes> PulseShapeGenerationAndFit("EcalPulseShapes_hlt", "EcalPulseShapes_hlt",  1      ,    2);
-  //  cond::CondDBDumper<EcalPulseShapes> PulseShapeGenerationAndFit("EcalPulseShapes_hlt", "EcalPulseShapes_hlt",  simulate      ,    fit);
-  
-  //  cond::CondDBDumper<EcalPulseShapes> PulseShapeGenerationAndFit("EcalPulseShapes_October2017_rereco_v3", "EcalPulseShapes_October2017_rereco_v3",  simulate      ,    fit);
-  cond::CondDBDumper<EcalPulseShapes> PulseShapeGenerationAndFit(name_tag.c_str(), name_tag.c_str(),  simulate      ,    fit);
-  
-  
-  int argc2 = argc-3;
-  char** argv2 = argv; 
-  PulseShapeGenerationAndFit.run(argc2, argv2);
-  
-  std::cout << " done " << std::endl;
-  
-  //---- generate according to PulseShapeGeneration and fit using PulseShapeFit
-  
-  //---- generate
-  
-  
-  //---- fit */
-  
-  
+    
+  fileOut->Close();
   
   
   
