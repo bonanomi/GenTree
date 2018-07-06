@@ -33,6 +33,15 @@ Add uncertainties to the tree:
     r99t gentree_powheg_nnlops_cms_tune_uncertainty.root Table.cxx
 
     
+    r99t gentree_powheg_nnlops_cms_tune_uncertainty.root 
+    tree = (TTree*) _file0->Get("GenTree/gentree")
+    tree->Draw("stage1_cat_pTjet30GeV")
+    
+    
+    
+    
+    
+    
 Draw
 
     r99t  gentree_powheg_nnlops_cms_tune.root  gentree_powheg_nnlops_cms_tune_private.root DrawComparison.cxx\(\"higgs_pt\",81,0,405,\"Higgs\ p_\{T\}\ \[GeV\]\"\)

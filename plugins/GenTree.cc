@@ -86,6 +86,9 @@ class GenTree : public edm::one::EDAnalyzer<edm::one::SharedResources>  {
       float _jet1_pt;
       float _jet1_eta;
       
+//       int _VBF_3JVETO;
+//       int _VBF_3J;
+      
       std::vector<float> _weights_LHE;
       
       edm::EDGetTokenT<HTXS::HiggsClassification> htxsSrc_;
@@ -139,6 +142,8 @@ GenTree::GenTree(const edm::ParameterSet& iConfig)
   
   outTree->Branch("weights_LHE",         &_weights_LHE  );
   
+//   outTree->Branch("VBF_3JVETO",         &_VBF_3JVETO  );
+//   outTree->Branch("VBF_3J",             &_VBF_3J  );
   
   
   
@@ -200,6 +205,10 @@ GenTree::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
      _jet1_pt  = -99;
      _jet1_eta = -99;
    }
+   
+//    _VBF_3JVETO
+//    _VBF_3J
+   
    
    outTree->Fill();
    

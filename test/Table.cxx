@@ -15,8 +15,8 @@ void Table() {
   //  >=2 jet & ptH [120-200]                                                                             ggH_qmtop [0] = allUnc[8]
   //  >=2 jet & ptH [200-inf]
   //  >=1 jet
-  //  VBF_3JV
-  //  VBF_3J
+  //  VBF_3JV                                                 if (STXS==101) return -0.320; // GG2H_VBFTOPO_JET3VETO, tot unc 38%
+  //  VBF_3J                                                  if (STXS==102) return  0.235; // GG2H_VBFTOPO_JET3, tot unc 30.4%
   // 
   // 
   
