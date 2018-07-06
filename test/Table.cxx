@@ -42,6 +42,8 @@ void Table() {
   list_cuts.push_back("(jets30>=2 && (higgs_pt>120) && (higgs_pt<200))");
   list_cuts.push_back("(jets30>=2 && (higgs_pt>200))");
   list_cuts.push_back("jets30>=1");
+  list_cuts.push_back("stage1_cat_pTjet30GeV==101");
+  list_cuts.push_back("stage1_cat_pTjet30GeV==102");
   
   
   list_uncertainties.push_back("allUnc[0]");

@@ -28,14 +28,36 @@ process.source = cms.Source("PoolSource",
         #'/store/user/dsperka/Run2MC/NNLOPS_HJ_ZZ4L_nnloPdf_13TeV_GEN/HJ_NNLOPS_14TeV_GEN_9.root',
         #'/store/user/dsperka/Run2MC/NNLOPS_HJ_ZZ4L_nnloPdf_13TeV_GEN/HJ_NNLOPS_14TeV_GEN_10.root',       
 
+
+#/GluGluHToWWTo2L2Nu_M125_13TeV_powheg2_minloHJJ_JHUGenV702_pythia8/RunIISummer16MiniAODv2-PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v5/MINIAODSIM
+#/GluGluHToWWTo2L2Nu_M125_13TeV_powheg_minloHJ_NNLOPS_JHUGenV702_pythia8/RunIISummer16MiniAODv2-PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/MINIAODSIM
+
+
+         '/store/mc/RunIISummer16MiniAODv2/GluGluHToWWTo2L2Nu_M125_13TeV_powheg_minloHJ_NNLOPS_JHUGenV702_pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/50000/16B2B949-9380-E711-93E7-484D7E8DF114.root',
+         '/store/mc/RunIISummer16MiniAODv2/GluGluHToWWTo2L2Nu_M125_13TeV_powheg_minloHJ_NNLOPS_JHUGenV702_pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/50000/2A9C6E5C-2880-E711-AEB0-001E6779244C.root',
+         '/store/mc/RunIISummer16MiniAODv2/GluGluHToWWTo2L2Nu_M125_13TeV_powheg_minloHJ_NNLOPS_JHUGenV702_pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/50000/584A7AB8-177F-E711-8FB1-10983627C3CE.root',
+         '/store/mc/RunIISummer16MiniAODv2/GluGluHToWWTo2L2Nu_M125_13TeV_powheg_minloHJ_NNLOPS_JHUGenV702_pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/50000/6C007993-DC7F-E711-9796-008CFAF558EE.root',
+         #'/store/mc/RunIISummer16MiniAODv2/GluGluHToWWTo2L2Nu_M125_13TeV_powheg_minloHJ_NNLOPS_JHUGenV702_pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/50000/768BB960-7B7F-E711-AC13-FA163E457330.root',
+         #'/store/mc/RunIISummer16MiniAODv2/GluGluHToWWTo2L2Nu_M125_13TeV_powheg_minloHJ_NNLOPS_JHUGenV702_pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/50000/7C7E3BF4-D57F-E711-B4C5-0026B94DBE31.root',
+         #'/store/mc/RunIISummer16MiniAODv2/GluGluHToWWTo2L2Nu_M125_13TeV_powheg_minloHJ_NNLOPS_JHUGenV702_pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/50000/807206C8-D57F-E711-9BEC-FA163E89B73C.root',
+         #'/store/mc/RunIISummer16MiniAODv2/GluGluHToWWTo2L2Nu_M125_13TeV_powheg_minloHJ_NNLOPS_JHUGenV702_pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/50000/882146D9-6380-E711-9FA8-0025901D4446.root',
+         #'/store/mc/RunIISummer16MiniAODv2/GluGluHToWWTo2L2Nu_M125_13TeV_powheg_minloHJ_NNLOPS_JHUGenV702_pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/50000/A0D91FDF-697F-E711-B89A-00266CFFCC54.root',
+         #'/store/mc/RunIISummer16MiniAODv2/GluGluHToWWTo2L2Nu_M125_13TeV_powheg_minloHJ_NNLOPS_JHUGenV702_pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/50000/AE3C9B48-C181-E711-874F-FA163E21693B.root',
+         #'/store/mc/RunIISummer16MiniAODv2/GluGluHToWWTo2L2Nu_M125_13TeV_powheg_minloHJ_NNLOPS_JHUGenV702_pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/50000/BEE742FE-C181-E711-B7CB-FA163E3C0AC5.root',
+         #'/store/mc/RunIISummer16MiniAODv2/GluGluHToWWTo2L2Nu_M125_13TeV_powheg_minloHJ_NNLOPS_JHUGenV702_pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/50000/C4429D29-0E81-E711-93A6-0025904B9B3E.root',
+         #'/store/mc/RunIISummer16MiniAODv2/GluGluHToWWTo2L2Nu_M125_13TeV_powheg_minloHJ_NNLOPS_JHUGenV702_pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/50000/E82C153E-F27F-E711-B20A-7CD30AD09316.root',
+         #'/store/mc/RunIISummer16MiniAODv2/GluGluHToWWTo2L2Nu_M125_13TeV_powheg_minloHJ_NNLOPS_JHUGenV702_pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/50000/EAFC7D28-6D80-E711-A974-FA163EDEB37D.root',
+         #'/store/mc/RunIISummer16MiniAODv2/GluGluHToWWTo2L2Nu_M125_13TeV_powheg_minloHJ_NNLOPS_JHUGenV702_pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/50000/FAF67187-987F-E711-B464-C45444922991.root',
+
+
+
 #
 # Official CMSSW files
 #
-
-         '/store/mc/RunIISummer16MiniAODv2/GluGluHToGG_M-125_13TeV_powheg_MINLO_NNLOPS_pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/50000/1AB054CF-E060-E711-99B9-008CFA110AD0.root',
-         '/store/mc/RunIISummer16MiniAODv2/GluGluHToGG_M-125_13TeV_powheg_MINLO_NNLOPS_pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/50000/B8E0046F-7B61-E711-9F93-A0369FC5B85C.root',
-         '/store/mc/RunIISummer16MiniAODv2/GluGluHToGG_M-125_13TeV_powheg_MINLO_NNLOPS_pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/50000/C0B7F1B6-9461-E711-A55D-549F35AD8B6E.root',
-         '/store/mc/RunIISummer16MiniAODv2/GluGluHToGG_M-125_13TeV_powheg_MINLO_NNLOPS_pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/50000/C8C3D40A-B361-E711-B3A8-549F35AE4FFD.root',
+         #'/store/mc/RunIISummer16MiniAODv2/GluGluHToGG_M-125_13TeV_powheg_MINLO_NNLOPS_pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/50000/1AB054CF-E060-E711-99B9-008CFA110AD0.root',
+         #'/store/mc/RunIISummer16MiniAODv2/GluGluHToGG_M-125_13TeV_powheg_MINLO_NNLOPS_pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/50000/B8E0046F-7B61-E711-9F93-A0369FC5B85C.root',
+         #'/store/mc/RunIISummer16MiniAODv2/GluGluHToGG_M-125_13TeV_powheg_MINLO_NNLOPS_pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/50000/C0B7F1B6-9461-E711-A55D-549F35AD8B6E.root',
+         #'/store/mc/RunIISummer16MiniAODv2/GluGluHToGG_M-125_13TeV_powheg_MINLO_NNLOPS_pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/50000/C8C3D40A-B361-E711-B3A8-549F35AE4FFD.root',
 
 
 
@@ -110,8 +132,8 @@ process.rivetProducerHTXS = cms.EDProducer('HTXSRivetProducer',
   HepMCCollection = cms.InputTag('myGenerator','unsmeared'),
   LHERunInfo = cms.InputTag('source'),    # ---> for central production
   #LHERunInfo = cms.InputTag('externalLHEProducer'),   ---> for private production
-  #ProductionMode = cms.string('GGF'),
-  ProductionMode = cms.string('AUTO'),
+  ProductionMode = cms.string('GGF'), # --> otherwise it will not work for MINLO !!!
+  #ProductionMode = cms.string('AUTO'),
 )
 
 ## MINIAOD

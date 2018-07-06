@@ -12,6 +12,7 @@ Install:
     cmsrel CMSSW_8_0_19
     cd CMSSW_8_0_19/src
     cmsenv
+    
     // Retrieve the HTXS package and compile
     git cms-merge-topic -u perrozzi:HTXS_clean
     
