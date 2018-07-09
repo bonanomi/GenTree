@@ -45,6 +45,8 @@ void Table() {
   list_cuts.push_back("stage1_cat_pTjet30GeV==101");
   list_cuts.push_back("stage1_cat_pTjet30GeV==102");
   
+  list_cuts.push_back("1"); //---- inclusive
+  
   
   list_uncertainties.push_back("allUnc[0]");
   list_uncertainties.push_back("allUnc[1]");
