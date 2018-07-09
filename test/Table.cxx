@@ -90,10 +90,21 @@ void Table() {
   //---- now draw 
   
   std::cout << " ---- " << std::endl;
+  std::cout << " ---- " << std::endl;
+  std::cout << " ---- " << std::endl;
   for (int iCut = 0; iCut<list_cuts.size(); iCut++) {
-    std::cout << " [" << iCut << "] = " << list_fraction_cross_section.at(iCut) << std::endl;
+    std::cout << " [" << iCut << "] = " << std::setw(6) << std::setprecision(3) << list_fraction_cross_section.at(iCut) << std::endl;
   }
   
+  std::cout << " ---- " << std::endl;
+  std::cout << " ---- " << std::endl;
+  std::cout << " ---- " << std::endl;
+  for (int iCut = 0; iCut<list_cuts.size(); iCut++) {
+    std::cout << std::setw(6) << std::setprecision(3) << list_fraction_cross_section.at(iCut) << std::endl;
+  }
+  
+  std::cout << " ---- " << std::endl;
+  std::cout << " ---- " << std::endl;
   std::cout << " ---- " << std::endl;
   for (int iCut = 0; iCut<list_cuts.size(); iCut++) {
     for (int iUnc = 0; iUnc<list_uncertainties.size(); iUnc++) {
@@ -104,6 +115,31 @@ void Table() {
   }
   
   std::cout << " ---- " << std::endl;
+  std::cout << " ---- " << std::endl;
+  std::cout << " ---- " << std::endl;
+
+
+  for (int iCut = 0; iCut<list_cuts.size(); iCut++) {
+    for (int iUnc = 0; iUnc<list_uncertainties.size(); iUnc++) {
+      std::cout << " " << std::setw(6) << std::setprecision(3) << ((matrix_uncertainties_up.at(iCut)).at(iUnc)   - list_fraction_cross_section.at(iCut))*100 << " ";
+    }
+    std::cout << std::endl;
+  }
+  
+  std::cout << " ---- " << std::endl;
+  std::cout << " ---- " << std::endl;
+  std::cout << " ---- " << std::endl;
+  
+  
+
+
+
+
+
+
+
+
+
   
   
 }
