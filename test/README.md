@@ -31,16 +31,20 @@ Add uncertainties to the tree:
     cmsRun GenTree_powheg_nnlops_CMS_cfg.py
 
     addUncertainty  gentree_powheg_nnlops_cms_tune.root   gentree_powheg_nnlops_cms_tune_uncertainty.root     
+    addUncertainty  /tmp/amassiro/gentree_powheg_nnlops_cms_tune.root   /tmp/amassiro/gentree_powheg_nnlops_cms_tune_uncertainty.root     
     
     r99t gentree_powheg_nnlops_cms_tune_uncertainty.root Table.cxx
-
+    r99t /tmp/amassiro/gentree_powheg_nnlops_cms_tune_uncertainty.root Table.cxx
+       
     
     r99t gentree_powheg_nnlops_cms_tune_uncertainty.root 
     tree = (TTree*) _file0->Get("GenTree/gentree")
     tree->Draw("stage1_cat_pTjet30GeV")
     
     
-    
+Original script by Dag:
+
+    https://indico.cern.ch/event/618048/attachments/1430472/2204126/ggF_qcd_uncertainty_2017.cxx
     
     
     
