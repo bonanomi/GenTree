@@ -190,6 +190,9 @@ GenTree::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
    int num_whichWeight = LHEInfoHandle_->weights().size();
    for (int i=0; i<num_whichWeight; i++) {
      _weights_LHE.push_back(LHEInfoHandle_->weights()[i].wgt);
+     if (iEvent.eventAuxiliary().event() == 1) {
+       std::cout << " [ " << i << " ] = "  << LHEInfoHandle_->weights()[i].id.c_str() << std::endl;
+     }
    }
    
    

@@ -88,5 +88,22 @@ Draw
     r99t   gentree_powheg.root  gentree_powheg_nnlops.root   gentree_amcatnlo.root    DrawHpTCorrected.cxx\(\"higgs_eta\",20,-6,6,\"Higgs\ #eta\"\)
     r99t   gentree_powheg.root  gentree_powheg_nnlops.root   gentree_amcatnlo.root    DrawHpTCorrected.cxx\(\"jet1_pt\",20,0,200,\"jet1\ p_\{T\}\ \[GeV\]\"\)
     
+
     
+Check scale variation:
+
+
+    /tmp/amassiro/gentree_powheg_nnlops_cms_tune_uncertainty.root
+
+    
+    r99t  /tmp/amassiro/gentree_powheg_nnlops_cms_tune_uncertainty.root   DrawSingleScaleVariation.cxx\(\"higgs_pt\",40,0,200,\"Higgs\ p_\{T\}\ \[GeV\]\"\)
+    
+    
+    
+    
+    
+    
+    
+
+
     
