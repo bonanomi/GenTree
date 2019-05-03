@@ -12,6 +12,7 @@
 
 
 #include "GeneratorInterface/GenTree/interface/ggHUncertainty.h"
+#include "GeneratorInterface/GenTree/interface/ggHUncertaintyNew.h"
 
 #include "TFile.h"
 #include "TTree.h"
