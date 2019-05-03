@@ -4,7 +4,10 @@ Instructions
 See
     https://twiki.cern.ch/twiki/bin/viewauth/CMS/HiggsTemplateCrossSection
     
+Where:
 
+    /afs/cern.ch/user/a/amassiro/work/LHCXSWG/CMSSW_8_0_19/src/GeneratorInterface/GenTree
+    
 Run
 
     cmsRun GenTree_cfg.py

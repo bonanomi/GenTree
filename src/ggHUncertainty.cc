@@ -28,6 +28,11 @@
 
 ggHUncertainty::ggHUncertainty() {
   
+//   
+//   tot =  30.117 + 12.928 + 5.475  = 48.52
+//   mH 125.09 @ N3LO accuracy
+//   
+  
   g_sig0 = 30.117;
   g_sig1 = 12.928;
   g_sig_ge2 = 5.475;
