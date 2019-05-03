@@ -105,7 +105,12 @@ Check scale variation:
     
 
     r99t  /tmp/amassiro/gentree_powheg_nnlops_cms_tune_uncertainty.root   CalculateScaleVariation.cxx
-
+       --> values.txt
+       
+    r99t GetScaleVariation.cxx
+    
+    
+    
     
     
     
