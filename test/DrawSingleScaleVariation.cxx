@@ -27,11 +27,11 @@ void DrawSingleScaleVariation( std::string var = "jets30", int nbin = 5, float m
   TH1F* hNominal = new TH1F ("hNominal", "nnlops", nbin, min, max);  
   toDraw = Form ("%s >> hNominal", var.c_str());
   toCut = Form ("%s * (1)", toCutGlobal.Data());
-  tree1->Draw(toDraw.Data(), toCut.Data() );
+  tree1->Draw(toDraw.Data(), toCut.Data() , "goff" );
   
   hNominal->SetLineColor(kBlue);
   hNominal->SetLineStyle(1);
-  hNominal->SetLineWidth(2);
+  hNominal->SetLineWidth(3);
   hNominal->Scale (1. / hNominal->Integral(0,hNominal->GetNbinsX()+1));
 
   //---- add back overflow bin
@@ -60,16 +60,22 @@ void DrawSingleScaleVariation( std::string var = "jets30", int nbin = 5, float m
   //      [ 9 ] = nnlops-11-1
   //      
   
+  
+  TLegend* legend = new TLegend(0.50,0.50,0.90,0.90);
+  legend->AddEntry(hNominal,"#mu_{R} = 1.0, #mu_{F} = 1.0","f");
+  
+
+  
   //---- UU
   TH1F* hH_UU = new TH1F ("hH_UU", "nnlops", nbin, min, max);  
   toDraw = Form ("%s >> hH_UU", var.c_str());
   toCut = Form ("%s * (weights_LHE[4])/(weights_LHE[0])", toCutGlobal.Data());
-  tree1->Draw(toDraw.Data(), toCut.Data() );
+  tree1->Draw(toDraw.Data(), toCut.Data() , "goff" );
   
   
   hH_UU->SetLineColor(kRed+1);
   hH_UU->SetLineStyle(1);
-  hH_UU->SetLineWidth(2);
+  hH_UU->SetLineWidth(1);
   hH_UU->Scale (1. / hH_UU->Integral(0,hH_UU->GetNbinsX()+1));
   
   //---- add back overflow bin
@@ -78,7 +84,8 @@ void DrawSingleScaleVariation( std::string var = "jets30", int nbin = 5, float m
   //---- scale to N3LO
   hH_UU->Scale (xsecInclusive);
   
-  hH_UU->Draw("same");
+  hH_UU->Draw("same histo");
+  legend->AddEntry(hH_UU,"#mu_{R} = 2.0, #mu_{F} = 2.0","f");
   
 
 
@@ -91,12 +98,12 @@ void DrawSingleScaleVariation( std::string var = "jets30", int nbin = 5, float m
   TH1F* hH_UN = new TH1F ("hH_UN", "nnlops", nbin, min, max);  
   toDraw = Form ("%s >> hH_UN", var.c_str());
   toCut = Form ("%s * (weights_LHE[3])/(weights_LHE[0])", toCutGlobal.Data());
-  tree1->Draw(toDraw.Data(), toCut.Data() );
+  tree1->Draw(toDraw.Data(), toCut.Data() , "goff" );
   
   
   hH_UN->SetLineColor(kRed+2);
   hH_UN->SetLineStyle(1);
-  hH_UN->SetLineWidth(2);
+  hH_UN->SetLineWidth(1);
   hH_UN->Scale (1. / hH_UN->Integral(0,hH_UN->GetNbinsX()+1));
   
   //---- add back overflow bin
@@ -105,7 +112,8 @@ void DrawSingleScaleVariation( std::string var = "jets30", int nbin = 5, float m
   //---- scale to N3LO
   hH_UN->Scale (xsecInclusive);
   
-  hH_UN->Draw("same");
+  hH_UN->Draw("same histo");
+  legend->AddEntry(hH_UN,"#mu_{R} = 2.0, #mu_{F} = 1.0","f");
   
 
   
@@ -115,12 +123,12 @@ void DrawSingleScaleVariation( std::string var = "jets30", int nbin = 5, float m
   TH1F* hH_NU = new TH1F ("hH_NU", "nnlops", nbin, min, max);  
   toDraw = Form ("%s >> hH_NU", var.c_str());
   toCut = Form ("%s * (weights_LHE[1])/(weights_LHE[0])", toCutGlobal.Data());
-  tree1->Draw(toDraw.Data(), toCut.Data() );
+  tree1->Draw(toDraw.Data(), toCut.Data() , "goff" );
   
   
   hH_NU->SetLineColor(kRed+3);
   hH_NU->SetLineStyle(1);
-  hH_NU->SetLineWidth(2);
+  hH_NU->SetLineWidth(1);
   hH_NU->Scale (1. / hH_NU->Integral(0,hH_NU->GetNbinsX()+1));
   
   //---- add back overflow bin
@@ -129,7 +137,8 @@ void DrawSingleScaleVariation( std::string var = "jets30", int nbin = 5, float m
   //---- scale to N3LO
   hH_NU->Scale (xsecInclusive);
   
-  hH_NU->Draw("same");
+  hH_NU->Draw("same histo");
+  legend->AddEntry(hH_NU,"#mu_{R} = 1.0, #mu_{F} = 2.0","f");
   
   
   
@@ -140,12 +149,12 @@ void DrawSingleScaleVariation( std::string var = "jets30", int nbin = 5, float m
   TH1F* hH_ND = new TH1F ("hH_ND", "nnlops", nbin, min, max);  
   toDraw = Form ("%s >> hH_ND", var.c_str());
   toCut = Form ("%s * (weights_LHE[2])/(weights_LHE[0])", toCutGlobal.Data());
-  tree1->Draw(toDraw.Data(), toCut.Data() );
+  tree1->Draw(toDraw.Data(), toCut.Data() , "goff" );
   
   
-  hH_ND->SetLineColor(kRed+4);
+  hH_ND->SetLineColor(kRed-1);
   hH_ND->SetLineStyle(1);
-  hH_ND->SetLineWidth(2);
+  hH_ND->SetLineWidth(1);
   hH_ND->Scale (1. / hH_ND->Integral(0,hH_ND->GetNbinsX()+1));
   
   //---- add back overflow bin
@@ -154,7 +163,8 @@ void DrawSingleScaleVariation( std::string var = "jets30", int nbin = 5, float m
   //---- scale to N3LO
   hH_ND->Scale (xsecInclusive);
   
-  hH_ND->Draw("same");
+  hH_ND->Draw("same histo");
+  legend->AddEntry(hH_ND,"#mu_{R} = 1.0, #mu_{F} = 0.5","f");
   
   
   
@@ -164,12 +174,12 @@ void DrawSingleScaleVariation( std::string var = "jets30", int nbin = 5, float m
   TH1F* hH_DN = new TH1F ("hH_DN", "nnlops", nbin, min, max);  
   toDraw = Form ("%s >> hH_DN", var.c_str());
   toCut = Form ("%s * (weights_LHE[6])/(weights_LHE[0])", toCutGlobal.Data());
-  tree1->Draw(toDraw.Data(), toCut.Data() );
+  tree1->Draw(toDraw.Data(), toCut.Data() , "goff" );
   
   
-  hH_DN->SetLineColor(kRed+5);
+  hH_DN->SetLineColor(kRed-2);
   hH_DN->SetLineStyle(1);
-  hH_DN->SetLineWidth(2);
+  hH_DN->SetLineWidth(1);
   hH_DN->Scale (1. / hH_DN->Integral(0,hH_DN->GetNbinsX()+1));
   
   //---- add back overflow bin
@@ -178,8 +188,9 @@ void DrawSingleScaleVariation( std::string var = "jets30", int nbin = 5, float m
   //---- scale to N3LO
   hH_DN->Scale (xsecInclusive);
   
-  hH_DN->Draw("same");
- 
+  hH_DN->Draw("same histo");
+  legend->AddEntry(hH_DN,"#mu_{R} = 0.5, #mu_{F} = 1.0","f");
+  
   
   
   
@@ -188,12 +199,12 @@ void DrawSingleScaleVariation( std::string var = "jets30", int nbin = 5, float m
   TH1F* hH_DD = new TH1F ("hH_DD", "nnlops", nbin, min, max);  
   toDraw = Form ("%s >> hH_DD", var.c_str());
   toCut = Form ("%s * (weights_LHE[8])/(weights_LHE[0])", toCutGlobal.Data());
-  tree1->Draw(toDraw.Data(), toCut.Data() );
+  tree1->Draw(toDraw.Data(), toCut.Data() , "goff" );
   
   
-  hH_DD->SetLineColor(kRed+6);
+  hH_DD->SetLineColor(kRed-3);
   hH_DD->SetLineStyle(1);
-  hH_DD->SetLineWidth(2);
+  hH_DD->SetLineWidth(1);
   hH_DD->Scale (1. / hH_DD->Integral(0,hH_DD->GetNbinsX()+1));
   
   //---- add back overflow bin
@@ -202,6 +213,12 @@ void DrawSingleScaleVariation( std::string var = "jets30", int nbin = 5, float m
   //---- scale to N3LO
   hH_DD->Scale (xsecInclusive);
   
-  hH_DD->Draw("same");
+  hH_DD->Draw("same histo");
+  legend->AddEntry(hH_DD,"#mu_{R} = 0.5, #mu_{F} = 0.5","f");
+  
+  
+  
+  legend->Draw();
+  
   
 }

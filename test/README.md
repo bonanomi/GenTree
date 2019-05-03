@@ -98,8 +98,14 @@ Check scale variation:
     
     r99t  /tmp/amassiro/gentree_powheg_nnlops_cms_tune_uncertainty.root   DrawSingleScaleVariation.cxx\(\"higgs_pt\",40,0,200,\"Higgs\ p_\{T\}\ \[GeV\]\"\)
     
+    r99t  /tmp/amassiro/gentree_powheg_nnlops_cms_tune_uncertainty.root   DrawSingleScaleVariation.cxx\(\"higgs_pt\",50,0,300,\"Higgs\ p_\{T\}\ \[GeV\]\"\)
+    
+    r99t  /tmp/amassiro/gentree_powheg_nnlops_cms_tune_uncertainty.root   DrawSingleScaleVariation.cxx\(\"higgs_pt\",50,0,1000,\"Higgs\ p_\{T\}\ \[GeV\]\"\)
     
     
+
+    r99t  /tmp/amassiro/gentree_powheg_nnlops_cms_tune_uncertainty.root   CalculateScaleVariation.cxx
+
     
     
     
