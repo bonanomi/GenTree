@@ -97,10 +97,11 @@ float ggHUncertaintyNew::qm_t(float pT) {
 
 // migration uncertaitny around the 200 GeV boundary
 float ggHUncertaintyNew::pT200(float pT, int Njets30) {
-  if (Njets30==0) return 0;
-  if (Njets30==1) return interpol(pT, 190, -0.0012, 210, 0.074);
-  if (Njets30==2) return interpol(pT, 190, -0.0034, 210, 0.054);
-  if (Njets30>=3) return interpol(pT, 190, -0.0091, 210, 0.046);
+  if      (Njets30==0) return 0;
+  else if (Njets30==1) return interpol(pT, 190, -0.0012, 210, 0.074);
+  else if (Njets30==2) return interpol(pT, 190, -0.0034, 210, 0.054);
+  else                 return interpol(pT, 190, -0.0091, 210, 0.046);
+//   if (Njets30>=3) return interpol(pT, 190, -0.0091, 210, 0.046);
 }
 
 // njet:pt_H 1 : 3    smaller +/- -0.126483 %     greater +/- 7.42588 % 
@@ -195,6 +196,17 @@ std::vector<float> ggHUncertaintyNew::qcd_ggF_uncert_2017(int Njets30, float pT,
   return result;
 }
 
+
+std::vector<float> ggHUncertaintyNew::qcd_ggF_uncert_2017_New(int Njets30, float pT, int STXS) {
+  std::vector<float> result = jetBinUnc(Njets30,STXS);
+  result.push_back(pT10(pT,Njets30));
+  result.push_back(pT60(pT,Njets30));
+  result.push_back(pT120(pT,Njets30));
+  result.push_back(pT200(pT,Njets30));
+  result.push_back(qm_t(pT));
+  return result;
+}
+
 std::vector<float> ggHUncertaintyNew::qcd_ggF_uncert_jve(int Njets30, float pT, int STXS) {
   std::vector<float> result;
   // Central values for eps0 and eps1 from Powheg NNLOPS
@@ -231,7 +243,9 @@ std::vector<float> ggHUncertaintyNew::qcd_ggF_uncert_jve(int Njets30, float pT, 
 // Gaussian uncertainty propagation
 // event weihgt = 1.0 + 1-stdDev-fractional-uncertainty-amplitudie * NumberOfStdDev
 std::vector<float> ggHUncertaintyNew::unc2sf(const std::vector<float> &unc, float Nsigma) {
-  std::vector<float> sfs; for (auto u:unc) sfs.push_back(1.0+Nsigma*u); return sfs;
+  std::vector<float> sfs; 
+  for (auto u:unc) sfs.push_back(1.0+Nsigma*u);
+  return sfs;
 }
 
 std::vector<float> ggHUncertaintyNew::qcd_ggF_uncertSF_wg1(int Njets30, float pT, int STXS_Stage1, float Nsigma) {
@@ -248,5 +262,9 @@ std::vector<float> ggHUncertaintyNew::qcd_ggF_uncertSF_2017(int Njets30, float p
 
 std::vector<float> ggHUncertaintyNew::qcd_ggF_uncertSF_jve(int Njets30, float pT, int STXS_Stage1, float Nsigma) {
   return unc2sf(qcd_ggF_uncert_jve(Njets30,pT,STXS_Stage1),Nsigma);
+}
+
+std::vector<float> ggHUncertaintyNew::qcd_ggF_uncertSF_2017_New(int Njets30, float pT, int STXS_Stage1, float Nsigma) {
+  return unc2sf(qcd_ggF_uncert_2017_New(Njets30,pT,STXS_Stage1),Nsigma);
 }
 

@@ -38,6 +38,7 @@ public:
   std::vector<float> qcd_ggF_uncert_stxs (int Njets30, float pTH, int STXS);  // 8 nuisances, 5 x jetbin, D60, D120, D200
   std::vector<float> qcd_ggF_uncert_2017 (int Njets30, float pTH, int STXS);  // 8 nuisances, 5 x jetbin, pT60, pT120, qm_t
   std::vector<float> qcd_ggF_uncert_jve  (int Njets30, float pTH, int STXS);  // 7 nuisances, 4 x jetbin, pT60, pT120, qm_t
+  std::vector<float> qcd_ggF_uncert_2017_New (int Njets30, float pTH, int STXS);  // 10 nuisances, 5 x jetbin, pT10, pT60, pT120, pT200, qm_t
   
   //
   //---- Scale factors defined as "1+uncert", where uncert is the fractional uncertainty amplitude
@@ -47,6 +48,7 @@ public:
   std::vector<float> qcd_ggF_uncertSF_2017 (int Njets30, float pTH, int STXS_Stage1, float Nsigma=1.0);
   std::vector<float> qcd_ggF_uncertSF_jve  (int Njets30, float pTH, int STXS_Stage1, float Nsigma=1.0);
   
+  std::vector<float> qcd_ggF_uncertSF_2017_New (int Njets30, float pTH, int STXS_Stage1, float Nsigma=1.0);
   
   
   // Cross sections of ggF with =0, =1, and >=2 jets

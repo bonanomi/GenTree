@@ -110,6 +110,26 @@ Check scale variation:
     r99t GetScaleVariation.cxx
     
     
+Example output:
+
+     njet:pt_H 0 : 0    smaller +/- -25.5441 %     greater +/- 8.99985 % 
+     njet:pt_H 0 : 1    smaller +/- -0.385311 %     greater +/- 22.7309 % 
+     njet:pt_H 0 : 2    smaller +/- -6.04268e-06 %     greater +/- inf % 
+     njet:pt_H 0 : 3    smaller +/- -6.04268e-06 %     greater +/- inf % 
+     njet:pt_H 1 : 0    smaller +/- -18.6496 %     greater +/- 0.199579 % 
+     njet:pt_H 1 : 1    smaller +/- -2.32479 %     greater +/- 2.47356 % 
+     njet:pt_H 1 : 2    smaller +/- -0.543701 %     greater +/- 5.11504 % 
+     njet:pt_H 1 : 3    smaller +/- -0.126483 %     greater +/- 7.42588 % 
+     njet:pt_H 2 : 0    smaller +/- -9.65114 %     greater +/- 0.132244 % 
+     njet:pt_H 2 : 1    smaller +/- -3.67025 %     greater +/- 1.41323 % 
+     njet:pt_H 2 : 2    smaller +/- -1.20915 %     greater +/- 3.15546 % 
+     njet:pt_H 2 : 3    smaller +/- -0.341676 %     greater +/- 5.44669 % 
+     njet:pt_H 3 : 0    smaller +/- -11.0656 %     greater +/- 0.0393883 % 
+     njet:pt_H 3 : 1    smaller +/- -3.50812 %     greater +/- 0.941225 % 
+     njet:pt_H 3 : 2    smaller +/- -1.87696 %     greater +/- 2.27198 % 
+     njet:pt_H 3 : 3    smaller +/- -0.905543 %     greater +/- 4.56983 % 
+
+    
     
     
     
