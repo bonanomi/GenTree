@@ -173,7 +173,7 @@ GenTree::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
    edm::Handle<HTXS::HiggsClassification> htxs;
    iEvent.getByToken(htxsSrc_,htxs);
    _stage0_cat = htxs->stage0_cat;
-   _stage1_cat_pTjet30GeV = htxs->stage1_cat_pTjet30GeV;
+   _stage1_cat_pTjet30GeV = htxs->stage1p1_cat; //stage1_cat_pTjet30GeV;
    _jets30     = (htxs->jets30).size();
    
    edm::Handle<GenEventInfoProduct> genEvtInfo;

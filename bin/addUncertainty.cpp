@@ -29,7 +29,7 @@ int main(int argc, char** argv) {
   std::cout << " output = " << name_root_file_output << std::endl;
   
   
-  ggHUncertainty uncertaintyHandler;
+  ggHUncertaintyNew uncertaintyHandler;
   
   TFile* fileIn = new TFile (name_root_file_input.c_str(), "READ");
   TTree* treeIn = (TTree*) fileIn -> Get ("GenTree/gentree");
@@ -72,7 +72,7 @@ int main(int argc, char** argv) {
     treeIn->GetEntry(iEntry);
     
     allUnc.clear();    
-    allUnc = uncertaintyHandler.qcd_ggF_uncertSF_2017 (jets30, higgs_pt, stage1_cat_pTjet30GeV);
+    allUnc = uncertaintyHandler.qcd_ggF_uncertSF_2017_New (jets30, higgs_pt, stage1_cat_pTjet30GeV);
     
     treeOut->Fill();
 

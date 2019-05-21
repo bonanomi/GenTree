@@ -91,10 +91,9 @@ Check scale variation:
     
     
 
-Compute the bin-migration uncertainty:
-    Produce values.txt
+Compute the bin-migration uncertainty: the first macro produces `values.txt` file, then processed by `GetScaleVariation.cxx` macro.
+
     root  gentree_powheg_nnlops_cms_tune_uncertainty.root   CalculateScaleVariation.cxx
-       
     root GetScaleVariation.cxx
     
     
