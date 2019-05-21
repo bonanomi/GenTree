@@ -23,7 +23,7 @@ process.source = cms.Source("PoolSource",
 # /GluGluHToGG_M125_13TeV_amcatnloFXFX_pythia8_DownPS/RunIISummer16MiniAODv2-PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/MINIAODSIM
 
 
-process.GenTree = cms.EDAnalyzer('GenTree'
+process.GenTree = cms.EDAnalyzer('GenTree',
     LHERunInfo = cms.InputTag('externalLHEProducer'),                                 
 )
 
@@ -44,9 +44,17 @@ process.mergedGenParticles = cms.EDProducer("MergedGenParticleProducer",
     inputPruned = cms.InputTag("prunedGenParticles"),
     inputPacked = cms.InputTag("packedGenParticles"),
 )
-process.myGenerator = cms.EDProducer("GenParticles2HepMCConverterHTXS",
+
+#process.myGenerator = cms.EDProducer("GenParticles2HepMCConverterHTXS",
+#    genParticles = cms.InputTag("mergedGenParticles"),
+#    genEventInfo = cms.InputTag("generator"),
+#)
+
+# In the latest CMSSW releases this plugin is defined with a different name, as follows:
+process.myGenerator = cms.EDProducer("GenParticles2HepMCConverter",
     genParticles = cms.InputTag("mergedGenParticles"),
     genEventInfo = cms.InputTag("generator"),
+    signalParticlePdgIds = cms.vint32(25), ## for the Higgs analysis
 )
 process.p = cms.Path(process.mergedGenParticles * process.myGenerator * process.rivetProducerHTXS * process.GenTree)
 

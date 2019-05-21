@@ -141,9 +141,14 @@ process.mergedGenParticles = cms.EDProducer("MergedGenParticleProducer",
     inputPruned = cms.InputTag("prunedGenParticles"),
     inputPacked = cms.InputTag("packedGenParticles"),
 )
-process.myGenerator = cms.EDProducer("GenParticles2HepMCConverterHTXS",
+#process.myGenerator = cms.EDProducer("GenParticles2HepMCConverterHTXS",
+#    genParticles = cms.InputTag("mergedGenParticles"),
+#    genEventInfo = cms.InputTag("generator"),
+#)
+process.myGenerator = cms.EDProducer("GenParticles2HepMCConverter",
     genParticles = cms.InputTag("mergedGenParticles"),
     genEventInfo = cms.InputTag("generator"),
+    signalParticlePdgIds = cms.vint32(25), ## for the Higgs analysis
 )
 process.p = cms.Path(process.mergedGenParticles * process.myGenerator * process.rivetProducerHTXS * process.GenTree)
 

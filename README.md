@@ -1,5 +1,5 @@
 # GenTree
-
+## Fork from A. Massironi's repo [GenTree](https://github.com/amassiro/GenTree).
 
 Instructions
 ====
@@ -9,28 +9,24 @@ See
     
 Install:
 
-    cmsrel CMSSW_8_0_19
-    cd CMSSW_8_0_19/src
+    cmsrel CMSSW_10_3_1
+    cd CMSSW_10_3_1/src
     cmsenv
     
+    // To work with the CJLST framework, follow:
+    // [this link](https://github.com/CJLST/ZZAnalysis#zzanalysis) to install it.
+    
+
     // Retrieve the HTXS package and compile
-    git cms-merge-topic -u perrozzi:HTXS_clean
+    // Already implemented in CMSSW > 8.X
+    // Merge not necessary, everything should work
+    // git cms-merge-topic -u perrozzi:HTXS_clean
     
     cd GeneratorInterface
     
-    git clone git@github.com:amassiro/GenTree.git
+    git clone https://github.com/bonanomi/GenTree.git
     
     cd ..
     
-    scramv1 b -j 10
-    
-    
-Where
-====
-
-    /afs/cern.ch/user/a/amassiro/work/LHCXSWG/CMSSW_8_0_19/src/GeneratorInterface/GenTree
-    /afs/cern.ch/user/a/amassiro/work/LHCXSWG/CMSSW_8_0_19_OLD/src/GeneratorInterface/GenTree
-
-
-    NB: lxplus6 !
+    scramv1 b -j 10 
     
