@@ -1,25 +1,26 @@
 void Table() {
- 
-  //                               Cross  section (%)     mu+     mu-     res+    res-    mig01+  mig01-  VBF2J+  VBF2j-  PT60    PT120   m_top
-  //
-  //
-  //  0 jet
-  //  1 jet                                                                                               ggH_mu    [0] = allUnc[0]
-  //  1 jet & ptH [0-60]                                                                                  ggH_res   [0] = allUnc[1]
-  //  1 jet & ptH [60-120]                                                                                ggH_mig01 [0] = allUnc[2]
-  //  1 jet & ptH [120-200]                                                                               ggH_mig12 [0] = allUnc[3]
-  //  1 jet & ptH [200-inf]                                                                               ggH_VBF2j [0] = allUnc[4]
-  //  >=2 jet                                                                                             ggH_VBF3j [0] = allUnc[5]
-  //  >=2 jet & ptH [0-60]                                                                                ggH_pT60  [0] = allUnc[6]
-  //  >=2 jet & ptH [60-120]                                                                              ggH_pT120 [0] = allUnc[7]
-  //  >=2 jet & ptH [120-200]                                                                             ggH_qmtop [0] = allUnc[8]
-  //  >=2 jet & ptH [200-inf]
-  //  >=1 jet
-  //  VBF_3JV                                                 if (STXS==101) return -0.320; // GG2H_VBFTOPO_JET3VETO, tot unc 38%
-  //  VBF_3J                                                  if (STXS==102) return  0.235; // GG2H_VBFTOPO_JET3, tot unc 30.4%
-  // 
-  // 
+  /***
+   Cross  section (%)     mu+     mu-     res+    res-    mig01+  mig01-  VBF2J+  VBF2j-  PT10   PT60  PT120  PT120  m_top
   
+  
+  
+   Uncertainties matrix: NxM matrix, where N is the bins size (i.e. `list_cuts` defined below) and M is the size of 
+   nuisance parameters/bins migrations. 
+  
+  In the STXS stage 1.1 we have more bins, in particular ptH migrations around 10GeV and 200GeV bins are taken into account.
+  Hence, the new uncertainties (`ggHUncertaintyNew::qcd_ggF_uncertSF_2017_New()`) stored in the TTree are:
+  ggH_mu    [0] = allUnc[0]
+  ggH_res   [0] = allUnc[1]
+  ggH_mig01 [0] = allUnc[2]
+  ggH_mig12 [0] = allUnc[3]
+  ggH_VBF2j [0] = allUnc[4]
+  ggH_VBF3j [0] = allUnc[5]
+  ggH_pT10  [0] = allUnc[6]
+  ggH_pT60  [0] = allUnc[7]
+  ggH_pT120 [0] = allUnc[8]
+  ggH_pT200 [0] = allUnc[9]
+  ggH_qmtop [0] = allUnc[10]
+  ***/
   
   
   std::vector< std::string > list_cuts;
@@ -30,20 +31,28 @@ void Table() {
   std::vector< std::string > list_uncertainties;
   
   
-  list_cuts.push_back("jets30==0");
-  list_cuts.push_back("jets30==1");
-  list_cuts.push_back("(jets30==1 && (higgs_pt<60))");
-  list_cuts.push_back("(jets30==1 && (higgs_pt>60)  && (higgs_pt<120))");
-  list_cuts.push_back("(jets30==1 && (higgs_pt>120) && (higgs_pt<200))");
-  list_cuts.push_back("(jets30==1 && (higgs_pt>200))");
-  list_cuts.push_back("jets30>=2");
-  list_cuts.push_back("(jets30>=2 && (higgs_pt<60))");
-  list_cuts.push_back("(jets30>=2 && (higgs_pt>60)  && (higgs_pt<120))");
-  list_cuts.push_back("(jets30>=2 && (higgs_pt>120) && (higgs_pt<200))");
-  list_cuts.push_back("(jets30>=2 && (higgs_pt>200))");
-  list_cuts.push_back("jets30>=1");
-  list_cuts.push_back("stage1_cat_pTjet30GeV==101");
-  list_cuts.push_back("stage1_cat_pTjet30GeV==102");
+  list_cuts.push_back("(higgs_pt<10.000000) && (jets30<1.000000)");
+  list_cuts.push_back("(higgs_pt<10.000000) && (jets30<2.000000) && (jets30>=1.000000)");
+  list_cuts.push_back("(higgs_pt<10.000000) && (jets30<3.000000) && (jets30>=2.000000)");
+  list_cuts.push_back("(higgs_pt<10.000000) && (jets30>=3.000000)");
+  list_cuts.push_back("(higgs_pt<60.000000) && (jets30<1.000000) && (higgs_pt>=10.000000)");
+  list_cuts.push_back("(higgs_pt<60.000000) && (jets30<2.000000) && (higgs_pt>=10.000000) && (jets30>=1.000000)");
+  list_cuts.push_back("(higgs_pt<60.000000) && (jets30<3.000000) && (higgs_pt>=10.000000) && (jets30>=2.000000)");
+  list_cuts.push_back("(higgs_pt<60.000000) && (higgs_pt>=10.000000) && (jets30>=3.000000)");
+  list_cuts.push_back("(higgs_pt<120.000000) && (jets30<1.000000) && (higgs_pt>=60.000000)");
+  list_cuts.push_back("(higgs_pt<120.000000) && (jets30<2.000000) && (higgs_pt>=60.000000) && (jets30>=1.000000)");
+  list_cuts.push_back("(higgs_pt<120.000000) && (jets30<3.000000) && (higgs_pt>=60.000000) && (jets30>=2.000000)");
+  list_cuts.push_back("(higgs_pt<120.000000) && (higgs_pt>=60.000000) && (jets30>=3.000000)");
+  list_cuts.push_back("(higgs_pt<200.000000) && (jets30<1.000000) && (higgs_pt>=120.000000)");
+  list_cuts.push_back("(higgs_pt<200.000000) && (jets30<2.000000) && (higgs_pt>=120.000000) && (jets30>=1.000000)");
+  list_cuts.push_back("(higgs_pt<200.000000) && (jets30<3.000000) && (higgs_pt>=120.000000) && (jets30>=2.000000)");
+  list_cuts.push_back("(higgs_pt<200.000000) && (higgs_pt>=120.000000) && (jets30>=3.000000)");
+  list_cuts.push_back("(jets30<1.000000) && (higgs_pt>=200.000000)");
+  list_cuts.push_back("(jets30<2.000000) && (higgs_pt>=200.000000) && (jets30>=1.000000)");
+  list_cuts.push_back("(jets30<3.000000) && (higgs_pt>=200.000000) && (jets30>=2.000000)");
+  list_cuts.push_back("(higgs_pt>=200.000000) && (jets30>=3.000000)");
+  // list_cuts.push_back("stage1_cat_pTjet30GeV==101");
+  // list_cuts.push_back("stage1_cat_pTjet30GeV==102");
   
   list_cuts.push_back("1"); //---- inclusive
   
@@ -57,6 +66,8 @@ void Table() {
   list_uncertainties.push_back("allUnc[6]");
   list_uncertainties.push_back("allUnc[7]");
   list_uncertainties.push_back("allUnc[8]");
+  list_uncertainties.push_back("allUnc[9]");
+  list_uncertainties.push_back("allUnc[10]");
   
   
   TTree* tree = (TTree*) _file0->Get("GenTree/gentree");  
