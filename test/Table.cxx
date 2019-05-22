@@ -1,27 +1,12 @@
 void Table() {
- 
-  //                               Cross  section (%)     mu+     mu-     res+    res-    mig01+  mig01-  VBF2J+  VBF2j-  PT60    PT120   m_top
-  //
-  //
-  //  0 jet & ptH [0-10]
-  //  0 jet & ptH [10-inf]
-  //  1 jet                                                                                               ggH_mu    [0] = allUnc[0]
-  //  1 jet & ptH [0-60]                                                                                  ggH_res   [0] = allUnc[1]
-  //  1 jet & ptH [60-120]                                                                                ggH_mig01 [0] = allUnc[2]
-  //  1 jet & ptH [120-200]                                                                               ggH_mig12 [0] = allUnc[3]
-  //  1 jet & ptH [200-inf]                                                                               ggH_VBF2j [0] = allUnc[4]
-  //  >=2 jet                                                                                             ggH_VBF3j [0] = allUnc[5]
-  //  >=2 jet & ptH [0-60]                                                                                ggH_pT60  [0] = allUnc[6]
-  //  >=2 jet & ptH [60-120]                                                                              ggH_pT120 [0] = allUnc[7]
-  //  >=2 jet & ptH [120-200]                                                                             ggH_qmtop [0] = allUnc[8]
-  //  >=2 jet & ptH [200-inf]
-  //  >=1 jet
-  //  VBF_3JV                                                 if (STXS==101) return -0.320; // GG2H_VBFTOPO_JET3VETO, tot unc 38%
-  //  VBF_3J                                                  if (STXS==102) return  0.235; // GG2H_VBFTOPO_JET3, tot unc 30.4%
-  // 
-  // 
-  
   /***
+   Cross  section (%)     mu+     mu-     res+    res-    mig01+  mig01-  VBF2J+  VBF2j-  PT10   PT60  PT120  PT120  m_top
+  
+  
+  
+   Uncertainties matrix: NxM matrix, where N is the bins size (i.e. `list_cuts` defined below) and M is the size of 
+   nuisance parameters/bins migrations. 
+  
   In the STXS stage 1.1 we have more bins, in particular ptH migrations around 10GeV and 200GeV bins are taken into account.
   Hence, the new uncertainties (`ggHUncertaintyNew::qcd_ggF_uncertSF_2017_New()`) stored in the TTree are:
   ggH_mu    [0] = allUnc[0]
