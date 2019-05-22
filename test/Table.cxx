@@ -30,29 +30,30 @@ void Table() {
   
   std::vector< std::string > list_uncertainties;
   
+// Using directly STXS 1.1 classification (bins)
+// The advantace of CJLST ntuples is that this new
+// stage has already been implemented and direcly
+// available.
   
-  list_cuts.push_back("(higgs_pt<10.000000) && (jets30<1.000000)");
-  list_cuts.push_back("(higgs_pt<10.000000) && (jets30<2.000000) && (jets30>=1.000000)");
-  list_cuts.push_back("(higgs_pt<10.000000) && (jets30<3.000000) && (jets30>=2.000000)");
-  list_cuts.push_back("(higgs_pt<10.000000) && (jets30>=3.000000)");
-  list_cuts.push_back("(higgs_pt<60.000000) && (jets30<1.000000) && (higgs_pt>=10.000000)");
-  list_cuts.push_back("(higgs_pt<60.000000) && (jets30<2.000000) && (higgs_pt>=10.000000) && (jets30>=1.000000)");
-  list_cuts.push_back("(higgs_pt<60.000000) && (jets30<3.000000) && (higgs_pt>=10.000000) && (jets30>=2.000000)");
-  list_cuts.push_back("(higgs_pt<60.000000) && (higgs_pt>=10.000000) && (jets30>=3.000000)");
-  list_cuts.push_back("(higgs_pt<120.000000) && (jets30<1.000000) && (higgs_pt>=60.000000)");
-  list_cuts.push_back("(higgs_pt<120.000000) && (jets30<2.000000) && (higgs_pt>=60.000000) && (jets30>=1.000000)");
-  list_cuts.push_back("(higgs_pt<120.000000) && (jets30<3.000000) && (higgs_pt>=60.000000) && (jets30>=2.000000)");
-  list_cuts.push_back("(higgs_pt<120.000000) && (higgs_pt>=60.000000) && (jets30>=3.000000)");
-  list_cuts.push_back("(higgs_pt<200.000000) && (jets30<1.000000) && (higgs_pt>=120.000000)");
-  list_cuts.push_back("(higgs_pt<200.000000) && (jets30<2.000000) && (higgs_pt>=120.000000) && (jets30>=1.000000)");
-  list_cuts.push_back("(higgs_pt<200.000000) && (jets30<3.000000) && (higgs_pt>=120.000000) && (jets30>=2.000000)");
-  list_cuts.push_back("(higgs_pt<200.000000) && (higgs_pt>=120.000000) && (jets30>=3.000000)");
-  list_cuts.push_back("(jets30<1.000000) && (higgs_pt>=200.000000)");
-  list_cuts.push_back("(jets30<2.000000) && (higgs_pt>=200.000000) && (jets30>=1.000000)");
-  list_cuts.push_back("(jets30<3.000000) && (higgs_pt>=200.000000) && (jets30>=2.000000)");
-  list_cuts.push_back("(higgs_pt>=200.000000) && (jets30>=3.000000)");
-  // list_cuts.push_back("stage1_cat_pTjet30GeV==101");
-  // list_cuts.push_back("stage1_cat_pTjet30GeV==102");
+  list_cuts.push_back("stage1_cat_pTjet30GeV==100");
+  list_cuts.push_back("stage1_cat_pTjet30GeV==150");
+
+  list_cuts.push_back("stage1_cat_pTjet30GeV==102");
+  list_cuts.push_back("stage1_cat_pTjet30GeV==103");
+
+  list_cuts.push_back("stage1_cat_pTjet30GeV==111");
+  list_cuts.push_back("stage1_cat_pTjet30GeV==112");
+  list_cuts.push_back("stage1_cat_pTjet30GeV==113");
+  
+  list_cuts.push_back("stage1_cat_pTjet30GeV==121");
+  list_cuts.push_back("stage1_cat_pTjet30GeV==122");
+  list_cuts.push_back("stage1_cat_pTjet30GeV==123");
+
+  list_cuts.push_back("stage1_cat_pTjet30GeV==131");
+  list_cuts.push_back("stage1_cat_pTjet30GeV==132");
+
+  list_cuts.push_back("stage1_cat_pTjet30GeV==141");
+  list_cuts.push_back("stage1_cat_pTjet30GeV==142");
   
   list_cuts.push_back("1"); //---- inclusive
   
