@@ -24,7 +24,7 @@ void GetScaleVariation() {
   std::map< std::pair<int, int> , float > Relative_Delta_Greater;
   
   
-  std::ifstream file ("values.txt"); 
+  std::ifstream file ("scale_variations.txt"); 
   
   std::string buffer;
   int num_i_njet;
