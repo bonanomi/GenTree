@@ -84,7 +84,7 @@ void CalculateScaleVariation() {
       std::vector <float> many_values;
       for (int i=1; i<9; i++) {
         if (i != 5 && i != 7) {
-          toWeight = Form ("%s * (%s)/(LHEweight_QCDscale_muR1_muF1)", toCut.Data(), weights.at(i));  
+          toWeight = Form ("%s * (%s)/(LHEweight_QCDscale_muR1_muF1)", toCut.Data(), weights.at(i).c_str());  
           tree1->Draw("1 >> histo_support", toWeight.Data() , "goff" );   
           float value = histo_support->Integral(0,histo_support->GetNbinsX()+1);
 //           if (value > max_up[std::pair<int, int> (i_pt_H, i_njet)]) max_up[std::pair<int, int> (i_pt_H, i_njet)] = value;
