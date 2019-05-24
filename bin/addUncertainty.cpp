@@ -43,9 +43,9 @@ int main(int argc, char** argv) {
   treeOut->Branch("allUnc", &allUnc);
 
 
-  UInt_t EventNumber;
-  UInt_t htxsNJets;
-  UInt_t htxs_stage1_cat;
+  Long64_t EventNumber;
+  Int_t htxsNJets;
+  Int_t htxs_stage1_cat;
   float xsec;
   float genxsec;
 
@@ -59,11 +59,12 @@ int main(int argc, char** argv) {
   float LHEweight_QCDscale_muR2_muF0p5;
   float LHEweight_QCDscale_muR2_muF1;
 
-
+  treeIn->SetBranchAddress("EventNumber", &EventNumber);
   treeIn->SetBranchAddress("htxsNJets",     &htxsNJets);
   treeIn->SetBranchAddress("htxs_stage1_cat", &htxs_stage1_cat);
   treeIn->SetBranchAddress("htxsHPt",   &htxsHPt);
-
+  treeIn->SetBranchAddress("xsec", &xsec);
+  treeIn->SetBranchAddress("genxsec", &genxsec);
   treeIn->SetBranchAddress("LHEweight_QCDscale_muR1_muF1", &LHEweight_QCDscale_muR1_muF1);  
   treeIn->SetBranchAddress("LHEweight_QCDscale_muR0p5_muF1", &LHEweight_QCDscale_muR0p5_muF1);  
   treeIn->SetBranchAddress("LHEweight_QCDscale_muR0p5_muF2", &LHEweight_QCDscale_muR0p5_muF2);  
