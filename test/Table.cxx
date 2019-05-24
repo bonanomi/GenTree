@@ -31,26 +31,26 @@ void Table() {
   std::vector< std::string > list_uncertainties;
   
   
-  list_cuts.push_back("(higgs_pt<10.000000) && (jets30<1.000000)");
-  list_cuts.push_back("(higgs_pt<10.000000) && (jets30<2.000000) && (jets30>=1.000000)");
-  list_cuts.push_back("(higgs_pt<10.000000) && (jets30<3.000000) && (jets30>=2.000000)");
-  list_cuts.push_back("(higgs_pt<10.000000) && (jets30>=3.000000)");
-  list_cuts.push_back("(higgs_pt<60.000000) && (jets30<1.000000) && (higgs_pt>=10.000000)");
-  list_cuts.push_back("(higgs_pt<60.000000) && (jets30<2.000000) && (higgs_pt>=10.000000) && (jets30>=1.000000)");
-  list_cuts.push_back("(higgs_pt<60.000000) && (jets30<3.000000) && (higgs_pt>=10.000000) && (jets30>=2.000000)");
-  list_cuts.push_back("(higgs_pt<60.000000) && (higgs_pt>=10.000000) && (jets30>=3.000000)");
-  list_cuts.push_back("(higgs_pt<120.000000) && (jets30<1.000000) && (higgs_pt>=60.000000)");
-  list_cuts.push_back("(higgs_pt<120.000000) && (jets30<2.000000) && (higgs_pt>=60.000000) && (jets30>=1.000000)");
-  list_cuts.push_back("(higgs_pt<120.000000) && (jets30<3.000000) && (higgs_pt>=60.000000) && (jets30>=2.000000)");
-  list_cuts.push_back("(higgs_pt<120.000000) && (higgs_pt>=60.000000) && (jets30>=3.000000)");
-  list_cuts.push_back("(higgs_pt<200.000000) && (jets30<1.000000) && (higgs_pt>=120.000000)");
-  list_cuts.push_back("(higgs_pt<200.000000) && (jets30<2.000000) && (higgs_pt>=120.000000) && (jets30>=1.000000)");
-  list_cuts.push_back("(higgs_pt<200.000000) && (jets30<3.000000) && (higgs_pt>=120.000000) && (jets30>=2.000000)");
-  list_cuts.push_back("(higgs_pt<200.000000) && (higgs_pt>=120.000000) && (jets30>=3.000000)");
-  list_cuts.push_back("(jets30<1.000000) && (higgs_pt>=200.000000)");
-  list_cuts.push_back("(jets30<2.000000) && (higgs_pt>=200.000000) && (jets30>=1.000000)");
-  list_cuts.push_back("(jets30<3.000000) && (higgs_pt>=200.000000) && (jets30>=2.000000)");
-  list_cuts.push_back("(higgs_pt>=200.000000) && (jets30>=3.000000)");
+  list_cuts.push_back("(htxsHPt<10.000000) && (htxsNJets<1.000000)");
+  list_cuts.push_back("(htxsHPt<10.000000) && (htxsNJets<2.000000) && (htxsNJets>=1.000000)");
+  list_cuts.push_back("(htxsHPt<10.000000) && (htxsNJets<3.000000) && (htxsNJets>=2.000000)");
+  list_cuts.push_back("(htxsHPt<10.000000) && (htxsNJets>=3.000000)");
+  list_cuts.push_back("(htxsHPt<60.000000) && (htxsNJets<1.000000) && (htxsHPt>=10.000000)");
+  list_cuts.push_back("(htxsHPt<60.000000) && (htxsNJets<2.000000) && (htxsHPt>=10.000000) && (htxsNJets>=1.000000)");
+  list_cuts.push_back("(htxsHPt<60.000000) && (htxsNJets<3.000000) && (htxsHPt>=10.000000) && (htxsNJets>=2.000000)");
+  list_cuts.push_back("(htxsHPt<60.000000) && (htxsHPt>=10.000000) && (htxsNJets>=3.000000)");
+  list_cuts.push_back("(htxsHPt<120.000000) && (htxsNJets<1.000000) && (htxsHPt>=60.000000)");
+  list_cuts.push_back("(htxsHPt<120.000000) && (htxsNJets<2.000000) && (htxsHPt>=60.000000) && (htxsNJets>=1.000000)");
+  list_cuts.push_back("(htxsHPt<120.000000) && (htxsNJets<3.000000) && (htxsHPt>=60.000000) && (htxsNJets>=2.000000)");
+  list_cuts.push_back("(htxsHPt<120.000000) && (htxsHPt>=60.000000) && (htxsNJets>=3.000000)");
+  list_cuts.push_back("(htxsHPt<200.000000) && (htxsNJets<1.000000) && (htxsHPt>=120.000000)");
+  list_cuts.push_back("(htxsHPt<200.000000) && (htxsNJets<2.000000) && (htxsHPt>=120.000000) && (htxsNJets>=1.000000)");
+  list_cuts.push_back("(htxsHPt<200.000000) && (htxsNJets<3.000000) && (htxsHPt>=120.000000) && (htxsNJets>=2.000000)");
+  list_cuts.push_back("(htxsHPt<200.000000) && (htxsHPt>=120.000000) && (htxsNJets>=3.000000)");
+  list_cuts.push_back("(htxsNJets<1.000000) && (htxsHPt>=200.000000)");
+  list_cuts.push_back("(htxsNJets<2.000000) && (htxsHPt>=200.000000) && (htxsNJets>=1.000000)");
+  list_cuts.push_back("(htxsNJets<3.000000) && (htxsHPt>=200.000000) && (htxsNJets>=2.000000)");
+  list_cuts.push_back("(htxsHPt>=200.000000) && (htxsNJets>=3.000000)");
   // list_cuts.push_back("stage1_cat_pTjet30GeV==101");
   // list_cuts.push_back("stage1_cat_pTjet30GeV==102");
   
@@ -70,7 +70,7 @@ void Table() {
   list_uncertainties.push_back("allUnc[10]");
   
   
-  TTree* tree = (TTree*) _file0->Get("GenTree/gentree");  
+  TTree* tree = (TTree*) _file0->Get("ZZTree/candTree");  
   
   TH1F *htemp = new TH1F ("htemp", "", 1, 0, 2);
   float xsectot = tree->GetEntries();
