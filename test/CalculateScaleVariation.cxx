@@ -70,6 +70,7 @@ void CalculateScaleVariation() {
 
    ************************************************************************************************************************
   *************************************************************************************************************************/
+  
   std::vector< std::string > stxs1p1_cuts;
   stxs1p1_cuts.push_back("100");
   stxs1p1_cuts.push_back("102");
@@ -81,6 +82,7 @@ void CalculateScaleVariation() {
   stxs1p1_cuts.push_back("122");
   stxs1p1_cuts.push_back("123");
   stxs1p1_cuts.push_back("131");
+  stxs1p1_cuts.push_back("132");
   stxs1p1_cuts.push_back("141");
   stxs1p1_cuts.push_back("142");
   stxs1p1_cuts.push_back("150");
