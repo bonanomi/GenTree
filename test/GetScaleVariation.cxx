@@ -9,19 +9,13 @@
 #include <sstream>
 
 void GetScaleVariation() {
+    
+  std::map< int , std::vector<float> > list_variation;
+  std::map< int, float > nominal;
   
-  float c_pt_H_boundaries[] = {10, 60, 120, 200};
-  std::vector<float> pt_H_boundaries (c_pt_H_boundaries, c_pt_H_boundaries + sizeof(c_pt_H_boundaries) / sizeof(float) );
-  
-  float c_njet_boundaries[] = {1, 2, 3};
-  std::vector<float> njet_boundaries (c_njet_boundaries, c_njet_boundaries + sizeof(c_njet_boundaries) / sizeof(float) );
-  
-  std::map< std::pair<int, int> , std::vector<float> > list_variation;
-  std::map< std::pair<int, int> , float > nominal;
-  
-  std::map< std::pair<int, int> , float > max_Delta;
-  std::map< std::pair<int, int> , float > Relative_Delta_Smaller;
-  std::map< std::pair<int, int> , float > Relative_Delta_Greater;
+  std::map< int , float > max_Delta;
+  std::map< int , float > Relative_Delta_Smaller;
+  std::map< int , float > Relative_Delta_Greater;
   
   /************************************************************************************************************************
    ********************************************  STXS STAGE 1.1 BINS  *****************************************************
@@ -50,7 +44,7 @@ void GetScaleVariation() {
   *************************************************************************************************************************/
   
   std::vector< std::string > stxs1p1_cuts;
-  stxs1p1_cuts.push_back("100");
+  // stxs1p1_cuts.push_back("100");
   stxs1p1_cuts.push_back("102");
   stxs1p1_cuts.push_back("103");
   stxs1p1_cuts.push_back("111");
@@ -114,94 +108,184 @@ void GetScaleVariation() {
   for (iCut = 0; iCut < stxs1p1_cuts.size(); iCut++) {
     float smaller_nominal = 0;
     float greater_nominal = 0;
+    stxs1p1 = std::stoi(stxs1p1_cuts.at(iCut));
+
+    if (stxs1p1 == 102) //10GeV
+    {
+      smaller_nominal += nominal[102];
+      greater_nominal += nominal[103];
+    }
+    if (stxs1p1 == 103) //200GeV
+    {
+      smaller_nominal += nominal[102] + nominal[103];
+      greater_nominal += 0.0;
+    }
+    if (stxs1p1 == 111) //60GeV
+    {
+      smaller_nominal += nominal[111];
+      greater_nominal += nominal[112] + nominal[113];
+    }
+    if (stxs1p1 == 112) //120GeV
+    {
+      smaller_nominal += nominal[111] + nominal[112];
+      greater_nominal += nominal[113];
+    }
+    if (stxs1p1 == 113) //200GeV
+    {
+      smaller_nominal += nominal[111] + nominal[112] + nominal[113];
+      greater_nominal += 0.0;
+    }
+    if (stxs1p1 == 121) //60GeV
+    {
+      smaller_nominal += nominal[121];
+      greater_nominal += nominal[122] + nominal[123];
+    }
+    if (stxs1p1 == 122) //120GeV
+    {
+      smaller_nominal += nominal[121] + nominal[122];
+      greater_nominal += nominal[123];
+    }
+    if (stxs1p1 == 123) //200GeV
+    {
+      smaller_nominal += nominal[121] + nominal[122] + nominal[123];
+      greater_nominal += 0.0;
+    }
+    if (stxs1p1 == 131) //200GeV, 2jets VBF
+    {
+      smaller_nominal += nominal[131];
+      greater_nominal += nominal[132];
+    }
+    if (stxs1p1 == 132) //200GeV, 2jets VBF
+    {
+      smaller_nominal += nominal[131] + nominal[132];
+      greater_nominal += 0.0;
+    }
+    if (stxs1p1 == 141) //200GeV, 2jets VBF
+    {
+      smaller_nominal += nominal[141];
+      greater_nominal += nominal[142];
+    }
+    if (stxs1p1 == 142) //200GeV, 2jets VBF
+    {
+      smaller_nominal += nominal[141] + nominal[142];
+      greater_nominal += 0.0;
+    }
+    if (stxs1p1 == 150)
+    {
+      smaller_nominal += nominal[150];
+      greater_nominal += 0.;
+    }
+
+    float nominal = smaller_nominal + greater_nominal;
+
+    std::cout << " STXS1.1 = " << stxs1p1 << " nominal = " << nominal << std::endl;
+
+    float Delta_max = 0;
+    for (int i=0; i<6; i++) {
+      float smaller_nominal_variation = 0;
+      float greater_nominal_variation = 0;   
+      if (stxs1p1 == 102) //10GeV
+      {
+        smaller_nominal_variation += list_variation[102];
+        greater_nominal_variation += list_variation[103];
+      }
+      if (stxs1p1 == 103) //200GeV
+      {
+        smaller_nominal_variation += list_variation[102] + list_variation[103];
+        greater_nominal_variation += 0.0;
+      }
+      if (stxs1p1 == 111) //60GeV
+      {
+        smaller_nominal_variation += list_variation[111];
+        greater_nominal_variation += list_variation[112] + list_variation[113];
+      }
+      if (stxs1p1 == 112) //120GeV
+      {
+        smaller_nominal_variation += list_variation[111] + list_variation[112];
+        greater_nominal_variation += list_variation[113];
+      }
+      if (stxs1p1 == 113) //200GeV
+      {
+        smaller_nominal_variation += list_variation[111] + list_variation[112] + list_variation[113];
+        greater_nominal_variation += 0.0;
+      }
+      if (stxs1p1 == 121) //60GeV
+      {
+        smaller_nominal_variation += list_variation[121];
+        greater_nominal_variation += list_variation[122] + list_variation[123];
+      }
+      if (stxs1p1 == 122) //120GeV
+      {
+        smaller_nominal_variation += list_variation[121] + list_variation[122];
+        greater_nominal_variation += list_variation[123];
+      }
+      if (stxs1p1 == 123) //200GeV
+      {
+        smaller_nominal_variation += list_variation[121] + list_variation[122] + list_variation[123];
+        greater_nominal_variation += 0.0;
+      }
+      if (stxs1p1 == 131) //200GeV, 2jets VBF
+      {
+        smaller_nominal_variation += list_variation[131];
+        greater_nominal_variation += list_variation[132];
+      }
+      if (stxs1p1 == 132) //200GeV, 2jets VBF
+      {
+        smaller_nominal_variation += list_variation[131] + list_variation[132];
+        greater_nominal_variation += 0.0;
+      }
+      if (stxs1p1 == 141) //200GeV, 2jets VBF
+      {
+        smaller_nominal_variation += list_variation[141];
+        greater_nominal_variation += list_variation[142];
+      }
+      if (stxs1p1 == 142) //200GeV, 2jets VBF
+      {
+        smaller_nominal_variation += list_variation[141] + list_variation[142];
+        greater_nominal_variation += 0.0;
+      }
+      if (stxs1p1 == 150)
+      {
+        smaller_nominal_variation += nominal[150];
+        greater_nominal_variation += 0.;
+      }     
+    }
+
+    float normalization = smaller_nominal_variation + greater_nominal_variation;
+    if (normalization!=0) {
+      normalization = nominal/normalization;
+    }
+    else {
+      normalization = 1.;
+    }
+            
+    smaller_nominal_variation *= normalization;
+    greater_nominal_variation *= normalization;
     
+    float Delta = fabs(smaller_nominal_variation - smaller_nominal);
+    
+    if (Delta_max < Delta) Delta_max = Delta;
+
+    max_Delta[stxs1p1] = Delta_max;
+    Relative_Delta_Smaller[stxs1p1] = (-Delta_max)/smaller_nominal;
+    Relative_Delta_Greater[stxs1p1] = ( Delta_max)/greater_nominal;
 
   }
-  
-  for (int i_njet = 0; i_njet < njet_boundaries.size()+1; i_njet++) {
-    
-    for (int i_pt_H = 0; i_pt_H < pt_H_boundaries.size(); i_pt_H++) {
-      
-      float smaller_nominal = 0;
-      float greater_nominal = 0;
-      
-      for (int j_pt_H = 0; j_pt_H < pt_H_boundaries.size()+1; j_pt_H++) {
-        if (j_pt_H<=i_pt_H) {
-          smaller_nominal += nominal[std::pair<int, int> (j_pt_H, i_njet)];
-        }
-        else {
-          greater_nominal += nominal[std::pair<int, int> (j_pt_H, i_njet)];
-        }
-      }
-      
-      float nominal = smaller_nominal + greater_nominal;
-      
-      std::cout << " i_njet = " << i_njet << " i_pt_H = " << i_pt_H << " nominal = " << nominal << std::endl;
-      
-      float Delta_max = 0;
-      
-      //
-      // smaller + greater = constant
-      // (smaller+Delta) + (greater-Delta) = constant
-      // --> find maximum Delta
-      //
-      
-      for (int i=0; i<6; i++) {
-        float smaller_nominal_variation = 0;
-        float greater_nominal_variation = 0;
-        for (int j_pt_H = 0; j_pt_H < pt_H_boundaries.size()+1; j_pt_H++) {
-          if (j_pt_H<=i_pt_H) {
-            smaller_nominal_variation += list_variation[std::pair<int, int> (j_pt_H, i_njet)][i];
-          }
-          else {
-            greater_nominal_variation += list_variation[std::pair<int, int> (j_pt_H, i_njet)][i];
-          }
-        }
-        
-        float normalization = smaller_nominal_variation + greater_nominal_variation;
-        if (normalization!=0) {
-          normalization = nominal/normalization;
-        }
-        else {
-          normalization = 1.;
-        }
-                
-        smaller_nominal_variation *= normalization;
-        greater_nominal_variation *= normalization;
-        
-        float Delta = fabs(smaller_nominal_variation - smaller_nominal);
-        
-        if (Delta_max < Delta) Delta_max = Delta;
-        
-      }
-      
-      max_Delta[std::pair<int, int> (i_pt_H, i_njet)] = Delta_max;
-      Relative_Delta_Smaller[std::pair<int, int> (i_pt_H, i_njet)] = (-Delta_max)/smaller_nominal;
-      Relative_Delta_Greater[std::pair<int, int> (i_pt_H, i_njet)] = ( Delta_max)/greater_nominal;
-      
-    }
-  }
-  
-  
-  
+
   std::cout << " ===================== " << std::endl;
   std::cout << " ===================== " << std::endl;
   std::cout << " ===================== " << std::endl;
   
   
   //---- now print
-  
-  for (int i_njet = 0; i_njet < njet_boundaries.size()+1; i_njet++) {
-    for (int i_pt_H = 0; i_pt_H < pt_H_boundaries.size(); i_pt_H++) {
-      std::cout << " njet:pt_H " << i_njet << " : " << i_pt_H ;
-      std::cout << "    smaller +/- " << Relative_Delta_Smaller[std::pair<int, int> (i_pt_H, i_njet)] *100 << " % " ;
-      std::cout << "    greater +/- " << Relative_Delta_Greater[std::pair<int, int> (i_pt_H, i_njet)] *100 << " % " ;
-//       std::cout << "          Delta = " << max_Delta[std::pair<int, int> (i_pt_H, i_njet)];
-      std::cout << std::endl;
-      
-    }
-  }
-  
+  for (iCut = 0; iCut < stxs1p1_cuts.size(); iCut++) {
+    stxs1p1 = std::stoi(stxs1p1_cuts.at(iCut));
+    std::cout << "STXS1.1: " << stxs1p1 << " ";
+    std::cout << "    smaller +/- " << Relative_Delta_Smaller[stxs1p1] *100 << " % " ;
+    std::cout << "    greater +/- " << Relative_Delta_Greater[stxs1p1] *100 << " % " ;
+    std::cout << std::endl;
+
+  }  
   
   // ---- 1001 = weights_LHE[0] ---> nominal
   //                                                         https://indico.cern.ch/event/494682/contributions/1172505/attachments/1223578/1800218/mcaod-Feb15-2016.pdf
