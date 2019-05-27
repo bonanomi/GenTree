@@ -23,12 +23,37 @@ void GetScaleVariation() {
   std::map< std::pair<int, int> , float > Relative_Delta_Smaller;
   std::map< std::pair<int, int> , float > Relative_Delta_Greater;
   
+  /************************************************************************************************************************
+   ********************************************  STXS STAGE 1.1 BINS  *****************************************************
   
+      GG2H_FWDH = 100,
+      GG2H_VBFTOPO_JET3VETO = 101, GG2H_VBFTOPO_JET3 = 102,
+      GG2H_0J   = 103,
+      GG2H_1J_PTH_0_60 = 104,      GG2H_1J_PTH_60_120 = 105, GG2H_1J_PTH_120_200 = 106,   GG2H_1J_PTH_GT200 = 107,
+      GG2H_GE2J_PTH_0_60 = 108,      GG2H_GE2J_PTH_60_120 = 109, GG2H_GE2J_PTH_120_200 = 110,   GG2H_GE2J_PTH_GT200 = 111,
+
+   ************************************************************************************************************************
+  *************************************************************************************************************************/
+  std::vector< std::string > stxs1p1_cuts;
+  stxs1p1_cuts.push_back("100");
+  stxs1p1_cuts.push_back("101");
+  stxs1p1_cuts.push_back("102");
+  stxs1p1_cuts.push_back("103");
+  stxs1p1_cuts.push_back("104");
+  stxs1p1_cuts.push_back("105");
+  stxs1p1_cuts.push_back("106");
+  stxs1p1_cuts.push_back("107");
+  stxs1p1_cuts.push_back("108");
+  stxs1p1_cuts.push_back("109");
+  stxs1p1_cuts.push_back("110");
+  stxs1p1_cuts.push_back("111");
+
   std::ifstream file ("scale_variations.txt"); 
   
   std::string buffer;
-  int num_i_njet;
-  int num_i_pt_H;
+//  int num_i_njet;
+//  int num_i_pt_H;
+  int stxs1p1_cut;
   float value;
   
   if(!file.is_open()) {
@@ -40,18 +65,18 @@ void GetScaleVariation() {
     std::cout << " buffer = " << buffer << std::endl;
     if (buffer != ""){ ///---> save from empty line at the end!
       std::stringstream line( buffer );      
-      line >> num_i_njet; 
-      line >> num_i_pt_H; 
+      line >> stxs1p1_cut;//num_i_njet; 
+      // line >> num_i_pt_H; 
 
       line >> value; 
-      nominal[std::pair<int, int> (num_i_pt_H, num_i_njet)] = value;
+      nominal[std::stoi(stxs1p1_cut)] = value;
       
       std::vector <float> vector_values;
       for (int i=0; i<6; i++) {
         line >> value; 
         vector_values.push_back(value);        
       }
-      list_variation[std::pair<int, int> (num_i_pt_H, num_i_njet)] = vector_values;
+      list_variation[std::stoi(stxs1p1_cut)] = vector_values;
       
       
     } 
@@ -68,6 +93,13 @@ void GetScaleVariation() {
   std::cout << " ===================== " << std::endl;
   std::cout << " ===================== " << std::endl;
   std::cout << " ===================== " << std::endl;
+
+  for (iCut = 0; iCut < stxs1p1_cuts.size() + 1; iCut++) {
+    float smaller_nominal = 0;
+    float greater_nominal = 0;
+
+
+  }
   
   for (int i_njet = 0; i_njet < njet_boundaries.size()+1; i_njet++) {
     
@@ -116,17 +148,11 @@ void GetScaleVariation() {
         else {
           normalization = 1.;
         }
-        
-//         std::cout << "        normalization = " << normalization << std::endl;
-        
+                
         smaller_nominal_variation *= normalization;
         greater_nominal_variation *= normalization;
         
         float Delta = fabs(smaller_nominal_variation - smaller_nominal);
-        
-        std::cout << " small/great = " << (smaller_nominal_variation - smaller_nominal) << " / " << (greater_nominal_variation - greater_nominal);
-        std::cout << " --> " << (smaller_nominal-Delta_max)/smaller_nominal;
-        std::cout << " = (" << smaller_nominal << " - " << Delta_max << " ) / "  << smaller_nominal << std::endl;
         
         if (Delta_max < Delta) Delta_max = Delta;
         

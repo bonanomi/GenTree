@@ -20,24 +20,18 @@ void CalculateScaleVariation() {
   weights.push_back("LHEweight_QCDscale_muR0p5_muF2"); //7
   weights.push_back("LHEweight_QCDscale_muR0p5_muF0p5"); //8
 
-  float c_pt_H_boundaries[] = {10, 60, 120, 200};
-  std::vector<float> pt_H_boundaries (c_pt_H_boundaries, c_pt_H_boundaries + sizeof(c_pt_H_boundaries) / sizeof(float) );
-  
-  float c_njet_boundaries[] = {1, 2, 3};
-  std::vector<float> njet_boundaries (c_njet_boundaries, c_njet_boundaries + sizeof(c_njet_boundaries) / sizeof(float) );
-  
   // Apparently this was needed because of a problem with minlo NNLOPS
   // It should be checked whether now weights are fine or still >>1 in some cases.
   TString toWeightGlobal;
   toWeightGlobal = Form ("(LHEweight_QCDscale_muR1_muF1) * ( ( LHEweight_QCDscale_muR0p5_muF0p5 * (abs(LHEweight_QCDscale_muR0p5_muF0p5/LHEweight_QCDscale_muR1_muF1)<100)) + 0 * (abs(LHEweight_QCDscale_muR0p5_muF0p5/LHEweight_QCDscale_muR1_muF1)>100)  )");
   
   
-  std::map< std::pair<int, int> , std::vector< float> > list_variation;
+  std::map< int , std::vector< float> > list_variation;
   
-  std::map< std::pair<int, int> , float > max_up;
-  std::map< std::pair<int, int> , float > max_do;
+  std::map< int , float > max_up;
+  std::map< int , float > max_do;
   
-  std::map< std::pair<int, int> , float > nominal;
+  std::map< int , float > nominal;
   
   
   TTree* tree1 = (TTree*) _file0->Get("ZZTree/candTree");  
@@ -51,67 +45,68 @@ void CalculateScaleVariation() {
   tree1->Draw("1 >> histo_support", toWeightGlobal.Data() , "goff" );   
   global_integral = histo_support->Integral(0,histo_support->GetNbinsX()+1);
   
+  /************************************************************************************************************************
+   ********************************************  STXS STAGE 1.1 BINS  *****************************************************
   
-  for (int i_pt_H = 0; i_pt_H < pt_H_boundaries.size()+1; i_pt_H++) {
-    for (int i_njet = 0; i_njet < njet_boundaries.size()+1; i_njet++) {
-      
-      toCut = Form ("%s", toWeightGlobal.Data());
-      
-      //---- overflow pt_H
-      if (i_pt_H != pt_H_boundaries.size()) {      
-        toCut = Form ("%s * (htxsHPt<%f) ", toCut.Data(), pt_H_boundaries.at(i_pt_H) );
-      }
-      
-      //---- overflow njet
-      if (i_njet != njet_boundaries.size()) {      
-        toCut = Form ("%s * (htxsNJets<%f)", toCut.Data(), njet_boundaries.at(i_njet) );
-      }
-      
-      if (i_pt_H != 0) {
-        toCut = Form ("%s * (htxsHPt>=%f)", toCut.Data(), pt_H_boundaries.at(i_pt_H-1));
-      }
-      if (i_njet != 0) {
-        toCut = Form ("%s * (htxsNJets>=%f)", toCut.Data(), njet_boundaries.at(i_njet-1));
-      }
-      
-      std::cout << " i_pt_H:i_njet " << i_pt_H << " , " << i_njet << " -->  cut = " << toCut.Data() << std::endl;
-      
-      tree1->Draw("1 >> histo_support", toCut.Data() , "goff" );   
-      nominal[std::pair<int, int> (i_pt_H, i_njet)] = histo_support->Integral(0,histo_support->GetNbinsX()+1);
-      
-      max_up[std::pair<int, int> (i_pt_H, i_njet)] = nominal[std::pair<int, int> (i_pt_H, i_njet)];
-      max_do[std::pair<int, int> (i_pt_H, i_njet)] = nominal[std::pair<int, int> (i_pt_H, i_njet)];
-      
+      GG2H_FWDH = 100,
+      GG2H_VBFTOPO_JET3VETO = 101, GG2H_VBFTOPO_JET3 = 102,
+      GG2H_0J   = 103,
+      GG2H_1J_PTH_0_60 = 104,      GG2H_1J_PTH_60_120 = 105, GG2H_1J_PTH_120_200 = 106,   GG2H_1J_PTH_GT200 = 107,
+      GG2H_GE2J_PTH_0_60 = 108,      GG2H_GE2J_PTH_60_120 = 109, GG2H_GE2J_PTH_120_200 = 110,   GG2H_GE2J_PTH_GT200 = 111,
 
-      std::vector <float> many_values;
-      for (int i=1; i<9; i++) {
-        if (i != 5 && i != 7) {
-          toWeight = Form ("%s * (%s)/(LHEweight_QCDscale_muR1_muF1)", toCut.Data(), weights.at(i).c_str());  
-          tree1->Draw("1 >> histo_support", toWeight.Data() , "goff" );   
-          float value = histo_support->Integral(0,histo_support->GetNbinsX()+1);
+   ************************************************************************************************************************
+  *************************************************************************************************************************/
+  std::vector< std::string > stxs1p1_cuts;
+  stxs1p1_cuts.push_back("100");
+  stxs1p1_cuts.push_back("101");
+  stxs1p1_cuts.push_back("102");
+  stxs1p1_cuts.push_back("103");
+  stxs1p1_cuts.push_back("104");
+  stxs1p1_cuts.push_back("105");
+  stxs1p1_cuts.push_back("106");
+  stxs1p1_cuts.push_back("107");
+  stxs1p1_cuts.push_back("108");
+  stxs1p1_cuts.push_back("109");
+  stxs1p1_cuts.push_back("110");
+  stxs1p1_cuts.push_back("111");
+
+  for (iCut = 0; iCut < stxs1p1_cuts.size() + 1; iCut++) {
+    toCut = Form ("%s", toWeightGlobal.Data());
+    toCut = Form ("%s * (htxs_stage1_cat==%s) ", toCut.Data(), stxs1p1_cuts.at(iCut).c_str() );
+    std::cout << " STXS1p1 cat " << stxs1p1_cuts.at(iCut).c_str() << " -->  cut = " << toCut.Data() << std::endl;
+
+    tree1->Draw("1 >> histo_support", toCut.Data() , "goff" );   
+    nominal[std::stoi(stxs1p1_cuts.at(iCut))] = histo_support->Integral(0,histo_support->GetNbinsX()+1);
+    
+    max_up[std::stoi(stxs1p1_cuts.at(iCut))] = nominal[std::stoi(stxs1p1_cuts.at(iCut))];
+    max_do[std::stoi(stxs1p1_cuts.at(iCut))] = nominal[std::stoi(stxs1p1_cuts.at(iCut))];
+
+    std::vector <float> many_values;
+    for (int i=1; i<9; i++) {
+      if (i != 5 && i != 7) {
+        toWeight = Form ("%s * (%s)/(LHEweight_QCDscale_muR1_muF1)", toCut.Data(), weights.at(i).c_str());  
+        tree1->Draw("1 >> histo_support", toWeight.Data() , "goff" );   
+        float value = histo_support->Integral(0,histo_support->GetNbinsX()+1);
 //           if (value > max_up[std::pair<int, int> (i_pt_H, i_njet)]) max_up[std::pair<int, int> (i_pt_H, i_njet)] = value;
 //           if (value < max_do[std::pair<int, int> (i_pt_H, i_njet)]) max_do[std::pair<int, int> (i_pt_H, i_njet)] = value;         
-          many_values.push_back(value);
-        }      
-      }
-      list_variation[std::pair<int, int> (i_pt_H, i_njet)] = many_values;
-      
+        many_values.push_back(value);
+      }      
     }
-  }
+    list_variation[std::stoi(stxs1p1_cuts.at(iCut))] = many_values;
+  }    
+
   
   
   ofstream myfile;
   myfile.open ("scale_variations.txt");
-  
-  for (int i_njet = 0; i_njet < njet_boundaries.size()+1; i_njet++) {
-    for (int i_pt_H = 0; i_pt_H < pt_H_boundaries.size()+1; i_pt_H++) {
-      myfile << i_njet << "  " << i_pt_H << "  ";
-      myfile << nominal[std::pair<int, int> (i_pt_H, i_njet)] << "   ";   
-      for (int i=0; i<6; i++) {
-        myfile << list_variation[std::pair<int, int> (i_pt_H, i_njet)][i] << "   ";
-      }
-      myfile << std::endl;
+
+  for (iCut = 0; iCut < stxs1p1_cuts.size() + 1; iCut++) {
+    myfile << stxs1p1_cuts.at(iCut).c_str() << "  ";
+    myfile << nominal[std::stoi(stxs1p1_cuts.at(iCut))] << "   ";   
+    for (int i=0; i<6; i++) {
+      myfile << list_variation[std::stoi(stxs1p1_cuts.at(iCut))][i] << "   ";
     }
+    myfile << std::endl;
   }
     
   myfile.close(); 
