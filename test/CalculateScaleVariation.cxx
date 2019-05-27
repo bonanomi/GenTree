@@ -48,29 +48,44 @@ void CalculateScaleVariation() {
   /************************************************************************************************************************
    ********************************************  STXS STAGE 1.1 BINS  *****************************************************
   
-      GG2H_FWDH = 100,
-      GG2H_VBFTOPO_JET3VETO = 101, GG2H_VBFTOPO_JET3 = 102,
-      GG2H_0J   = 103,
-      GG2H_1J_PTH_0_60 = 104,      GG2H_1J_PTH_60_120 = 105, GG2H_1J_PTH_120_200 = 106,   GG2H_1J_PTH_GT200 = 107,
-      GG2H_GE2J_PTH_0_60 = 108,      GG2H_GE2J_PTH_60_120 = 109, GG2H_GE2J_PTH_120_200 = 110,   GG2H_GE2J_PTH_GT200 = 111,
+                                                GG2H_FWDH = 100,
+                                                GG2H_PTH_GE200 = 150,
+
+                                                GG2H_PTH_0_200_0J_PTH_0_10 = 102,
+                                                GG2H_PTH_0_200_0J_PTH_10_200 = 103,
+
+                                                GG2H_PTH_0_200_1J_PTH_0_60 = 111,
+                                                GG2H_PTH_0_200_1J_PTH_60_120 = 112,
+                                                GG2H_PTH_0_200_1J_PTH_120_200 = 113,
+
+                                                GG2H_PTH_0_200_GE2J_MJJ_0_350_PTH_0_60 = 121,
+                                                GG2H_PTH_0_200_GE2J_MJJ_0_350_PTH_60_120 = 122,
+                                                GG2H_PTH_0_200_GE2J_MJJ_0_350_PTH_120_200 = 123,
+
+                                                GG2H_PTH_0_200_GE2J_MJJ_350_700_PTHJJ_0_25 = 131,
+                                                GG2H_PTH_0_200_GE2J_MJJ_350_700_PTHJJ_GE25 = 132,
+
+                                                GG2H_PTH_0_200_GE2J_MJJ_GE700_PTHJJ_0_25 = 141,
+                                                GG2H_PTH_0_200_GE2J_MJJ_GE700_PTHJJ_GE25 = 142,
 
    ************************************************************************************************************************
   *************************************************************************************************************************/
   std::vector< std::string > stxs1p1_cuts;
   stxs1p1_cuts.push_back("100");
-  stxs1p1_cuts.push_back("101");
   stxs1p1_cuts.push_back("102");
   stxs1p1_cuts.push_back("103");
-  stxs1p1_cuts.push_back("104");
-  stxs1p1_cuts.push_back("105");
-  stxs1p1_cuts.push_back("106");
-  stxs1p1_cuts.push_back("107");
-  stxs1p1_cuts.push_back("108");
-  stxs1p1_cuts.push_back("109");
-  stxs1p1_cuts.push_back("110");
   stxs1p1_cuts.push_back("111");
+  stxs1p1_cuts.push_back("112");
+  stxs1p1_cuts.push_back("113");
+  stxs1p1_cuts.push_back("121");
+  stxs1p1_cuts.push_back("122");
+  stxs1p1_cuts.push_back("123");
+  stxs1p1_cuts.push_back("131");
+  stxs1p1_cuts.push_back("141");
+  stxs1p1_cuts.push_back("142");
+  stxs1p1_cuts.push_back("150");
 
-  for (iCut = 0; iCut < stxs1p1_cuts.size() + 1; iCut++) {
+  for (int iCut = 0; iCut < stxs1p1_cuts.size(); iCut++) {
     toCut = Form ("%s", toWeightGlobal.Data());
     toCut = Form ("%s * (htxs_stage1_cat==%s) ", toCut.Data(), stxs1p1_cuts.at(iCut).c_str() );
     std::cout << " STXS1p1 cat " << stxs1p1_cuts.at(iCut).c_str() << " -->  cut = " << toCut.Data() << std::endl;
@@ -100,7 +115,7 @@ void CalculateScaleVariation() {
   ofstream myfile;
   myfile.open ("scale_variations.txt");
 
-  for (iCut = 0; iCut < stxs1p1_cuts.size() + 1; iCut++) {
+  for (int iCut = 0; iCut < stxs1p1_cuts.size(); iCut++) {
     myfile << stxs1p1_cuts.at(iCut).c_str() << "  ";
     myfile << nominal[std::stoi(stxs1p1_cuts.at(iCut))] << "   ";   
     for (int i=0; i<6; i++) {

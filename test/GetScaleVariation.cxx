@@ -36,18 +36,19 @@ void GetScaleVariation() {
   *************************************************************************************************************************/
   std::vector< std::string > stxs1p1_cuts;
   stxs1p1_cuts.push_back("100");
-  stxs1p1_cuts.push_back("101");
   stxs1p1_cuts.push_back("102");
   stxs1p1_cuts.push_back("103");
-  stxs1p1_cuts.push_back("104");
-  stxs1p1_cuts.push_back("105");
-  stxs1p1_cuts.push_back("106");
-  stxs1p1_cuts.push_back("107");
-  stxs1p1_cuts.push_back("108");
-  stxs1p1_cuts.push_back("109");
-  stxs1p1_cuts.push_back("110");
   stxs1p1_cuts.push_back("111");
-
+  stxs1p1_cuts.push_back("112");
+  stxs1p1_cuts.push_back("113");
+  stxs1p1_cuts.push_back("121");
+  stxs1p1_cuts.push_back("122");
+  stxs1p1_cuts.push_back("123");
+  stxs1p1_cuts.push_back("131");
+  stxs1p1_cuts.push_back("141");
+  stxs1p1_cuts.push_back("142");
+  stxs1p1_cuts.push_back("150");
+  
   std::ifstream file ("scale_variations.txt"); 
   
   std::string buffer;
@@ -94,7 +95,7 @@ void GetScaleVariation() {
   std::cout << " ===================== " << std::endl;
   std::cout << " ===================== " << std::endl;
 
-  for (iCut = 0; iCut < stxs1p1_cuts.size() + 1; iCut++) {
+  for (iCut = 0; iCut < stxs1p1_cuts.size(); iCut++) {
     float smaller_nominal = 0;
     float greater_nominal = 0;
 
