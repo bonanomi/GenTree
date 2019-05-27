@@ -32,7 +32,7 @@ void GetScaleVariation() {
   float value;
   
   if(!file.is_open()) {
-    std::cerr << "** ERROR: Can't open values.txt for input" << std::endl;
+    std::cerr << "** ERROR: Can't open scale_variations.txt for input" << std::endl;
   }
   
   while(!file.eof()) {
@@ -124,9 +124,9 @@ void GetScaleVariation() {
         
         float Delta = fabs(smaller_nominal_variation - smaller_nominal);
         
-//         std::cout << " small/great = " << (smaller_nominal_variation - smaller_nominal) << " / " << (greater_nominal_variation - greater_nominal);
-//         std::cout << " --> " << (smaller_nominal-Delta_max)/smaller_nominal;
-//         std::cout << " = (" << smaller_nominal << " - " << Delta_max << " ) / "  << smaller_nominal << std::endl;
+        std::cout << " small/great = " << (smaller_nominal_variation - smaller_nominal) << " / " << (greater_nominal_variation - greater_nominal);
+        std::cout << " --> " << (smaller_nominal-Delta_max)/smaller_nominal;
+        std::cout << " = (" << smaller_nominal << " - " << Delta_max << " ) / "  << smaller_nominal << std::endl;
         
         if (Delta_max < Delta) Delta_max = Delta;
         
