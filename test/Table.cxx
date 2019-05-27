@@ -120,10 +120,7 @@ void Table() {
   std::cout << " ---- " << std::endl;
   std::cout << " ---- " << std::endl;
 
-  std::cout << "\t" << " ggH_mu " << "\t" << " ggH_res " << "\t" << " ggH_01 " << "\t" << " ggH_12 " << "\t" << " ggH_VBF2j " << "\t" << " ggH_VBF3j ";
-  std::cout << "\t" << " ggH_pT10 " << "\t" << " ggH_pT60 " << "\t" << " ggH_pT120 " << "\t" << " ggH_pT200 " << "\t" << " ggH_qmtop " << std::end;
-  for (int iCut = 0; iCut<list_cuts.size(); iCut++) {
-    std::cout << list_cuts.at(iCut) << " ";
+ for (int iCut = 0; iCut<list_cuts.size(); iCut++) {
     for (int iUnc = 0; iUnc<list_uncertainties.size(); iUnc++) {
       std::cout << " ["  << std::setw(4) << std::setprecision(2) << ((matrix_uncertainties_down.at(iCut)).at(iUnc) - list_fraction_cross_section.at(iCut))*100 
                 << " / " << std::setw(4) << std::setprecision(2) << ((matrix_uncertainties_up.at(iCut)).at(iUnc)   - list_fraction_cross_section.at(iCut))*100 << " ] ";
