@@ -146,21 +146,21 @@ void GetScaleVariation() {
     if (stxs1p1 == 131) //200GeV, 2jets VBF
     {
       smaller_nominal += nominal[131];
-      greater_nominal += nominal[132];
-    }
-    if (stxs1p1 == 132) //200GeV, 2jets VBF
-    {
-      smaller_nominal += nominal[131] + nominal[132];
-      greater_nominal += 0.0;
+      greater_nominal += nominal[141];
     }
     if (stxs1p1 == 141) //200GeV, 2jets VBF
     {
-      smaller_nominal += nominal[141];
+      smaller_nominal += nominal[131] + nominal[141];
+      greater_nominal += 0.0;
+    }
+    if (stxs1p1 == 132) //200GeV, 2jets VBF
+    {
+      smaller_nominal += nominal[132];
       greater_nominal += nominal[142];
     }
     if (stxs1p1 == 142) //200GeV, 2jets VBF
     {
-      smaller_nominal += nominal[141] + nominal[142];
+      smaller_nominal += nominal[132] + nominal[142];
       greater_nominal += 0.0;
     }
     if (stxs1p1 == 150)
