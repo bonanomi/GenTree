@@ -80,35 +80,28 @@ void GetScaleVariation() {
       // line >> num_i_pt_H; 
 
       line >> value; 
-      nominal[std::stoi(stxs1p1_cut)] = value;
+      nominal[stxs1p1_cut] = value;
       
       std::vector <float> vector_values;
       for (int i=0; i<6; i++) {
         line >> value; 
         vector_values.push_back(value);        
       }
-      list_variation[std::stoi(stxs1p1_cut)] = vector_values;
+      list_variation[stxs1p1_cut] = vector_values;
       
       
     } 
   }
-  
-  
-  
 
-  //---- now print
-  //
-  //---- merge bins according to the edges
-  //
   
   std::cout << " ===================== " << std::endl;
   std::cout << " ===================== " << std::endl;
   std::cout << " ===================== " << std::endl;
 
-  for (iCut = 0; iCut < stxs1p1_cuts.size(); iCut++) {
+  for (int iCut = 0; iCut < stxs1p1_cuts.size(); iCut++) {
     float smaller_nominal = 0;
     float greater_nominal = 0;
-    stxs1p1 = std::stoi(stxs1p1_cuts.at(iCut));
+    int stxs1p1 = std::stoi(stxs1p1_cuts.at(iCut));
 
     if (stxs1p1 == 102) //10GeV
     {
@@ -186,70 +179,70 @@ void GetScaleVariation() {
       float greater_nominal_variation = 0;   
       if (stxs1p1 == 102) //10GeV
       {
-        smaller_nominal_variation += list_variation[102];
-        greater_nominal_variation += list_variation[103];
+        smaller_nominal_variation += list_variation[102][i];
+        greater_nominal_variation += list_variation[103][i];
       }
       if (stxs1p1 == 103) //200GeV
       {
-        smaller_nominal_variation += list_variation[102] + list_variation[103];
+        smaller_nominal_variation += list_variation[102][i] + list_variation[103][i];
         greater_nominal_variation += 0.0;
       }
       if (stxs1p1 == 111) //60GeV
       {
-        smaller_nominal_variation += list_variation[111];
-        greater_nominal_variation += list_variation[112] + list_variation[113];
+        smaller_nominal_variation += list_variation[111][i];
+        greater_nominal_variation += list_variation[112][i] + list_variation[113][i];
       }
       if (stxs1p1 == 112) //120GeV
       {
-        smaller_nominal_variation += list_variation[111] + list_variation[112];
-        greater_nominal_variation += list_variation[113];
+        smaller_nominal_variation += list_variation[111][i] + list_variation[112][i];
+        greater_nominal_variation += list_variation[113][i];
       }
       if (stxs1p1 == 113) //200GeV
       {
-        smaller_nominal_variation += list_variation[111] + list_variation[112] + list_variation[113];
+        smaller_nominal_variation += list_variation[111][i] + list_variation[112][i] + list_variation[113][i];
         greater_nominal_variation += 0.0;
       }
       if (stxs1p1 == 121) //60GeV
       {
-        smaller_nominal_variation += list_variation[121];
-        greater_nominal_variation += list_variation[122] + list_variation[123];
+        smaller_nominal_variation += list_variation[121][i];
+        greater_nominal_variation += list_variation[122][i] + list_variation[123][i];
       }
       if (stxs1p1 == 122) //120GeV
       {
-        smaller_nominal_variation += list_variation[121] + list_variation[122];
-        greater_nominal_variation += list_variation[123];
+        smaller_nominal_variation += list_variation[121][i] + list_variation[122][i];
+        greater_nominal_variation += list_variation[123][i];
       }
       if (stxs1p1 == 123) //200GeV
       {
-        smaller_nominal_variation += list_variation[121] + list_variation[122] + list_variation[123];
+        smaller_nominal_variation += list_variation[121][i] + list_variation[122][i] + list_variation[123][i];
         greater_nominal_variation += 0.0;
       }
       if (stxs1p1 == 131) //200GeV, 2jets VBF
       {
-        smaller_nominal_variation += list_variation[131];
-        greater_nominal_variation += list_variation[132];
+        smaller_nominal_variation += list_variation[131][i];
+        greater_nominal_variation += list_variation[132][i];
       }
       if (stxs1p1 == 132) //200GeV, 2jets VBF
       {
-        smaller_nominal_variation += list_variation[131] + list_variation[132];
+        smaller_nominal_variation += list_variation[131][i] + list_variation[132][i];
         greater_nominal_variation += 0.0;
       }
       if (stxs1p1 == 141) //200GeV, 2jets VBF
       {
-        smaller_nominal_variation += list_variation[141];
-        greater_nominal_variation += list_variation[142];
+        smaller_nominal_variation += list_variation[141][i];
+        greater_nominal_variation += list_variation[142][i];
       }
       if (stxs1p1 == 142) //200GeV, 2jets VBF
       {
-        smaller_nominal_variation += list_variation[141] + list_variation[142];
+        smaller_nominal_variation += list_variation[141][i] + list_variation[142][i];
         greater_nominal_variation += 0.0;
       }
       if (stxs1p1 == 150)
       {
-        smaller_nominal_variation += nominal[150];
+        smaller_nominal_variation += list_variation[150][i];
         greater_nominal_variation += 0.;
       }     
-    }
+    
 
     float normalization = smaller_nominal_variation + greater_nominal_variation;
     if (normalization!=0) {
@@ -265,6 +258,7 @@ void GetScaleVariation() {
     float Delta = fabs(smaller_nominal_variation - smaller_nominal);
     
     if (Delta_max < Delta) Delta_max = Delta;
+    }
 
     max_Delta[stxs1p1] = Delta_max;
     Relative_Delta_Smaller[stxs1p1] = (-Delta_max)/smaller_nominal;
@@ -278,8 +272,8 @@ void GetScaleVariation() {
   
   
   //---- now print
-  for (iCut = 0; iCut < stxs1p1_cuts.size(); iCut++) {
-    stxs1p1 = std::stoi(stxs1p1_cuts.at(iCut));
+  for (int iCut = 0; iCut < stxs1p1_cuts.size(); iCut++) {
+    int stxs1p1 = std::stoi(stxs1p1_cuts.at(iCut));
     std::cout << "STXS1.1: " << stxs1p1 << " ";
     std::cout << "    smaller +/- " << Relative_Delta_Smaller[stxs1p1] *100 << " % " ;
     std::cout << "    greater +/- " << Relative_Delta_Greater[stxs1p1] *100 << " % " ;
