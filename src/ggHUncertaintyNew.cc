@@ -70,13 +70,13 @@ std::vector<float> ggHUncertaintyNew::blptw(int Njets30) {
 }
 
 float ggHUncertaintyNew::vbf_2j(int STXS) {
-  if (STXS==101 || STXS == 102) return 0.200; // 20.0%
+  if (STXS==131 || STXS == 141) return 0.200; // 20.0%
   return 0.0; // Events with no VBF topology have no VBF uncertainty
 }
 
 float ggHUncertaintyNew::vbf_3j(int STXS) {
-  if (STXS==101) return -0.320; // GG2H_VBFTOPO_JET3VETO, tot unc 38%
-  if (STXS==102) return  0.235; // GG2H_VBFTOPO_JET3, tot unc 30.4%
+  if (STXS==132) return -0.320; // GG2H_VBFTOPO_JET3VETO, tot unc 38%
+  if (STXS==142) return  0.235; // GG2H_VBFTOPO_JET3, tot unc 30.4%
   return 0.0; // Events with no VBF topology have no VBF uncertainty
 }
 

@@ -220,21 +220,21 @@ void GetScaleVariation() {
       if (stxs1p1 == 131) //200GeV, 2jets VBF
       {
         smaller_nominal_variation += list_variation[131][i];
-        greater_nominal_variation += list_variation[132][i];
+        greater_nominal_variation += list_variation[141][i];
       }
       if (stxs1p1 == 132) //200GeV, 2jets VBF
       {
-        smaller_nominal_variation += list_variation[131][i] + list_variation[132][i];
-        greater_nominal_variation += 0.0;
+        smaller_nominal_variation += list_variation[132][i];
+        greater_nominal_variation += list_variation[142][i];
       }
       if (stxs1p1 == 141) //200GeV, 2jets VBF
       {
-        smaller_nominal_variation += list_variation[141][i];
-        greater_nominal_variation += list_variation[142][i];
+        smaller_nominal_variation += list_variation[131][i] + list_variation[141][i];
+        greater_nominal_variation += 0.0;
       }
       if (stxs1p1 == 142) //200GeV, 2jets VBF
       {
-        smaller_nominal_variation += list_variation[141][i] + list_variation[142][i];
+        smaller_nominal_variation += list_variation[132][i] + list_variation[142][i];
         greater_nominal_variation += 0.0;
       }
       if (stxs1p1 == 150)

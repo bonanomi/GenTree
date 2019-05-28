@@ -31,28 +31,40 @@ void Table() {
   std::vector< std::string > list_uncertainties;
   
   
-  list_cuts.push_back("(htxsHPt<10.000000) && (htxsNJets<1.000000)");
-  list_cuts.push_back("(htxsHPt<10.000000) && (htxsNJets<2.000000) && (htxsNJets>=1.000000)");
-  list_cuts.push_back("(htxsHPt<10.000000) && (htxsNJets<3.000000) && (htxsNJets>=2.000000)");
-  list_cuts.push_back("(htxsHPt<10.000000) && (htxsNJets>=3.000000)");
-  list_cuts.push_back("(htxsHPt<60.000000) && (htxsNJets<1.000000) && (htxsHPt>=10.000000)");
-  list_cuts.push_back("(htxsHPt<60.000000) && (htxsNJets<2.000000) && (htxsHPt>=10.000000) && (htxsNJets>=1.000000)");
-  list_cuts.push_back("(htxsHPt<60.000000) && (htxsNJets<3.000000) && (htxsHPt>=10.000000) && (htxsNJets>=2.000000)");
-  list_cuts.push_back("(htxsHPt<60.000000) && (htxsHPt>=10.000000) && (htxsNJets>=3.000000)");
-  list_cuts.push_back("(htxsHPt<120.000000) && (htxsNJets<1.000000) && (htxsHPt>=60.000000)");
-  list_cuts.push_back("(htxsHPt<120.000000) && (htxsNJets<2.000000) && (htxsHPt>=60.000000) && (htxsNJets>=1.000000)");
-  list_cuts.push_back("(htxsHPt<120.000000) && (htxsNJets<3.000000) && (htxsHPt>=60.000000) && (htxsNJets>=2.000000)");
-  list_cuts.push_back("(htxsHPt<120.000000) && (htxsHPt>=60.000000) && (htxsNJets>=3.000000)");
-  list_cuts.push_back("(htxsHPt<200.000000) && (htxsNJets<1.000000) && (htxsHPt>=120.000000)");
-  list_cuts.push_back("(htxsHPt<200.000000) && (htxsNJets<2.000000) && (htxsHPt>=120.000000) && (htxsNJets>=1.000000)");
-  list_cuts.push_back("(htxsHPt<200.000000) && (htxsNJets<3.000000) && (htxsHPt>=120.000000) && (htxsNJets>=2.000000)");
-  list_cuts.push_back("(htxsHPt<200.000000) && (htxsHPt>=120.000000) && (htxsNJets>=3.000000)");
-  list_cuts.push_back("(htxsNJets<1.000000) && (htxsHPt>=200.000000)");
-  list_cuts.push_back("(htxsNJets<2.000000) && (htxsHPt>=200.000000) && (htxsNJets>=1.000000)");
-  list_cuts.push_back("(htxsNJets<3.000000) && (htxsHPt>=200.000000) && (htxsNJets>=2.000000)");
-  list_cuts.push_back("(htxsHPt>=200.000000) && (htxsNJets>=3.000000)");
-  // list_cuts.push_back("stage1_cat_pTjet30GeV==101");
-  // list_cuts.push_back("stage1_cat_pTjet30GeV==102");
+  // list_cuts.push_back("(htxsHPt<10.000000) && (htxsNJets<1.000000)");
+  // list_cuts.push_back("(htxsHPt<10.000000) && (htxsNJets<2.000000) && (htxsNJets>=1.000000)");
+  // list_cuts.push_back("(htxsHPt<10.000000) && (htxsNJets<3.000000) && (htxsNJets>=2.000000)");
+  // list_cuts.push_back("(htxsHPt<10.000000) && (htxsNJets>=3.000000)");
+  // list_cuts.push_back("(htxsHPt<60.000000) && (htxsNJets<1.000000) && (htxsHPt>=10.000000)");
+  // list_cuts.push_back("(htxsHPt<60.000000) && (htxsNJets<2.000000) && (htxsHPt>=10.000000) && (htxsNJets>=1.000000)");
+  // list_cuts.push_back("(htxsHPt<60.000000) && (htxsNJets<3.000000) && (htxsHPt>=10.000000) && (htxsNJets>=2.000000)");
+  // list_cuts.push_back("(htxsHPt<60.000000) && (htxsHPt>=10.000000) && (htxsNJets>=3.000000)");
+  // list_cuts.push_back("(htxsHPt<120.000000) && (htxsNJets<1.000000) && (htxsHPt>=60.000000)");
+  // list_cuts.push_back("(htxsHPt<120.000000) && (htxsNJets<2.000000) && (htxsHPt>=60.000000) && (htxsNJets>=1.000000)");
+  // list_cuts.push_back("(htxsHPt<120.000000) && (htxsNJets<3.000000) && (htxsHPt>=60.000000) && (htxsNJets>=2.000000)");
+  // list_cuts.push_back("(htxsHPt<120.000000) && (htxsHPt>=60.000000) && (htxsNJets>=3.000000)");
+  // list_cuts.push_back("(htxsHPt<200.000000) && (htxsNJets<1.000000) && (htxsHPt>=120.000000)");
+  // list_cuts.push_back("(htxsHPt<200.000000) && (htxsNJets<2.000000) && (htxsHPt>=120.000000) && (htxsNJets>=1.000000)");
+  // list_cuts.push_back("(htxsHPt<200.000000) && (htxsNJets<3.000000) && (htxsHPt>=120.000000) && (htxsNJets>=2.000000)");
+  // list_cuts.push_back("(htxsHPt<200.000000) && (htxsHPt>=120.000000) && (htxsNJets>=3.000000)");
+  // list_cuts.push_back("(htxsNJets<1.000000) && (htxsHPt>=200.000000)");
+  // list_cuts.push_back("(htxsNJets<2.000000) && (htxsHPt>=200.000000) && (htxsNJets>=1.000000)");
+  // list_cuts.push_back("(htxsNJets<3.000000) && (htxsHPt>=200.000000) && (htxsNJets>=2.000000)");
+  // list_cuts.push_back("(htxsHPt>=200.000000) && (htxsNJets>=3.000000)");
+
+  list_cuts.push_back("102");
+  list_cuts.push_back("103");
+  list_cuts.push_back("111");
+  list_cuts.push_back("112");
+  list_cuts.push_back("113");
+  list_cuts.push_back("121");
+  list_cuts.push_back("122");
+  list_cuts.push_back("123");
+  list_cuts.push_back("131");
+  list_cuts.push_back("132");
+  list_cuts.push_back("141");
+  list_cuts.push_back("142");
+  list_cuts.push_back("150");
   
   list_cuts.push_back("1"); //---- inclusive
   
@@ -82,12 +94,12 @@ void Table() {
     std::vector<float> uncertainties_up;
     std::vector<float> uncertainties_down;
     for (int iUnc = 0; iUnc<list_uncertainties.size(); iUnc++) {
-      TString cut_up = Form ("(%s) * (%s)", list_cuts.at(iCut).c_str(), list_uncertainties.at(iUnc).c_str() );
+      TString cut_up = Form ("(htxs_stage1_cat==%s) * (%s)", list_cuts.at(iCut).c_str(), list_uncertainties.at(iUnc).c_str() );
       tree->Draw("1 >> htemp", cut_up.Data(), "goff");
       float xsec_up = htemp->Integral();
       uncertainties_up.push_back(xsec_up/xsectot); 
 
-      TString cut_down = Form ("(%s) * (2 - %s)", list_cuts.at(iCut).c_str(), list_uncertainties.at(iUnc).c_str() );
+      TString cut_down = Form ("(htxs_stage1_cat==%s) * (2 - %s)", list_cuts.at(iCut).c_str(), list_uncertainties.at(iUnc).c_str() );
       tree->Draw("1 >> htemp", cut_down.Data(), "goff");
       float xsec_down = htemp->Integral();
       uncertainties_down.push_back(xsec_down/xsectot);
