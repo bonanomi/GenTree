@@ -35,7 +35,7 @@ void CalculateScaleVariation() {
   std::map< int , float > nominal;
   
   
-  TTree* tree1 = (TTree*) _file0->Get("ZZTree/candTree");  
+  TTree* tree1 = (TTree*) _file0->Get("GenTree/gentree");//"ZZTree/candTree");  
   
   
   TH1F* histo_support = new TH1F ("histo_support", "", 1, 0, 2);  

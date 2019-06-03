@@ -82,7 +82,7 @@ void Table() {
   list_uncertainties.push_back("allUnc[10]");
   
   
-  TTree* tree = (TTree*) _file0->Get("ZZTree/candTree");  
+  TTree* tree = (TTree*) _file0->Get("GenTree/gentree");//"ZZTree/candTree");  
   
   TH1F *htemp = new TH1F ("htemp", "", 1, 0, 2);
   float xsectot = tree->GetEntries();
