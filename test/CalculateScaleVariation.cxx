@@ -43,7 +43,7 @@ void CalculateScaleVariation() {
   TString toCut;
   
   float global_integral;
-  tree1->Draw("1 >> histo_support", "", "goff"); //toWeightGlobal.Data() , "goff" );   
+  tree1->Draw("1 >> histo_support", toWeightGlobal.Data() , "goff" );   
   global_integral = histo_support->Integral(0,histo_support->GetNbinsX()+1);
   
   /************************************************************************************************************************
@@ -89,8 +89,8 @@ void CalculateScaleVariation() {
   stxs1p1_cuts.push_back("150");
 
   for (int iCut = 0; iCut < stxs1p1_cuts.size(); iCut++) {
-//    toCut = Form ("%s", toWeightGlobal.Data());
-    toCut = Form ("(stage1_cat_pTjet30GeV==%s) ", stxs1p1_cuts.at(iCut).c_str() ); //(htxs_stage1_cat==%s) ", toCut.Data(), stxs1p1_cuts.at(iCut).c_str() );
+    toCut = Form ("%s", toWeightGlobal.Data());
+    toCut = Form ("%s * (stage1_cat_pTjet30GeV==%s) ", toCut.Data(), stxs1p1_cuts.at(iCut).c_str() ); //(htxs_stage1_cat==%s) ", toCut.Data(), stxs1p1_cuts.at(iCut).c_str() );
     std::cout << " STXS1p1 cat " << stxs1p1_cuts.at(iCut).c_str() << " -->  cut = " << toCut.Data() << std::endl;
 
     tree1->Draw("1 >> histo_support", toCut.Data() , "goff" );   
