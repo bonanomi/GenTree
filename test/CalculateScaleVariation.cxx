@@ -23,7 +23,8 @@ void CalculateScaleVariation() {
   // Apparently this was needed because of a problem with minlo NNLOPS
   // It should be checked whether now weights are fine or still >>1 in some cases.
   TString toWeightGlobal;
-  toWeightGlobal = Form ("(LHEweight_QCDscale_muR1_muF1) * ( ( LHEweight_QCDscale_muR0p5_muF0p5 * (abs(LHEweight_QCDscale_muR0p5_muF0p5/LHEweight_QCDscale_muR1_muF1)<100)) + 0 * (abs(LHEweight_QCDscale_muR0p5_muF0p5/LHEweight_QCDscale_muR1_muF1)>100)  )");
+  toWeightGlobal = Form ("(weights_LHE[0]) * ( ( weights_LHE[9] * (abs(weights_LHE[9]/weights_LHE[0])<100)) + 0 * (abs(weights_LHE[9]/weights_LHE[0])>100)  )");
+ // toWeightGlobal = Form ("(LHEweight_QCDscale_muR1_muF1) * ( ( LHEweight_QCDscale_muR0p5_muF0p5 * (abs(LHEweight_QCDscale_muR0p5_muF0p5/LHEweight_QCDscale_muR1_muF1)<100)) + 0 * (abs(LHEweight_QCDscale_muR0p5_muF0p5/LHEweight_QCDscale_muR1_muF1)>100)  )");
   
   
   std::map< int , std::vector< float> > list_variation;

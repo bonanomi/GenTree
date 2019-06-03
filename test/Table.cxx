@@ -94,12 +94,12 @@ void Table() {
     std::vector<float> uncertainties_up;
     std::vector<float> uncertainties_down;
     for (int iUnc = 0; iUnc<list_uncertainties.size(); iUnc++) {
-      TString cut_up = Form ("(htxs_stage1_cat==%s) * (%s)", list_cuts.at(iCut).c_str(), list_uncertainties.at(iUnc).c_str() );
+      TString cut_up = Form ("(stage1_cat_pTjet30GeV==%s) * (%s)", list_cuts.at(iCut).c_str(), list_uncertainties.at(iUnc).c_str() );//("(htxs_stage1_cat==%s) * (%s)", list_cuts.at(iCut).c_str(), list_uncertainties.at(iUnc).c_str() );
       tree->Draw("1 >> htemp", cut_up.Data(), "goff");
       float xsec_up = htemp->Integral();
       uncertainties_up.push_back(xsec_up/xsectot); 
 
-      TString cut_down = Form ("(htxs_stage1_cat==%s) * (2 - %s)", list_cuts.at(iCut).c_str(), list_uncertainties.at(iUnc).c_str() );
+      TString cut_down = Form ("(stage1_cat_pTjet30GeV==%s) * (2 - %s)", list_cuts.at(iCut).c_str(), list_uncertainties.at(iUnc).c_str() );//("(htxs_stage1_cat==%s) * (2 - %s)", list_cuts.at(iCut).c_str(), list_uncertainties.at(iUnc).c_str() );
       tree->Draw("1 >> htemp", cut_down.Data(), "goff");
       float xsec_down = htemp->Integral();
       uncertainties_down.push_back(xsec_down/xsectot);
