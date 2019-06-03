@@ -88,18 +88,28 @@ void Table() {
   float xsectot = tree->GetEntries();
   
   for (int iCut = 0; iCut<list_cuts.size(); iCut++) {
-    float xsec = tree->GetEntries(list_cuts.at(iCut).c_str());
+    TString stxs_cat = Form ("(stage1_cat_pTjet30GeV==%s)", list_cuts.at(iCut).c_str());
+    float xsec = tree->GetEntries(stxs_cat);
+    if (list_cuts.at(iCut) == "1") {
+        xsec = xsectot;
+    }
     list_fraction_cross_section.push_back(xsec/xsectot); 
     
     std::vector<float> uncertainties_up;
     std::vector<float> uncertainties_down;
     for (int iUnc = 0; iUnc<list_uncertainties.size(); iUnc++) {
       TString cut_up = Form ("(stage1_cat_pTjet30GeV==%s) * (%s)", list_cuts.at(iCut).c_str(), list_uncertainties.at(iUnc).c_str() );//("(htxs_stage1_cat==%s) * (%s)", list_cuts.at(iCut).c_str(), list_uncertainties.at(iUnc).c_str() );
+      if (list_cuts.at(iCut) == "1") {
+        cut_up = Form ("(%s)", list_uncertainties.at(iUnc).c_str() );
+      }
       tree->Draw("1 >> htemp", cut_up.Data(), "goff");
       float xsec_up = htemp->Integral();
       uncertainties_up.push_back(xsec_up/xsectot); 
 
       TString cut_down = Form ("(stage1_cat_pTjet30GeV==%s) * (2 - %s)", list_cuts.at(iCut).c_str(), list_uncertainties.at(iUnc).c_str() );//("(htxs_stage1_cat==%s) * (2 - %s)", list_cuts.at(iCut).c_str(), list_uncertainties.at(iUnc).c_str() );
+      if (list_cuts.at(iCut) == "1") {
+	cut_down = Form ("(2 - %s)", list_uncertainties.at(iUnc).c_str() );
+      }
       tree->Draw("1 >> htemp", cut_down.Data(), "goff");
       float xsec_down = htemp->Integral();
       uncertainties_down.push_back(xsec_down/xsectot);
@@ -126,6 +136,18 @@ void Table() {
   std::cout << " ---- " << std::endl;
   for (int iCut = 0; iCut<list_cuts.size(); iCut++) {
     std::cout << std::setw(6) << std::setprecision(3) << list_fraction_cross_section.at(iCut) << std::endl;
+  }
+  
+  std::cout << " ---- " << std::endl;
+  std::cout << " ---- " << std::endl;
+  std::cout << " ---- " << std::endl;
+  std::cout << " ---- " << std::endl;
+  std::cout << " ---- " << std::endl;
+  std::cout << " ---- " << std::endl;
+
+  float xsec_pb = 48.58;
+  for (int iCut = 0; iCut<list_cuts.size(); iCut++) {
+    std::cout << std::setw(6) << std::setprecision(3) <<  xsec_pb * list_fraction_cross_section.at(iCut) << std::endl;
   }
   
   std::cout << " ---- " << std::endl;
