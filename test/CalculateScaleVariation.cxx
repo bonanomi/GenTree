@@ -89,7 +89,7 @@ void CalculateScaleVariation() {
 
   for (int iCut = 0; iCut < stxs1p1_cuts.size(); iCut++) {
     toCut = Form ("%s", toWeightGlobal.Data());
-    toCut = Form ("%s * (htxs_stage1_cat==%s) ", toCut.Data(), stxs1p1_cuts.at(iCut).c_str() );
+    toCut = Form ("%s * (stage1_cat_pTjet30GeV==%s) ", toCut.Data(), stxs1p1_cuts.at(iCut).c_str() ); //(htxs_stage1_cat==%s) ", toCut.Data(), stxs1p1_cuts.at(iCut).c_str() );
     std::cout << " STXS1p1 cat " << stxs1p1_cuts.at(iCut).c_str() << " -->  cut = " << toCut.Data() << std::endl;
 
     tree1->Draw("1 >> histo_support", toCut.Data() , "goff" );   
@@ -101,7 +101,7 @@ void CalculateScaleVariation() {
     std::vector <float> many_values;
     for (int i=1; i<9; i++) {
       if (i != 5 && i != 7) {
-        toWeight = Form ("%s * (%s)/(LHEweight_QCDscale_muR1_muF1)", toCut.Data(), weights.at(i).c_str());  
+        toWeight = Form ("%s * (weights_LHE[%d])/(weights_LHE[0])", toCut.Data(), i); //(%s)/(LHEweight_QCDscale_muR1_muF1)", toCut.Data(), weights.at(i).c_str());  
         tree1->Draw("1 >> histo_support", toWeight.Data() , "goff" );   
         float value = histo_support->Integral(0,histo_support->GetNbinsX()+1);
 //           if (value > max_up[std::pair<int, int> (i_pt_H, i_njet)]) max_up[std::pair<int, int> (i_pt_H, i_njet)] = value;
