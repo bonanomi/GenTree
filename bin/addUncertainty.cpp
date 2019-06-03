@@ -117,7 +117,7 @@ int main(int argc, char** argv) {
     treeIn->GetEntry(iEntry);
     
     allUnc.clear();    
-    allUnc = uncertaintyHandler.qcd_ggF_uncertSF_2017_New (htxsNJets, htxsHPt, htxs_stage1_cat);
+    allUnc = uncertaintyHandler.qcd_ggF_uncertSF_2017_New (jets30, higgs_pt, stage1_cat_pTjet30GeV);//htxsNJets, htxsHPt, htxs_stage1_cat);
     
     treeOut->Fill();
 
