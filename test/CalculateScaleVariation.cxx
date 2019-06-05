@@ -116,7 +116,7 @@ void CalculateScaleVariation() {
   
   
   ofstream myfile;
-  myfile.open ("scale_variations.txt");
+  myfile.open ("scale_variations_aMC.txt");
 
   for (int iCut = 0; iCut < stxs1p1_cuts.size(); iCut++) {
     myfile << stxs1p1_cuts.at(iCut).c_str() << "  ";

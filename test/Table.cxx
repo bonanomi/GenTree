@@ -166,11 +166,15 @@ void Table() {
   std::cout << " ---- " << std::endl;
   std::cout << " ---- " << std::endl;
 
-
+  
   for (int iCut = 0; iCut<list_cuts.size(); iCut++) {
+    float tot_unc = 0;
     for (int iUnc = 0; iUnc<list_uncertainties.size(); iUnc++) {
       std::cout << " " << std::setw(6) << std::setprecision(3) << ((matrix_uncertainties_up.at(iCut)).at(iUnc)   - list_fraction_cross_section.at(iCut))*100 << " ";
+      tot_unc += (std::pow(((matrix_uncertainties_up.at(iCut)).at(iUnc)   - list_fraction_cross_section.at(iCut))*100 ,2));
     }
+    
+    std::cout << std::sqrt(tot_unc) << " ";
     std::cout << std::endl;
   }
   
