@@ -145,7 +145,7 @@ void Table() {
   std::cout << " ---- " << std::endl;
   std::cout << " ---- " << std::endl;
 
-  float xsec_pb = 48.58;
+  float xsec_pb = 48.52;
   for (int iCut = 0; iCut<list_cuts.size(); iCut++) {
     std::cout << std::setw(6) << std::setprecision(3) <<  xsec_pb * list_fraction_cross_section.at(iCut) << std::endl;
   }
@@ -166,15 +166,17 @@ void Table() {
   std::cout << " ---- " << std::endl;
   std::cout << " ---- " << std::endl;
 
-  
+  std::cout << "STXS " << std::setw(10) << " sig. [pb] " << std::setw(10) << " mu " << std::setw(10) << " res " << std::setw(10) << " mig01 " << std::setw(10) << " mig02 " << std::setw(10);
+  std::cout << std::setw(10) << " VBF2j " << std::setw(10) << " VBF 3j " << std::setw(10) << " pT10 " << std::setw(10) << " pT60 " << std::setw(10) << " pT120 " << std::setw(10) << " pT200 ";
+  std::cout << std::setw(10) << " qm_top " << std::setw(10) << " Tot" << std::endl;
   for (int iCut = 0; iCut<list_cuts.size(); iCut++) {
     float tot_unc = 0;
     for (int iUnc = 0; iUnc<list_uncertainties.size(); iUnc++) {
-      std::cout << " " << std::setw(6) << std::setprecision(3) << ((matrix_uncertainties_up.at(iCut)).at(iUnc)   - list_fraction_cross_section.at(iCut))*100 << " ";
+      std::cout << " " << std::setw(8) << std::setprecision(3) << ((matrix_uncertainties_up.at(iCut)).at(iUnc)   - list_fraction_cross_section.at(iCut))*100 << " ";
       tot_unc += (std::pow(((matrix_uncertainties_up.at(iCut)).at(iUnc)   - list_fraction_cross_section.at(iCut))*100 ,2));
     }
     
-    std::cout << std::sqrt(tot_unc) << " ";
+    std::cout  << std::setw(8) << std::sqrt(tot_unc) << " ";
     std::cout << std::endl;
   }
   
