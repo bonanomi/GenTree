@@ -112,20 +112,20 @@ float ggHUncertaintyNew::pT200(float pT, int Njets30) {
 // migration uncertaitny around the 120 GeV boundary
 float ggHUncertaintyNew::pT120(float pT, int Njets30) {
   if (Njets30==0) return 0;
-  return interpol(pT,90,-0.016,160,0.14);
+  return interpol(pT, 90, -0.023, 160, 0.053);//interpol(pT,90,-0.016,160,0.14);
 }
 
 // migration uncertaitny around the 60 GeV boundary
 float ggHUncertaintyNew::pT60(float pT, int Njets30) {
   if (Njets30==0) return 0;
-  if (Njets30==1) return interpol(pT,20,-0.1,100,0.1);
-  return interpol(pT,0,-0.1,180,0.10); // >=2 jets
+  if (Njets30==1) return interpol(pT, 58, -0.023, 100, 0.025);//interpol(pT,20,-0.1,100,0.1);
+  return interpol(pT, 58, -0.048, 100, 0.019);//interpol(pT,0,-0.1,180,0.10); // >=2 jets
 }
 
 // migration uncertaitny around the 10 GeV boundary (only for 0 jet bin)
 float ggHUncertaintyNew::pT10(float pT, int Njets30) {
   if (Njets30!=0) return 0;
-  return interpol(pT, 9, -0.25, 11, 0.09);
+  return interpol(pT, 9, -0.31, 11, 0.09);//interpol(pT, 9, -0.25, 11, 0.09);
 }
 
 
