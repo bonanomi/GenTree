@@ -52,10 +52,20 @@ process.source = cms.Source("PoolSource",
 #	'/store/mc/RunIIAutumn18MiniAOD/GluGluHToZZTo4L_M125_13TeV_powheg2_JHUGenV7011_pythia8/MINIAODSIM/102X_upgrade2018_realistic_v15-v2/80000/D65A4D51-2E80-AD41-B50D-E4083BA2A668.root',
 
 #### minloHJ NNLOPS
-#	'/store/mc/RunIISummer16MiniAODv3/GluGluHToZZTo4L_M125_13TeV_powheg2_minloHJ_NNLOPS_JHUgenV702_pythia8/MINIAODSIM/PUMoriond17_94X_mcRun2_asymptotic_v3-v2/120000/D64B3747-213F-E911-9207-0CC47A4D7678.root',
+	'/store/mc/RunIISummer16MiniAODv3/GluGluHToZZTo4L_M125_13TeV_powheg2_minloHJ_NNLOPS_JHUgenV702_pythia8/MINIAODSIM/PUMoriond17_94X_mcRun2_asymptotic_v3-v2/120000/D64B3747-213F-E911-9207-0CC47A4D7678.root',
+	'/store/mc/RunIISummer16MiniAODv3/GluGluHToZZTo4L_M125_13TeV_powheg2_minloHJ_NNLOPS_JHUgenV702_pythia8/MINIAODSIM/PUMoriond17_94X_mcRun2_asymptotic_v3-v2/120000/D64B3747-213F-E911-9207-0CC47A4D7678.root',
+	'/store/mc/RunIISummer16MiniAODv3/GluGluHToZZTo4L_M125_13TeV_powheg2_minloHJ_NNLOPS_JHUgenV702_pythia8/MINIAODSIM/PUMoriond17_94X_mcRun2_asymptotic_v3-v2/120000/D64B3747-213F-E911-9207-0CC47A4D7678.root',
+	'/store/mc/RunIISummer16MiniAODv3/GluGluHToZZTo4L_M125_13TeV_powheg2_minloHJ_NNLOPS_JHUgenV702_pythia8/MINIAODSIM/PUMoriond17_94X_mcRun2_asymptotic_v3-v2/120000/D64B3747-213F-E911-9207-0CC47A4D7678.root',
+	'/store/mc/RunIISummer16MiniAODv3/GluGluHToZZTo4L_M125_13TeV_powheg2_minloHJ_NNLOPS_JHUgenV702_pythia8/MINIAODSIM/PUMoriond17_94X_mcRun2_asymptotic_v3-v2/120000/D64B3747-213F-E911-9207-0CC47A4D7678.root',
+	'/store/mc/RunIISummer16MiniAODv3/GluGluHToZZTo4L_M125_13TeV_powheg2_minloHJ_NNLOPS_JHUgenV702_pythia8/MINIAODSIM/PUMoriond17_94X_mcRun2_asymptotic_v3-v2/120000/D64B3747-213F-E911-9207-0CC47A4D7678.root',
+	'/store/mc/RunIISummer16MiniAODv3/GluGluHToZZTo4L_M125_13TeV_powheg2_minloHJ_NNLOPS_JHUgenV702_pythia8/MINIAODSIM/PUMoriond17_94X_mcRun2_asymptotic_v3-v2/120000/D64B3747-213F-E911-9207-0CC47A4D7678.root',
+	'/store/mc/RunIISummer16MiniAODv3/GluGluHToZZTo4L_M125_13TeV_powheg2_minloHJ_NNLOPS_JHUgenV702_pythia8/MINIAODSIM/PUMoriond17_94X_mcRun2_asymptotic_v3-v2/120000/D64B3747-213F-E911-9207-0CC47A4D7678.root',
+	'/store/mc/RunIISummer16MiniAODv3/GluGluHToZZTo4L_M125_13TeV_powheg2_minloHJ_NNLOPS_JHUgenV702_pythia8/MINIAODSIM/PUMoriond17_94X_mcRun2_asymptotic_v3-v2/120000/D64B3747-213F-E911-9207-0CC47A4D7678.root',
+	'/store/mc/RunIISummer16MiniAODv3/GluGluHToZZTo4L_M125_13TeV_powheg2_minloHJ_NNLOPS_JHUgenV702_pythia8/MINIAODSIM/PUMoriond17_94X_mcRun2_asymptotic_v3-v2/120000/D64B3747-213F-E911-9207-0CC47A4D7678.root',
+	'/store/mc/RunIISummer16MiniAODv3/GluGluHToZZTo4L_M125_13TeV_powheg2_minloHJ_NNLOPS_JHUgenV702_pythia8/MINIAODSIM/PUMoriond17_94X_mcRun2_asymptotic_v3-v2/120000/D64B3747-213F-E911-9207-0CC47A4D7678.root',
 
 ### minloHJJ
-       '/store/mc/RunIIAutumn18MiniAOD/GluGluHToZZTo4L_M125_13TeV_powheg2_minloHJJ_JHUGenV7011_pythia8/MINIAODSIM/102X_upgrade2018_realistic_v15-v1/80000/F67EB581-6B21-3846-B66C-517F0B261B4A.root',
+#       '/store/mc/RunIIAutumn18MiniAOD/GluGluHToZZTo4L_M125_13TeV_powheg2_minloHJJ_JHUGenV7011_pythia8/MINIAODSIM/102X_upgrade2018_realistic_v15-v1/80000/F67EB581-6B21-3846-B66C-517F0B261B4A.root',
     )
 )
 
@@ -111,7 +121,7 @@ process.p = cms.Path(process.mergedGenParticles * process.myGenerator * process.
 process.TFileService = cms.Service("TFileService", 
                                    #fileName = cms.string("gentree_powheg.root"), 
                                    #fileName = cms.string("gentree_powheg_nnlops_cms_tune.root"), 
-                                   fileName = cms.string("/eos/user/m/mbonanom/cjlst_minloHJJ.root"), 
+                                   fileName = cms.string("/eos/user/m/mbonanom/fullstat_powheg_nnlops_cms.root"), 
                                    #fileName = cms.string("gentree_amcatnlo.root"), 
                                    closeFileFast = cms.untracked.bool(True),
                                    )

@@ -13,8 +13,8 @@ Install:
     cd CMSSW_10_3_1/src
     cmsenv
     
-    // To work with the CJLST framework, follow:
-    // [this link](https://github.com/CJLST/ZZAnalysis#zzanalysis) to install it.
+ To work with the CJLST framework, follow:
+ [this link](https://github.com/CJLST/ZZAnalysis#zzanalysis) to install it.
     
  **NOTE:** Set up CMSSW_10_3_1 with the CJLST framework, as described above, to work with STXS Stage 1.1 bins. Otherwise the [GenTree](https://github.com/bonanomi/GenTree/blob/CJLST/plugins/GenTree.cc#L176) plugin will not work.
 
