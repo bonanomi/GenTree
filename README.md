@@ -55,7 +55,21 @@ More precisely, the workflow used is the following:
 
  * Having produced the `.txt` file with all the scaled xsec values, we are now interested in the largest and smallest variations w.r.t. the nominal one. These two values are needed for the calculation of the uncertainties (and are **MC generator dependent!**), hence this step is crucial. To get them one can use the [`GetScaleVariations.cxx`](https://github.com/bonanomi/GenTree/blob/CJLST/test/GetScaleVariation.cxx) macro. The output of this macro gives us the fractional % variations (for each STXS Stage 1.1 bin), which correspond to the "uncertainty band" in which the theoretical xsec lies. We need to feed these two values into the [`interpol()`](https://github.com/bonanomi/GenTree/blob/CJLST/src/ggHUncertaintyNew.cc#L83) function defined in `ggHUncertaintyNew.cc`. More precisely, we have to set the `y1` and `y2` parameters, while `x1` and `x2` define the pT values where we expect the transition to happen. This function implements a smooth transition between the smallest and the largest fractional xsecs around a given pT boundary. It is still not clear (to me) why *this* function, hence take it as a given recipe.
 
- * Once the `interpol()` functions are set up with the correct values of `y1` and `y2` for the MC generator used, we can add the uncertainties to the `TTree`. To do so, we use the [`addUncertainty`](https://github.com/bonanomi/GenTree/blob/CJLST/bin/addUncertainty.cpp#L120) command, which is set up to create a new `TTree` with the same branches as the original one, plus an additional branch containing the uncertainties of the 10 nuisance parameters.  **NOTE:** The `addUncertainty` method actually adds weights to the `TTree` and *not uncertainties*! These weights correspond to the 1 sigma std dev of the fractional uncertainty amplitude and are computed with the [`unc2df` method](https://github.com/bonanomi/GenTree/blob/master/src/ggHUncertaintyNew.cc#L245).
+ * Once the `interpol()` functions are set up with the correct values of `y1` and `y2` for the MC generator used, we can add the uncertainties to the `TTree`. To do so, we use the [`addUncertainty`](https://github.com/bonanomi/GenTree/blob/CJLST/bin/addUncertainty.cpp#L120) command, which is set up to create a new `TTree` with the same branches as the original one, plus an additional branch per event containing the uncertainties of the 10 nuisance parameters.  **NOTE:** The `addUncertainty` method actually adds weights to the `TTree` and *not uncertainties* (well, as soon as sigma = 1.0, these weights are simply the uncertainties shifted up by 1.0) ! These weights correspond to the 1 sigma std dev of the fractional uncertainty amplitude and are computed with the [`unc2df` method](https://github.com/bonanomi/GenTree/blob/master/src/ggHUncertaintyNew.cc#L245). The list of assigned uncertainties is defined as follow:
+
+        ggH_mu     = allUnc[0]
+        ggH_res    = allUnc[1]
+        ggH_mig01  = allUnc[2]
+        ggH_mig12  = allUnc[3]
+        ggH_VBF2j  = allUnc[4]
+        ggH_VBF3j  = allUnc[5]
+        ggH_pT10   = allUnc[6]
+        ggH_pT60   = allUnc[7]
+        ggH_pT120  = allUnc[8]
+        ggH_pT200  = allUnc[9]
+        ggH_qmtop  = allUnc[10]
 
 
+## Produce uncertainties for nuisances in STXS Stage 1.1
+The `TTree` with the uncertainties can be used to evaluate the fractional uncertainty amplitudes associated to each STXS Stage 1.1 bin per each nuisance parameters. This is done using the [`Table.cxx`](https://github.com/bonanomi/GenTree/blob/CJLST/test/Table.cxx) macro. This macro takes the xsec in each STXS 1.1 bin and evaluates the fractional cross section w.r.t. the nominal one associated to any of the uncertainty sources (nuisance parameters) defined above. This information is stored in the [`matrix_uncertainties_up`](https://github.com/bonanomi/GenTree/blob/CJLST/test/Table.cxx#L121) object. The final output of the macro is a table containing the fractional uncertainty amplitude (i.e. the weights associated to each nusiance), defined as the % difference between the fractional cross section in that bin and the fractional cross section for each uncertainty source. The total uncertainty in each STXS Stage 1.1 bin is then computed as the sqrt of the squared sum of all the fractional uncertainties.
 
