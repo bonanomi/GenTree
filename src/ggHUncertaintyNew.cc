@@ -97,10 +97,10 @@ float ggHUncertaintyNew::qm_t(float pT) {
 
 // migration uncertaitny around the 200 GeV boundary
 float ggHUncertaintyNew::pT200(float pT, int Njets30) {
-  if      (Njets30==0) return interpol(pT, 190, -0.042, 210, 0.054);
-  else if (Njets30==1) return interpol(pT, 190, -0.006, 210, 0.024);//interpol(pT, 190, -0.0012, 210, 0.074);
-  else if (Njets30==2) return interpol(pT, 190, -0.02, 210, 0.05);//interpol(pT, 190, -0.0034, 210, 0.054);
-  else                 return interpol(pT, 190, -0.34, 210, 0.48);//interpol(pT, 190, -0.0091, 210, 0.046);
+  if      (Njets30==0) return interpol(pT, 199, -0.042, 201, 0.054);
+  else if (Njets30==1) return interpol(pT, 199, -0.006, 201, 0.024);//interpol(pT, 190, -0.0012, 210, 0.074);
+  else if (Njets30==2) return interpol(pT, 199, -0.02, 201, 0.05);//interpol(pT, 190, -0.0034, 210, 0.054);
+  else                 return interpol(pT, 199, -0.34, 201, 0.48);//interpol(pT, 190, -0.0091, 210, 0.046);
 //   if (Njets30>=3) return interpol(pT, 190, -0.0091, 210, 0.046);
 }
 
@@ -112,17 +112,17 @@ float ggHUncertaintyNew::pT200(float pT, int Njets30) {
 // migration uncertaitny around the 120 GeV boundary
 float ggHUncertaintyNew::pT120(float pT, int Njets30) {
   if (Njets30==0) return 0;
-  else if (Njets30==1) return interpol(pT, 90, -0.0043, 160, 0.053);
-  else if (Njets30==2) return interpol(pT, 90, -0.011, 160, 0.03);
-  else return interpol(pT, 90, -0.03, 160, 0.078);//interpol(pT,90,-0.016,160,0.14);
+  else if (Njets30==1) return interpol(pT, 119, -0.0043, 121, 0.053);
+  else if (Njets30==2) return interpol(pT, 119, -0.011, 121, 0.03);
+  else return interpol(pT, 119, -0.03, 121, 0.078);//interpol(pT,90,-0.016,160,0.14);
 }
 
 // migration uncertaitny around the 60 GeV boundary
 float ggHUncertaintyNew::pT60(float pT, int Njets30) {
   if (Njets30==0) return 0;
-  else if (Njets30==1) return interpol(pT, 58, -0.023, 100, 0.025);//interpol(pT,20,-0.1,100,0.1);
-  else if (Njets30==2) return interpol(pT, 58, -0.048, 100, 0.019);
-  else return interpol(pT, 58, -0.048, 100, 0.078);//interpol(pT,0,-0.1,180,0.10); // >=2 jets
+  else if (Njets30==1) return interpol(pT, 59, -0.023, 61, 0.025);//interpol(pT,20,-0.1,100,0.1);
+  else if (Njets30==2) return interpol(pT, 59, -0.048, 61, 0.019);
+  else return interpol(pT, 59, -0.048, 61, 0.078);//interpol(pT,0,-0.1,180,0.10); // >=2 jets
 }
 
 // migration uncertaitny around the 10 GeV boundary (only for 0 jet bin)
