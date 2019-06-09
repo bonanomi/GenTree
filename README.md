@@ -36,7 +36,11 @@ The following code allows to compute the theoretical uncertainties associated to
 The code follows the *ad interim scheme 2017* presented in [these slides](https://indico.cern.ch/event/628660/contributions/2593406/attachments/1459912/2255407/May-16-HIG_Massironi.pdf).
 
 The `TTrees`  used for the study are constructed starting from MINIAOD files, using the `GenTree_*_cfg.py` scripts present in [`/test`](https://github.com/bonanomi/GenTree/tree/CJLST/test).
-In the `/test` folder there are several `GenTree_*_cfg.py` scripts, which allow to create the `TTrees` for different MC generators. 
+In the `/test` folder there are several `GenTree_*_cfg.py` scripts, which allow to create the `TTrees` for different MC generators. Before producing the `TTree` set up your GRID credentials:
+
+    voms-proxy-init -voms cms
+To run the `GenTree_*.py` scripts use the `cmsRun` command: `cmsRun GenTree_*_*.py`
+
  * Use the MC generator believed to have adequate modelling of the kinematics:
    * For low pT bins, minlo NNLOPS is reccomanded;
    * For VBF phase space aMC@NLO and HJJ are reccomanded;
