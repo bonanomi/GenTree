@@ -1,3 +1,12 @@
+Double_t interpol(Double_t *t, Double_t *par)
+{
+   Float_t x =t[0];
+   if (x < par[0]) return par[1];
+   if (x > par[2]) return par[3];
+
+   return par[1] + (par[3]-par[1])*(x-par[0])/(par[2]-par[0]);
+}
+
 void ScaleVariation( std::string var = "higgs_pt", int nbin = 50, float min = 0, float max = 200, std::string nameHR = "Higgs pT") {
   
   
@@ -12,19 +21,19 @@ void ScaleVariation( std::string var = "higgs_pt", int nbin = 50, float min = 0,
   int n = 0;
   
   //---- scale to N3LO
-  float xsecInclusive = 48.58;
+  float xsecInclusive = 48.52;
   
   
   TString toCutGlobal;
   
-  toCutGlobal = Form ("(weights_LHE[0]) * ( ( weights_LHE[9] * (abs(weights_LHE[9]/weights_LHE[0])<100)) + 0 * (abs(weights_LHE[9]/weights_LHE[0])>100)  ) * ((stage1_cat_pTjet30GeV == 111) || (stage1_cat_pTjet30GeV == 112) || (stage1_cat_pTjet30GeV == 113))");
+  toCutGlobal = Form ("(weights_LHE[0]) * ( ( weights_LHE[9] * (abs(weights_LHE[9]/weights_LHE[0])<100)) + 0 * (abs(weights_LHE[9]/weights_LHE[0])>100)) * ((stage1_cat_pTjet30GeV == 111) || (stage1_cat_pTjet30GeV == 112) || (stage1_cat_pTjet30GeV == 113))");
   
   
   TString toCut;
   TString toDraw;
   
   TTree* tree1 = (TTree*) _file0->Get("GenTree/gentree");  
-  TH1F* hNominal = new TH1F ("hNominal", "nnlops", nbin, min, max);  
+  TH1F* hNominal = new TH1F ("hNominal", "Higgs pT distribution, 1 jet bins", nbin, min, max);  
   toDraw = Form ("%s >> hNominal", var.c_str());
   toCut = Form ("%s * (1)", toCutGlobal.Data());
   tree1->Draw(toDraw.Data(), toCut.Data() , "goff" );
@@ -45,7 +54,7 @@ void ScaleVariation( std::string var = "higgs_pt", int nbin = 50, float min = 0,
   hNominal->GetYaxis()->SetTitle("pb");
   
   
-  
+  gStyle->SetOptStat(0000);  
   // ---- 1001 = weights_LHE[0] ---> nominal
   //                                                         https://indico.cern.ch/event/494682/contributions/1172505/attachments/1223578/1800218/mcaod-Feb15-2016.pdf
   //      [ 0 ] = 1001                                       <weight id="1001"> muR=0.10000E+01 muF=0.10000E+01 </weight>             Nominal
@@ -291,7 +300,7 @@ void ScaleVariation( std::string var = "higgs_pt", int nbin = 50, float min = 0,
   gr_NU->SetLineColor(kBlue);
 
   gr_DN->SetLineColor(kOrange);  
-  gr_UN->SetLineColor(kPurple);
+  gr_UN->SetLineColor(kMagenta-3);
   
   gr_DD->SetLineColor(kMagenta);  
   gr_UU->SetLineColor(kCyan);
@@ -302,20 +311,42 @@ void ScaleVariation( std::string var = "higgs_pt", int nbin = 50, float min = 0,
   gr_DN->Draw("L");
   gr_UN->Draw("L");
 
-  gr_DD->Draw("AL");
+  gr_DD->Draw("L");
   gr_UU->Draw("L");
+  
+  TF1* lin_up = new TF1("interpol", interpol, 1, 250, 4);
+  lin_up->SetParameter(0, 55);
+  lin_up->SetParameter(1, 1.021);
+  lin_up->SetParameter(2, 65);
+  lin_up->SetParameter(3, 0.98);
+  lin_up->SetLineColor(kRed);
+  lin_up->SetLineWidth(2);
+  lin_up->SetLineStyle(4);
+  //lin_up->Draw("same");
 
+  TF1* lin_do = new TF1("interpol", interpol, 1, 250, 4);
+  lin_do->SetParameter(0, 55);
+  lin_do->SetParameter(1, 0.996);
+  lin_do->SetParameter(2, 65);
+  lin_do->SetParameter(3, 1.053);
+  lin_do->SetLineColor(kBlue);
+  lin_do->SetLineWidth(2);
+  lin_do->SetLineStyle(4);
+  //lin_do->Draw("same");
+
+  gr_ND->SetTitle("powHeg, 1 jet bin");
   gr_ND->GetYaxis()->SetTitle("Nominal/Scale var.");
   gr_ND->GetXaxis()->SetTitle("Higgs pT");
   
-  TLegend* legend_ratio = new TLegend(0.50,0.50,0.90,0.90);
+  TLegend* legend_ratio = new TLegend();
   legend_ratio->AddEntry(gr_ND, "Nominal/#mu_{R} = 1.0, #mu_{F} = 0.5", "lp");
   legend_ratio->AddEntry(gr_NU, "Nominal/#mu_{R} = 1.0, #mu_{F} = 2.0", "lp");
   legend_ratio->AddEntry(gr_DN, "Nominal/#mu_{R} = 0.5, #mu_{F} = 1.0", "lp");
   legend_ratio->AddEntry(gr_UN, "Nominal/#mu_{R} = 2.0, #mu_{F} = 1.0", "lp");
   legend_ratio->AddEntry(gr_DD, "Nominal/#mu_{R} = 0.5, #mu_{F} = 0.5", "lp");
   legend_ratio->AddEntry(gr_UU, "Nominal/#mu_{R} = 2.0, #mu_{F} = 2.0", "lp");
-
+  //legend_ratio->AddEntry(lin_do, "Assigned uncertainty, up");
+  //legend_ratio->AddEntry(lin_up, "Assigned uncertainty, do");
   legend_ratio->Draw();
   ccRatio->SetGrid();
 
