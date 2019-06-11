@@ -59,7 +59,7 @@ void GetScaleVariation() {
   stxs1p1_cuts.push_back("142");
   stxs1p1_cuts.push_back("150");
 
-  std::ifstream file ("nnlops_fullstat.txt"); //"scale_variations_powheg_nnlops.txt"); 
+  std::ifstream file ("amcatnlo_fullstat.txt"); //"scale_variations_powheg_nnlops.txt"); 
   
   std::string buffer;
 //  int num_i_njet;
