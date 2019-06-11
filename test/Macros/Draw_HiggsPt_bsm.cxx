@@ -1,4 +1,4 @@
-void Draw_HiggsPt_2j_mjj350( std::string var = "higgs_pt", int nbin = 50, float min = 0, float max = 200, std::string nameHR = "Higgs pT") {
+void Draw_HiggsPt_bsm( std::string var = "higgs_pt", int nbin = 100, float min = 200, float max = 600, std::string nameHR = "Higgs pT") {
   
   
   std::cout << " var =    " << var    << std::endl;
@@ -12,24 +12,24 @@ void Draw_HiggsPt_2j_mjj350( std::string var = "higgs_pt", int nbin = 50, float 
   int n = 0;
 
   TTree* tree1 = (TTree*) _file0->Get("GenTree/gentree");  
-  TH1F* h1 = new TH1F ("h1", "MC generators comparison, >=2 jet bins (mJJ > 350 GeV)", nbin, min, max);  
+  TH1F* h1 = new TH1F ("h1", "MC generators comparison, pTH > 200 GeV", nbin, min, max);  
   TString toDraw = Form ("%s >> h1", var.c_str());
-  tree1->Draw(toDraw.Data(), "( ( weights_LHE[9] * (abs(weights_LHE[9]/weights_LHE[0])<100)) + 0 * (abs(weights_LHE[9]/weights_LHE[0])>100)  ) * ((stage1_cat_pTjet30GeV == 121) || (stage1_cat_pTjet30GeV == 122) || (stage1_cat_pTjet30GeV == 123))");
+  tree1->Draw(toDraw.Data(), "( ( weights_LHE[9] * (abs(weights_LHE[9]/weights_LHE[0])<100)) + 0 * (abs(weights_LHE[9]/weights_LHE[0])>100)  ) * (stage1_cat_pTjet30Gev == 150)");
   
   TTree* tree2 = (TTree*) _file1->Get("GenTree/gentree");  
   TH1F* h2 = new TH1F ("h2", "powheg nnlops", nbin, min, max);  
   toDraw = Form ("%s >> h2", var.c_str());
-  tree2->Draw(toDraw.Data(), "( ( weights_LHE[9] * (abs(weights_LHE[9]/weights_LHE[0])<100)) + 0 * (abs(weights_LHE[9]/weights_LHE[0])>100)  ) * ((stage1_cat_pTjet30GeV == 121) || (stage1_cat_pTjet30GeV == 122) || (stage1_cat_pTjet30GeV == 123))" );  
+  tree2->Draw(toDraw.Data(), "( ( weights_LHE[9] * (abs(weights_LHE[9]/weights_LHE[0])<100)) + 0 * (abs(weights_LHE[9]/weights_LHE[0])>100)  ) * (stage1_cat_pTjet30Gev == 150)" );  
   
   TTree* tree3 = (TTree*) _file2->Get("GenTree/gentree");  
   TH1F* h3 = new TH1F ("h3", "aMC@nlo", nbin, min, max);  
   toDraw = Form ("%s >> h3", var.c_str());
-  tree3->Draw(toDraw.Data(), "( ( weights_LHE[9] * (abs(weights_LHE[9]/weights_LHE[0])<100)) + 0 * (abs(weights_LHE[9]/weights_LHE[0])>100)  ) * ((stage1_cat_pTjet30GeV == 121) || (stage1_cat_pTjet30GeV == 122) || (stage1_cat_pTjet30GeV == 123))");
+  tree3->Draw(toDraw.Data(), "( ( weights_LHE[9] * (abs(weights_LHE[9]/weights_LHE[0])<100)) + 0 * (abs(weights_LHE[9]/weights_LHE[0])>100)  ) * (stage1_cat_pTjet30Gev == 150)");
   
   TTree* tree4 = (TTree*) _file3->Get("GenTree/gentree");  
   TH1F* h4 = new TH1F ("h4", "minloHJJ", nbin, min, max);  
   toDraw = Form ("%s >> h4", var.c_str());
-  tree4->Draw(toDraw.Data(), "( ( weights_LHE[9] * (abs(weights_LHE[9]/weights_LHE[0])<100)) + 0 * (abs(weights_LHE[9]/weights_LHE[0])>100)  ) * ((stage1_cat_pTjet30GeV == 121) || (stage1_cat_pTjet30GeV == 122) || (stage1_cat_pTjet30GeV == 123))");
+  tree4->Draw(toDraw.Data(), "( ( weights_LHE[9] * (abs(weights_LHE[9]/weights_LHE[0])<100)) + 0 * (abs(weights_LHE[9]/weights_LHE[0])>100)  ) * (stage1_cat_pTjet30Gev == 150)");
 
   h1->SetLineColor(kBlue);
   h1->SetLineStyle(1);
@@ -126,7 +126,7 @@ void Draw_HiggsPt_2j_mjj350( std::string var = "higgs_pt", int nbin = 50, float 
   gr_pow->Draw("L");
   gr_aMC->Draw("L");
 
-  gr_aMC->SetTitle("Ratio w.r.t. nnlops, >=2 jet bins (mJJ > 350 GeV)");
+  gr_aMC->SetTitle("Ratio w.r.t. nnlops, pTH > 200 GeV");
   gr_aMC->GetYaxis()->SetTitle("powheg nnlops / aMC@NLO");
   gr_aMC->GetXaxis()->SetTitle("Higgs pT");
 
