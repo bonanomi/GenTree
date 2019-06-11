@@ -124,11 +124,11 @@ void Draw_HiggsPt_1j( std::string var = "higgs_pt", int nbin = 50, float min = 0
   
   gr_aMC->SetLineColor(kViolet);
   gr_pow->SetLineColor(kBlue);
-  gr_HJJ->SetLineColor(kMagenta);
+  gr_HJJ->SetLineColor(kRed);
 
   gr_aMC->Draw("AL");
   gr_pow->Draw("L");
-  gr_aMC->Draw("L");
+  gr_HJJ->Draw("L");
 
   gr_aMC->SetTitle("Ratio w.r.t. nnlops, 1 jet bins");
   gr_aMC->GetYaxis()->SetTitle("powheg nnlops / aMC@NLO");
