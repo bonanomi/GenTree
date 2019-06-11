@@ -102,7 +102,7 @@ void Draw_HiggsPt_ge2j( std::string var = "higgs_pt", int nbin = 100, float min 
 
   TGraphErrors* gr_HJJ = new TGraphErrors();
   for (int ibin = 0; ibin < nbin; ibin++) {
-    gr_pow->SetPoint      (ibin, h2->GetBinCenter (ibin+1),  h2->GetBinContent (ibin+1) / h4->GetBinContent (ibin+1) );
+    gr_HJJ->SetPoint      (ibin, h2->GetBinCenter (ibin+1),  h2->GetBinContent (ibin+1) / h4->GetBinContent (ibin+1) );
     float err1 =  h2->GetBinError (ibin+1);
     float err2 =  h4->GetBinError (ibin+1);
     float val1 =  h2->GetBinContent (ibin+1);
