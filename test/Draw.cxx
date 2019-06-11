@@ -57,7 +57,7 @@ void Draw( std::string var = "jets30", int nbin = 5, float min = 0, float max = 
   h1->SetBinContent(h1->GetNbinsX(), h1->GetBinContent(h1->GetNbinsX()) + h1->GetBinContent(h1->GetNbinsX()+1) );
   h2->SetBinContent(h2->GetNbinsX(), h2->GetBinContent(h2->GetNbinsX()) + h2->GetBinContent(h2->GetNbinsX()+1) );
   h3->SetBinContent(h3->GetNbinsX(), h3->GetBinContent(h3->GetNbinsX()) + h3->GetBinContent(h3->GetNbinsX()+1) );
-  h4->SetBinContent(h4->GetNbinsX(), h4->GetBinContent(h3->GetNbinsX()) + h4->GetBinContent(h3->GetNbinsX()+1) );
+  h4->SetBinContent(h4->GetNbinsX(), h4->GetBinContent(h4->GetNbinsX()) + h4->GetBinContent(h4->GetNbinsX()+1) );
 
   //---- Scale to N3LO xsec
   float xsecInclusive = 48.52;

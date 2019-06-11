@@ -1,4 +1,4 @@
-void Draw_HiggsPt_2j_mjj350( std::string var = "higgs_pt", int nbin = 50, float min = 0, float max = 200, std::string nameHR = "Higgs pT") {
+void Draw_HiggsPt_2j_mjj350( std::string var = "higgs_pt", int nbin = 20, float min = 0, float max = 200, std::string nameHR = "Higgs pT") {
   
   
   std::cout << " var =    " << var    << std::endl;
@@ -120,11 +120,11 @@ void Draw_HiggsPt_2j_mjj350( std::string var = "higgs_pt", int nbin = 50, float 
   
   gr_aMC->SetLineColor(kViolet);
   gr_pow->SetLineColor(kBlue);
-  gr_HJJ->SetLineColor(kMagenta);
+  gr_HJJ->SetLineColor(kRed);
 
   gr_aMC->Draw("AL");
   gr_pow->Draw("L");
-  gr_aMC->Draw("L");
+  gr_HJJ->Draw("L");
 
   gr_aMC->SetTitle("Ratio w.r.t. nnlops, >=2 jet bins (mJJ > 350 GeV)");
   gr_aMC->GetYaxis()->SetTitle("powheg nnlops / aMC@NLO");

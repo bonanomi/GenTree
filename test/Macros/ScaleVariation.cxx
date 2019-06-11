@@ -7,7 +7,7 @@ Double_t interpol(Double_t *t, Double_t *par)
    return par[1] + (par[3]-par[1])*(x-par[0])/(par[2]-par[0]);
 }
 
-void ScaleVariation( std::string var = "higgs_pt", int nbin = 50, float min = 0, float max = 200, std::string nameHR = "Higgs pT") {
+void ScaleVariation( std::string var = "higgs_pt", int nbin = 20, float min = 0, float max = 120, std::string nameHR = "Higgs pT") {
   
   
   std::cout << " var =    " << var    << std::endl;
@@ -26,7 +26,7 @@ void ScaleVariation( std::string var = "higgs_pt", int nbin = 50, float min = 0,
   
   TString toCutGlobal;
   
-  toCutGlobal = Form ("(weights_LHE[0]) * ( ( weights_LHE[9] * (abs(weights_LHE[9]/weights_LHE[0])<100)) + 0 * (abs(weights_LHE[9]/weights_LHE[0])>100)) * ((stage1_cat_pTjet30GeV == 111) || (stage1_cat_pTjet30GeV == 112) || (stage1_cat_pTjet30GeV == 113))");
+  toCutGlobal = Form ("(weights_LHE[0]) * ( ( weights_LHE[9] * (abs(weights_LHE[9]/weights_LHE[0])<100)) + 0 * (abs(weights_LHE[9]/weights_LHE[0])>100)) * ((stage1_cat_pTjet30GeV == 102) || (stage1_cat_pTjet30GeV == 103))");
   
   
   TString toCut;
@@ -334,7 +334,7 @@ void ScaleVariation( std::string var = "higgs_pt", int nbin = 50, float min = 0,
   lin_do->SetLineStyle(4);
   //lin_do->Draw("same");
 
-  gr_ND->SetTitle("powHeg, 1 jet bin");
+  gr_ND->SetTitle("powHeg, 0 jets");
   gr_ND->GetYaxis()->SetTitle("Nominal/Scale var.");
   gr_ND->GetXaxis()->SetTitle("Higgs pT");
   

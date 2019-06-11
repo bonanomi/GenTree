@@ -1,4 +1,4 @@
-void Draw_HiggsPt_0j( std::string var = "higgs_pt", int nbin = 50, float min = 0, float max = 200, std::string nameHR = "Higgs pT") {
+void Draw_HiggsPt_0j( std::string var = "higgs_pt", int nbin = 20, float min = 0, float max = 140, std::string nameHR = "Higgs pT") {
   
 
   std::cout << " var =    " << var    << std::endl;
