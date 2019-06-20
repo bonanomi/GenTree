@@ -70,13 +70,14 @@ std::vector<float> ggHUncertaintyNew::blptw(int Njets30) {
 }
 
 float ggHUncertaintyNew::vbf_2j(int STXS) {
-  if (STXS==131 || STXS == 141) return 0.200; // 20.0%
+  if (STXS==131 || STXS == 141 || STXS == 150) return 0.200; // 20.0%
   return 0.0; // Events with no VBF topology have no VBF uncertainty
 }
 
 float ggHUncertaintyNew::vbf_3j(int STXS) {
-  if (STXS==132) return -0.320; // GG2H_VBFTOPO_JET3VETO, tot unc 38%
-  if (STXS==142) return  0.235; // GG2H_VBFTOPO_JET3, tot unc 30.4%
+  if (STXS==132) return 0.38;//-0.320; // GG2H_VBFTOPO_JET3VETO, tot unc 38%
+  if (STXS==142) return  0.304;//0.235; // GG2H_VBFTOPO_JET3, tot unc 30.4%
+  if (STXS==150) return 0.20; 
   return 0.0; // Events with no VBF topology have no VBF uncertainty
 }
 
@@ -97,19 +98,16 @@ float ggHUncertaintyNew::qm_t(float pT) {
 
 // migration uncertaitny around the 200 GeV boundary
 float ggHUncertaintyNew::pT200(float pT, int Njets30) {
-/*
-  if      (Njets30==0) return interpol(pT, 199, -0.023, 201, 0.03);
-  else if (Njets30==1) return interpol(pT, 199, -0.004, 201, 0.053);//interpol(pT, 190, -0.0012, 210, 0.074);
-  else if (Njets30==2) return interpol(pT, 199, -0.004, 201, 0.015);//interpol(pT, 190, -0.0034, 210, 0.054);
-  else                 return interpol(pT, 199, -0.33, 201, 0.46);//interpol(pT, 190, -0.0091, 210, 0.046);
-//   if (Njets30>=3) return interpol(pT, 190, -0.0091, 210, 0.046);
-*/
+
+  if      (pT<200.00) return  0.0; 
+  else                 return interpol(pT, 199, -0.007, 201, 0.02);
+
 
 //aMC@NLO
-  if	(Njets30==0) return interpol(pT, 199, -0.0063, 201, 0.0077);
-  if	(Njets30==1) return interpol(pT, 199, -0.0028, 201, 0.038);
-  if	(Njets30==2) return interpol(pT, 199, -0.0045, 201, 0.0164);
-  else		     return interpol(pT, 199, -0.20, 201, 0.32); 
+/*
+  if (pT<200.00) return 0.0;
+  else		     return interpol(pT, 199, -0.020, 201, 0.042); 
+*/
 }
 
 // njet:pt_H 1 : 3    smaller +/- -0.126483 %     greater +/- 7.42588 % 
@@ -119,40 +117,44 @@ float ggHUncertaintyNew::pT200(float pT, int Njets30) {
 
 // migration uncertaitny around the 120 GeV boundary
 float ggHUncertaintyNew::pT120(float pT, int Njets30) {
-/*
+
   if (Njets30==0) return 0;
   else if (Njets30==1) return interpol(pT, 119, -0.0045, 121, 0.056);
   else if (Njets30==2) return interpol(pT, 119, -0.012, 121, 0.034);
-  else return interpol(pT, 119, -0.006, 121, 0.02);//interpol(pT,90,-0.016,160,0.14);
-*/
+  else return interpol(pT, 119, -0.006, 121, 0.02);
+
 //aMC@NLO
+/*
   if (Njets30==0) return 0;
   else if (Njets30==1) return interpol(pT, 119, -0.0032, 121, 0.041);
-  else if (Njets30==2) return interpol(pT, 119, -0.078, 121, 0.021);
-  else return interpol(pT, 119, -0.022, 121, 0.04);//interpol(pT,90,-0.016,160,0.14);
+  else if (Njets30==2) return interpol(pT, 119, -0.0078, 121, 0.021);
+  else return interpol(pT, 119, -0.032, 121, 0.05);
+*/
 }
 
 // migration uncertaitny around the 60 GeV boundary
 float ggHUncertaintyNew::pT60(float pT, int Njets30) {
-/*
+
   if (Njets30==0) return 0;
   else if (Njets30==1) return interpol(pT, 59, -0.02, 61, 0.021);//interpol(pT,20,-0.1,100,0.1);
   else if (Njets30==2) return interpol(pT, 59, -0.034, 61, 0.014);
   else return interpol(pT, 59, -0.03, 61, 0.01);//interpol(pT,0,-0.1,180,0.10); // >=2 jets
-*/
+
 //aMC@NLO
+/*
   if (Njets30==0) return 0;
   else if (Njets30==1) return interpol(pT, 59, -0.011, 61, 0.014);
   else if (Njets30==2) return interpol(pT, 59, -0.018, 61, 0.0068);
   else return interpol(pT, 59, -0.01, 61, 0.03);
+*/
 }
 
 // migration uncertaitny around the 10 GeV boundary (only for 0 jet bin)
 float ggHUncertaintyNew::pT10(float pT, int Njets30) {
   if (Njets30!=0) return 0;
-  //return interpol(pT, 9, -0.167, 11, 0.052);//interpol(pT, 9, -0.25, 11, 0.09);
+  return interpol(pT, 9, -0.167, 11, 0.052);
   // aMC@NLO
-  return interpol(pT, 9, -0.063, 11, 0.014);
+  //return interpol(pT, 9, -0.063, 11, 0.014);
 }
 
 

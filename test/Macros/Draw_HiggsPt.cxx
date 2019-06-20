@@ -60,12 +60,12 @@ void Draw_HiggsPt( std::string var = "higgs_pt", int nbin = 100, float min = 0, 
 
   //---- Scale to N3LO xsec
   float xsecInclusive = 48.52;
-  if (var == "higgs_pt") {
-    h1->Scale(xsecInclusive);
-    h2->Scale(xsecInclusive);
-    h3->Scale(xsecInclusive);
-    h4->Scale(xsecInclusive);
-  }
+//  if (var == "higgs_pt") {
+//    h1->Scale(xsecInclusive);
+//    h2->Scale(xsecInclusive);
+//    h3->Scale(xsecInclusive);
+//    h4->Scale(xsecInclusive);
+//  }
   gStyle->SetOptStat(0000);
        
   h1->Draw();

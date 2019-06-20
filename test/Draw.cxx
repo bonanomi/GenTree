@@ -61,12 +61,12 @@ void Draw( std::string var = "jets30", int nbin = 5, float min = 0, float max = 
 
   //---- Scale to N3LO xsec
   float xsecInclusive = 48.52;
-  if (var == "higgs_pt") {
-    h1->Scale(xsecInclusive);
-    h2->Scale(xsecInclusive);
-    h3->Scale(xsecInclusive);
-    h4->Scale(xsecInclusive);
-  }
+//  if (var == "higgs_pt") {
+//    h1->Scale(xsecInclusive);
+//    h2->Scale(xsecInclusive);
+//    h3->Scale(xsecInclusive);
+//    h4->Scale(xsecInclusive);
+//  }
   h1->Draw();
   h1->GetXaxis()->SetTitle(nameHR.c_str());
   h1->GetYaxis()->SetTitle("normalized");

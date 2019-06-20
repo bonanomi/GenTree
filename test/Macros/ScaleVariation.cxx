@@ -7,7 +7,7 @@ Double_t interpol(Double_t *t, Double_t *par)
    return par[1] + (par[3]-par[1])*(x-par[0])/(par[2]-par[0]);
 }
 
-void ScaleVariation( std::string var = "higgs_pt", int nbin = 20, float min = 0, float max = 120, std::string nameHR = "Higgs pT") {
+void ScaleVariation( std::string var = "higgs_pt", int nbin = 20, float min = 0, float max = 190, std::string nameHR = "Higgs pT") {
   
   
   std::cout << " var =    " << var    << std::endl;
@@ -26,14 +26,14 @@ void ScaleVariation( std::string var = "higgs_pt", int nbin = 20, float min = 0,
   
   TString toCutGlobal;
   
-  toCutGlobal = Form ("(weights_LHE[0]) * ( ( weights_LHE[9] * (abs(weights_LHE[9]/weights_LHE[0])<100)) + 0 * (abs(weights_LHE[9]/weights_LHE[0])>100)) * ((stage1_cat_pTjet30GeV == 102) || (stage1_cat_pTjet30GeV == 103))");
+  toCutGlobal = Form ("(weights_LHE[0]) * ( ( weights_LHE[9] * (abs(weights_LHE[9]/weights_LHE[0])<100)) + 0 * (abs(weights_LHE[9]/weights_LHE[0])>100)) * ((stage1_cat_pTjet30GeV == 131) || (stage1_cat_pTjet30GeV == 132) || (stage1_cat_pTjet30GeV == 141)  || (stage1_cat_pTjet30GeV == 142))");
   
   
   TString toCut;
   TString toDraw;
   
   TTree* tree1 = (TTree*) _file0->Get("GenTree/gentree");  
-  TH1F* hNominal = new TH1F ("hNominal", "Higgs pT distribution, 1 jet bins", nbin, min, max);  
+  TH1F* hNominal = new TH1F ("hNominal", "powHeg nnlops, 1 jet bins", nbin, min, max);  
   toDraw = Form ("%s >> hNominal", var.c_str());
   toCut = Form ("%s * (1)", toCutGlobal.Data());
   tree1->Draw(toDraw.Data(), toCut.Data() , "goff" );
@@ -238,7 +238,7 @@ void ScaleVariation( std::string var = "higgs_pt", int nbin = 20, float min = 0,
   
   TGraphErrors* gr_ND = new TGraphErrors();
   for (int ibin = 0; ibin < nbin; ibin++) {
-    gr_ND->SetPoint      (ibin, hNominal->GetBinCenter (ibin+1),  hNominal->GetBinContent (ibin+1) / hH_ND->GetBinContent (ibin+1) );
+    gr_ND->SetPoint      (ibin, hNominal->GetBinCenter (ibin+1),  hH_ND->GetBinContent (ibin+1) / hNominal->GetBinContent (ibin+1));
     float err1 =  hNominal->GetBinError (ibin+1);
     float err2 =  hH_ND->GetBinError (ibin+1);
     float val1 =  hNominal->GetBinContent (ibin+1);
@@ -248,7 +248,7 @@ void ScaleVariation( std::string var = "higgs_pt", int nbin = 20, float min = 0,
 
   TGraphErrors* gr_NU = new TGraphErrors();
   for (int ibin = 0; ibin < nbin; ibin++) {
-    gr_NU->SetPoint      (ibin, hNominal->GetBinCenter (ibin+1),  hNominal->GetBinContent (ibin+1) / hH_NU->GetBinContent (ibin+1) );
+    gr_NU->SetPoint      (ibin, hNominal->GetBinCenter (ibin+1), hH_NU->GetBinContent (ibin+1) / hNominal->GetBinContent (ibin+1));
     float err1 =  hNominal->GetBinError (ibin+1);
     float err2 =  hH_NU->GetBinError (ibin+1);
     float val1 =  hNominal->GetBinContent (ibin+1);
@@ -258,7 +258,7 @@ void ScaleVariation( std::string var = "higgs_pt", int nbin = 20, float min = 0,
 
   TGraphErrors* gr_DN = new TGraphErrors();
   for (int ibin = 0; ibin < nbin; ibin++) {
-    gr_DN->SetPoint      (ibin, hNominal->GetBinCenter (ibin+1),  hNominal->GetBinContent (ibin+1) / hH_DN->GetBinContent (ibin+1) );
+    gr_DN->SetPoint      (ibin, hNominal->GetBinCenter (ibin+1),  hH_DN->GetBinContent (ibin+1) / hNominal->GetBinContent (ibin+1));
     float err1 =  hNominal->GetBinError (ibin+1);
     float err2 =  hH_DN->GetBinError (ibin+1);
     float val1 =  hNominal->GetBinContent (ibin+1);
@@ -268,7 +268,7 @@ void ScaleVariation( std::string var = "higgs_pt", int nbin = 20, float min = 0,
 
   TGraphErrors* gr_UN = new TGraphErrors();
   for (int ibin = 0; ibin < nbin; ibin++) {
-    gr_UN->SetPoint      (ibin, hNominal->GetBinCenter (ibin+1),  hNominal->GetBinContent (ibin+1) / hH_UN->GetBinContent (ibin+1) );
+    gr_UN->SetPoint      (ibin, hNominal->GetBinCenter (ibin+1),  hH_UN->GetBinContent (ibin+1) / hNominal->GetBinContent (ibin+1));
     float err1 =  hNominal->GetBinError (ibin+1);
     float err2 =  hH_UN->GetBinError (ibin+1);
     float val1 =  hNominal->GetBinContent (ibin+1);
@@ -278,7 +278,7 @@ void ScaleVariation( std::string var = "higgs_pt", int nbin = 20, float min = 0,
   
   TGraphErrors* gr_DD = new TGraphErrors();
   for (int ibin = 0; ibin < nbin; ibin++) {
-    gr_DD->SetPoint      (ibin, hNominal->GetBinCenter (ibin+1),  hNominal->GetBinContent (ibin+1) / hH_DD->GetBinContent (ibin+1) );
+    gr_DD->SetPoint      (ibin, hNominal->GetBinCenter (ibin+1),  hH_DD->GetBinContent (ibin+1) / hNominal->GetBinContent (ibin+1));
     float err1 =  hNominal->GetBinError (ibin+1);
     float err2 =  hH_DD->GetBinError (ibin+1);
     float val1 =  hNominal->GetBinContent (ibin+1);
@@ -288,7 +288,7 @@ void ScaleVariation( std::string var = "higgs_pt", int nbin = 20, float min = 0,
 
   TGraphErrors* gr_UU = new TGraphErrors();
   for (int ibin = 0; ibin < nbin; ibin++) {
-    gr_UU->SetPoint      (ibin, hNominal->GetBinCenter (ibin+1),  hNominal->GetBinContent (ibin+1) / hH_UU->GetBinContent (ibin+1) );
+    gr_UU->SetPoint      (ibin, hNominal->GetBinCenter (ibin+1), hH_UU->GetBinContent (ibin+1) / hNominal->GetBinContent (ibin+1));
     float err1 =  hNominal->GetBinError (ibin+1);
     float err2 =  hH_UU->GetBinError (ibin+1);
     float val1 =  hNominal->GetBinContent (ibin+1);
@@ -314,28 +314,116 @@ void ScaleVariation( std::string var = "higgs_pt", int nbin = 20, float min = 0,
   gr_DD->Draw("L");
   gr_UU->Draw("L");
   
-  TF1* lin_up = new TF1("interpol", interpol, 1, 250, 4);
-  lin_up->SetParameter(0, 55);
-  lin_up->SetParameter(1, 1.021);
-  lin_up->SetParameter(2, 65);
-  lin_up->SetParameter(3, 0.98);
+  // Draw uncertainties assigned to jet bin
+  // interpol is the fcn we use in ggHUncertainty to compute pTH bins unc.
+  // For 1 jet bin we have two nuisances: 10 GeV, 120 GeV
+  // aMC@NLO
+/*
+  TF1* lin_up = new TF1("interpol", interpol, 1, 200, 4);
+  lin_up->SetParameter(0, 59.5); //Turning point: 60GeV
+  lin_up->SetParameter(1, 1.011); // 1 + smaller
+  lin_up->SetParameter(2, 60.5); //Turning point: 60GeV
+  lin_up->SetParameter(3, 0.986); // 1 - greater
   lin_up->SetLineColor(kRed);
-  lin_up->SetLineWidth(2);
+  lin_up->SetLineWidth(3);
   lin_up->SetLineStyle(4);
-  //lin_up->Draw("same");
+  lin_up->Draw("same");
 
-  TF1* lin_do = new TF1("interpol", interpol, 1, 250, 4);
-  lin_do->SetParameter(0, 55);
-  lin_do->SetParameter(1, 0.996);
-  lin_do->SetParameter(2, 65);
-  lin_do->SetParameter(3, 1.053);
+  TF1* lin_do = new TF1("interpol", interpol, 1, 200, 4);
+  lin_do->SetParameter(0, 59.5);
+  lin_do->SetParameter(1, 0.989);
+  lin_do->SetParameter(2, 60.5);
+  lin_do->SetParameter(3, 1.014);
   lin_do->SetLineColor(kBlue);
-  lin_do->SetLineWidth(2);
+  lin_do->SetLineWidth(3);
   lin_do->SetLineStyle(4);
-  //lin_do->Draw("same");
+  lin_do->Draw("same");
 
-  gr_ND->SetTitle("powHeg, 0 jets");
-  gr_ND->GetYaxis()->SetTitle("Nominal/Scale var.");
+  TF1* lin_up_1 = new TF1("interpol", interpol, 1, 200, 4);
+  lin_up_1->SetParameter(0, 119.5);
+  lin_up_1->SetParameter(1, 1.0032); //1 + smaller
+  lin_up_1->SetParameter(2, 120.5);
+  lin_up_1->SetParameter(3, 0.959); //1 - greater
+  lin_up_1->SetLineColor(kCyan);
+  lin_up_1->SetLineWidth(3);
+  lin_up_1->SetLineStyle(4);
+  lin_up_1->Draw("same");
+
+  TF1* lin_do_1 = new TF1("interpol", interpol, 1, 200, 4);
+  lin_do_1->SetParameter(0, 119.5);
+  lin_do_1->SetParameter(1, 0.997); //1 - smaller
+  lin_do_1->SetParameter(2, 120.5);
+  lin_do_1->SetParameter(3, 1.041); //1 + greater
+  lin_do_1->SetLineColor(kGreen);
+  lin_do_1->SetLineWidth(3);
+  lin_do_1->SetLineStyle(4);
+  lin_do_1->Draw("same");
+*/
+// NNLOPS 1 jet
+/*
+  TF1* lin_up = new TF1("interpol", interpol, 1, 200, 4);
+  lin_up->SetParameter(0, 59.5); //Turning point: 60GeV
+  lin_up->SetParameter(1, 1.034); // 1 + smaller
+  lin_up->SetParameter(2, 60.5); //Turning point: 60GeV
+  lin_up->SetParameter(3, 0.99); // 1 - greater
+  lin_up->SetLineColor(kRed);
+  lin_up->SetLineWidth(3);
+  lin_up->SetLineStyle(4);
+  lin_up->Draw("same");
+
+  TF1* lin_do = new TF1("interpol", interpol, 1, 200, 4);
+  lin_do->SetParameter(0, 59.5);
+  lin_do->SetParameter(1, 0.97);
+  lin_do->SetParameter(2, 60.5);
+  lin_do->SetParameter(3, 1.014);
+  lin_do->SetLineColor(kBlue);
+  lin_do->SetLineWidth(3);
+  lin_do->SetLineStyle(4);
+  lin_do->Draw("same");
+
+  TF1* lin_up_1 = new TF1("interpol", interpol, 1, 200, 4);
+  lin_up_1->SetParameter(0, 119.5);
+  lin_up_1->SetParameter(1, 1.012); //1 + smaller
+  lin_up_1->SetParameter(2, 120.5);
+  lin_up_1->SetParameter(3, 0.97); //1 - greater
+  lin_up_1->SetLineColor(kCyan);
+  lin_up_1->SetLineWidth(3);
+  lin_up_1->SetLineStyle(4);
+  lin_up_1->Draw("same");
+
+  TF1* lin_do_1 = new TF1("interpol", interpol, 1, 200, 4);
+  lin_do_1->SetParameter(0, 119.5);
+  lin_do_1->SetParameter(1, 0.988); //1 - smaller
+  lin_do_1->SetParameter(2, 120.5);
+  lin_do_1->SetParameter(3, 1.034); //1 + greater
+  lin_do_1->SetLineColor(kGreen);
+  lin_do_1->SetLineWidth(3);
+  lin_do_1->SetLineStyle(4);
+  lin_do_1->Draw("same");
+*/
+/*
+  TF1* lin_up = new TF1("interpol", interpol, 1, 100, 4);
+  lin_up->SetParameter(0, 9.5); //Turning point: 10GeV
+  lin_up->SetParameter(1, 1.063); // 1 + smaller
+  lin_up->SetParameter(2, 10.5); //Turning point: 10GeV
+  lin_up->SetParameter(3, 0.986); // 1 - greater
+  lin_up->SetLineColor(kRed);
+  lin_up->SetLineWidth(3);
+  lin_up->SetLineStyle(4);
+  lin_up->Draw("same");
+
+  TF1* lin_do = new TF1("interpol", interpol, 1, 100, 4);
+  lin_do->SetParameter(0, 9.5);
+  lin_do->SetParameter(1, 0.937);
+  lin_do->SetParameter(2, 10.5);
+  lin_do->SetParameter(3, 1.014);
+  lin_do->SetLineColor(kBlue);
+  lin_do->SetLineWidth(3);
+  lin_do->SetLineStyle(4);
+  lin_do->Draw("same");
+*/
+  gr_ND->SetTitle("powHeg nnlops, #geq 2 jets, m_{jj} < 350 GeV");
+  gr_ND->GetYaxis()->SetTitle("Scale var./Nominal");
   gr_ND->GetXaxis()->SetTitle("Higgs pT");
   
   TLegend* legend_ratio = new TLegend();
@@ -347,8 +435,9 @@ void ScaleVariation( std::string var = "higgs_pt", int nbin = 20, float min = 0,
   legend_ratio->AddEntry(gr_UU, "Nominal/#mu_{R} = 2.0, #mu_{F} = 2.0", "lp");
   //legend_ratio->AddEntry(lin_do, "Assigned uncertainty, up");
   //legend_ratio->AddEntry(lin_up, "Assigned uncertainty, do");
+  gr_ND->GetYaxis()->SetRangeUser(0.77, 1.27);
   legend_ratio->Draw();
   ccRatio->SetGrid();
-
+  
   
 }
