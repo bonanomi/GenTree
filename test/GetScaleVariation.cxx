@@ -111,7 +111,7 @@ void GetScaleVariation() {
     if (stxs1p1 == 103) //200GeV
     {
       smaller_nominal += nominal[102] + nominal[103];
-      greater_nominal += nominal[103]; //0.0;
+      greater_nominal += 0.0;
     }
     if (stxs1p1 == 111) //60GeV
     {
@@ -126,7 +126,7 @@ void GetScaleVariation() {
     if (stxs1p1 == 113) //200GeV
     {
       smaller_nominal += nominal[111] + nominal[112] + nominal[113];
-      greater_nominal += nominal[113]; //0.0;
+      greater_nominal += 0.0;
     }
     if (stxs1p1 == 121) //60GeV
     {
@@ -141,7 +141,7 @@ void GetScaleVariation() {
     if (stxs1p1 == 123) //200GeV
     {
       smaller_nominal += nominal[121] + nominal[122] + nominal[123];
-      greater_nominal += nominal[123]; //0.0;
+      greater_nominal += 0.0;
     }
     if (stxs1p1 == 131) //200GeV, 2jets VBF
     {
@@ -151,7 +151,7 @@ void GetScaleVariation() {
     if (stxs1p1 == 141) //200GeV, 2jets VBF
     {
       smaller_nominal += nominal[131] + nominal[141];
-      greater_nominal += nominal[131]; //0.0;
+      greater_nominal += 0.0;
     }
     if (stxs1p1 == 132) //200GeV, 2jets VBF
     {
@@ -161,12 +161,12 @@ void GetScaleVariation() {
     if (stxs1p1 == 142) //200GeV, 2jets VBF
     {
       smaller_nominal += nominal[132] + nominal[142];
-      greater_nominal += nominal[142]; //0.0;
+      greater_nominal += 0.0;
     }
     if (stxs1p1 == 150)
     {
       smaller_nominal += nominal[150];
-      greater_nominal += nominal[150]; //0.;
+      greater_nominal += nominal[150]; //0.0;
     }
 
     float nominal = smaller_nominal + greater_nominal;
@@ -185,7 +185,7 @@ void GetScaleVariation() {
       if (stxs1p1 == 103) //200GeV
       {
         smaller_nominal_variation += list_variation[102][i] + list_variation[103][i];
-        greater_nominal_variation += list_variation[103][i]; //0.0;
+        greater_nominal_variation += 0.0;
       }
       if (stxs1p1 == 111) //60GeV
       {
@@ -200,7 +200,7 @@ void GetScaleVariation() {
       if (stxs1p1 == 113) //200GeV
       {
         smaller_nominal_variation += list_variation[111][i] + list_variation[112][i] + list_variation[113][i];
-        greater_nominal_variation += list_variation[113][i]; //0.0;
+        greater_nominal_variation += 0.0;
       }
       if (stxs1p1 == 121) //60GeV
       {
@@ -215,7 +215,7 @@ void GetScaleVariation() {
       if (stxs1p1 == 123) //200GeV
       {
         smaller_nominal_variation += list_variation[121][i] + list_variation[122][i] + list_variation[123][i];
-        greater_nominal_variation += list_variation[123][i]; //0.0;
+        greater_nominal_variation += 0.0;
       }
       if (stxs1p1 == 131) //200GeV, 2jets VBF
       {
@@ -230,12 +230,12 @@ void GetScaleVariation() {
       if (stxs1p1 == 141) //200GeV, 2jets VBF
       {
         smaller_nominal_variation += list_variation[131][i] + list_variation[141][i];
-        greater_nominal_variation += list_variation[141][i]; //0.0;
+        greater_nominal_variation += 0.0;
       }
       if (stxs1p1 == 142) //200GeV, 2jets VBF
       {
         smaller_nominal_variation += list_variation[132][i] + list_variation[142][i];
-        greater_nominal_variation += list_variation[142][i]; //0.0;
+        greater_nominal_variation += 0.0;
       }
       if (stxs1p1 == 150)
       {
