@@ -200,8 +200,11 @@ GenTree::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
    if (_jets30 >= 2)
    {
       TLorentzVector j1,j2;
-      j1.SetPtEtaPhiM(JetPt->at(0),JetEta->at(0),JetPhi->at(0),JetMass->at(0));
-      j2.SetPtEtaPhiM(JetPt->at(1),JetEta->at(1),JetPhi->at(1),JetMass->at(1));
+      j1.SetPtEtaPhiM((htxs->jets30).at(0).pt(),(htxs->jets30).at(0).eta(),(htxs->jets30).at(0).phi(),(htxs->jets30).at(0).mass());
+      j2.SetPtEtaPhiM((htxs->jets30).at(1).pt(),(htxs->jets30).at(1).eta(),(htxs->jets30).at(1).phi(),(htxs->jets30).at(1).mass());
+
+      //j1.SetPtEtaPhiM(JetPt->at(0),JetEta->at(0),JetPhi->at(0),JetMass->at(0));
+      //j2.SetPtEtaPhiM(JetPt->at(1),JetEta->at(1),JetPhi->at(1),JetMass->at(1));
       _mjj = (j1+j2).M();
    } else {
       _mjj = -1;
